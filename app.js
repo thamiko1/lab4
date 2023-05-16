@@ -1,44 +1,64 @@
-// var mysql      = require('mysql');
-// var connection = mysql.createConnection({
-//   host     : 'localhost',
-//   user     : 'root',
-//   password : 'thamiko1',
-// //   database : 'test'
-// });
- 
-// connection.connect();
- 
-// connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-//   if (error) throw error;
-//   console.log('The solution is: ', results[0].solution);
-// });
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { getUsername, getPassword, createUser } from './database.js';
+import express from 'express';
+import ejs from 'ejs';
 
-var express = require('express');
-var app = express();
- 
-// app.use('/public', express.static('public'));
- 
-// app.get('/', function (req, res) {
-//    res.send('Hello World');
-// })
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs'); // Set EJS as the view engine
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/static/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 // Route to Login Page
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/static/login.html');
+  res.render('login', { error: null }); // Render the login.ejs view with no error
 });
 
-app.get('/register', (req, res) => {
-    res.sendFile(__dirname + '/static/register.html');
+// Handle login form submission
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const fetchedUsername = await getUsername(username);
+  const fetchedPassword = await getPassword(username);
+
+  if (fetchedUsername && fetchedPassword === password) {
+    res.send(`Welcome, ${fetchedUsername}!`); // Replace with the appropriate response
+  } else {
+    res.render('login', { error: 'Invalid username or password.' }); // Render the login.ejs view with the error message
+  }
 });
- 
-var server = app.listen(8081, function () {
- 
-  var host = server.address().address
-  var port = server.address().port
- 
- 
-})
+
+// Route to Register Page
+app.get('/register', (req, res) => {
+  res.render('register', { success: false, error: null }); // Render the register.ejs view
+});
+
+// Handle registration form submission
+app.post('/register', async (req, res) => {
+  const { username, password, confirmPassword } = req.body;
+
+  if (password !== confirmPassword) {
+    res.render('register', { success: false, error: 'password_mismatch' }); // Render the register.ejs view with the password mismatch error
+    return;
+  }
+
+  const existingUser = await getUsername(username);
+  if (existingUser) {
+    res.render('register', { success: false, error: 'username_exists' }); // Render the register.ejs view with the username exists error
+    return;
+  }
+
+  await createUser(username, password);
+  res.render('register', { success: true, error: null }); // Render the register.ejs view with the success message
+});
+
+const server = app.listen(8081, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+});

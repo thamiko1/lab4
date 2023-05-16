@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Example Login Form</title>
+    <title>Login Form</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -29,7 +29,12 @@
     <div class="wrapper">
       <h1 class="center-text">Squirrel vs Pointy</h1>
       <h2 class="center-text">Vocabulary Wars</h2>
-      <form action="" method="post">
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+      <% } %>
+      <form id="login-form" action="/login" method="post">
         <div class="form-group">
           <label for="username">Username:</label>
           <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
