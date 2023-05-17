@@ -1,3 +1,4 @@
+```
 npm install
 npm i dotenv ejs
 nodemon app.js
@@ -7,3 +8,4 @@ MYSQL_HOST='127.0.0.1'
 MYSQL_USER='lab4'
 MYSQL_PASSWORD='Squirrel1.'
 MYSQL_DATABASE='ACCOUNTS'
+```
