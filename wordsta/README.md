@@ -1,0 +1,1 @@
+The word list is from: https://github.com/fvrtrp/wordsta
