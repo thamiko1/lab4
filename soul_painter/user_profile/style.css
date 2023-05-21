@@ -25,6 +25,7 @@
     float: left;
     margin: 15px;
     width: 90px;
+    border: blue 3px solid;
 }
 
 #intro{ /*id, username*/
