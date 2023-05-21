@@ -3,5 +3,26 @@
     height: 30px;
     width: 50px;
     top: -20px;
-    left: 1200px;
+    left: 70px;
+}
+
+#box{
+    border: 4px solid;
+    width: 400px;
+    height: 700px;
+    text-align: center;
+    background-color: #fff;
+
+    transform: translateX(500px); /*500px*/
+}
+
+#headshot{
+    float: left;
+    margin: 15px;
+    width: 90px;
+}
+
+#intro{
+    font-size: 20px;
+    text-align: left;
 }
