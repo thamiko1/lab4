@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Menu</title>
+</head>
+<body>
+    <div class="container" id="box">
+        <!-- header -->
+        <div class="container">
+            <h1 id="header">
+                Squirrel V.S. Pointy
+            </h1>
+        </div>
+
+        <div class="container">
+            <button id="button_start" onclick="showgame()">START</button>
+            <a href="profile.html">
+                <button id="button_profile">User Profile</button>
+            </a>
+            <button id="button_rank" onclick="showrank()">Ranking</button>
+            <a href="login.html">
+                <button id="button_exit">Exit</button>
+            </a>
+            <button id="button_q" onclick="showq()">?</button>
+        </div>
+        <div class="popup" onclick="showq()">
+            <span class="popuptext" id="myPopup">
+                <p>asdf</p>
+                <p>enter a lot of instructions here</p>
+                <p>asdfagwe</p>
+                <p>awegasdg</p>
+            </span>
+        </div>
+        <div class="popup" onclick="showgame()">
+            <span class="popuptext" id="myPopupgame">
+                <p>asdf</p>
+                <p>the choices for a new game</p>
+                <p>asdfagwe</p>
+                <p>awegasdg</p>
+            </span>
+        </div>
+        <div class="popup" onclick="showrank()">
+            <span class="popuptext" id="myPopuprank">
+                <p>asdf</p>
+                <p>insert the ranking stuff here</p>
+                <p>asdfagwe</p>
+                <p>awegasdg</p>
+            </span>
+        </div>
+        <hr>
+        
+    </div>
+    <script src="index.js"></script>
+    <script>
+        function showq() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+        }
+        function showgame() {
+            var popup = document.getElementById("myPopupgame");
+            popup.classList.toggle("show");
+        }
+        function showrank() {
+            var popup = document.getElementById("myPopuprank");
+            popup.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>
