@@ -8,18 +8,31 @@
     <title>Gaming</title>
 </head>
 <body>
-    <div class="container" id="box">
+    <div id="box">
         <!-- options -->
-        <div class="container" id="options_set">
+        <div id="options_set">
             <button id="option">option1</button><br>
             <button id="option">option2</button><br>
             <button id="option">option3</button><br>
             <button id="option">option4</button><br>
         </div>
         <!-- squirrel -->
-        <img src="squirrel.webp" id="squirrel">
+        <div id="squirrel">
+            <p class="progress-label">squirrel</p>
+            <progress value="70" max="100" id="squirrel_hp"></progress>
+            <img src="squirrel.webp" id="squirrel_fig">
+        </div>
         <!-- pointhead -->
-        <img src="../end/pointhead.png" id="pointhead">
+        <div id="pointhead">
+            <p class="progress-label">pointhead</p>
+            <progress value="10" max="100" id="point_hp"></progress>
+            <img src="../end/pointhead.png" id="pointhead_fig">
+        </div>
+        <!-- Questions -->
+        <div class="container">
+            <img src="question.webp" width="200">
+            <div class="centered">Question</div>
+        </div>
     </div>
 </body>
 </html>
