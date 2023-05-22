@@ -55,8 +55,58 @@
                 <h2>Start a New Game?</h2>
               </div>
               <div class="modal-body">
-                <button>Single Mode</button>
-                <button>Multi Mode</button>
+                <!-- <button>Single Mode</button>
+                <button>Multi Mode</button> -->
+                <form>
+                    <fieldset id="group1">
+                        <legend>Select a game mode:</legend>
+                        <div>
+                          <input type="radio" id="single-player" name="mode" value="single-player"
+                                 checked>
+                          <label for="single-player">Single-Player</label>
+                        </div>
+                    
+                        <div>
+                          <input type="radio" id="multi-player" name="mode" value="multi-player">
+                          <label for="multi-player">Multi-Player</label>
+                        </div>
+                    </fieldset>
+                  
+                    <fieldset id="group2">
+                        <legend>Select a topic:</legend>
+                    
+                        <div>
+                            <input type="radio" id="t1" name="topic" value="t1"
+                                    checked>
+                            <label for="t1">T1</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t2" name="topic" value="t2"
+                                    checked>
+                            <label for="t2">T2</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t3" name="topic" value="t3"
+                                    checked>
+                            <label for="t3">T3</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t4" name="topic" value="t4"
+                                    checked>
+                            <label for="t4">T4</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t5" name="topic" value="t5"
+                                    checked>
+                            <label for="t5">T5</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t6" name="topic" value="t6"
+                                    checked>
+                            <label for="t6">T6</label>
+                        </div>
+                    </fieldset>
+                  </form>
                 <br><br>
                 <a href="game.html">
                     <button id="button_togame">Go</button>
