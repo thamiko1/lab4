@@ -17,14 +17,12 @@
         </div>
 
         <div class="container">
-            <button id="button_start" onclick="showgame()">START</button>
-            <a href="profile.html">
+            <button id="button_start">START</button>
+            <a href="../user_profile/profile.html">
                 <button id="button_profile">User Profile</button>
             </a>
-            <button id="button_rank" onclick="showrank()">Ranking</button>
-            <a href="login.html">
-                <button id="button_exit">Exit</button>
-            </a>
+            <button id="button_rank">Ranking</button>
+            <button id="button_exit">Exit</button>
             <button id="button_q" onclick="showq()">?</button>
         </div>
         <div class="popup" onclick="showq()">
@@ -35,21 +33,51 @@
                 <p>awegasdg</p>
             </span>
         </div>
-        <div class="popup" onclick="showgame()">
-            <span class="popuptext" id="myPopupgame">
-                <p>asdf</p>
-                <p>the choices for a new game</p>
-                <p>asdfagwe</p>
-                <p>awegasdg</p>
-            </span>
+        <div id="modal_rank" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="rank_x" class="close">&times;</span>
+                <h2>Rankings</h2>
+              </div>
+              <div class="modal-body">
+                <button onclick="changeSrc('single_rank.html');">Single Mode</button>
+                <button onclick="changeSrc('multi_rank.html');">Multi Mode</button>
+                <br><br>
+                <iframe src="single_rank.html" width="300" height="100" id="MyFrame"></iframe>
+              </div>
+            </div>
         </div>
-        <div class="popup" onclick="showrank()">
-            <span class="popuptext" id="myPopuprank">
-                <p>asdf</p>
-                <p>insert the ranking stuff here</p>
-                <p>asdfagwe</p>
-                <p>awegasdg</p>
-            </span>
+        <div id="modal_game" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="close_x" class="close">&times;</span>
+                <h2>Start a New Game?</h2>
+              </div>
+              <div class="modal-body">
+                <button>Single Mode</button>
+                <button>Multi Mode</button>
+                <br><br>
+                <a href="game.html">
+                    <button id="button_togame">Go</button>
+                </a>
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div id="modal_exit" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="exit_x" class="close">&times;</span>
+                <h2>Are you sure you want to leave?</h2>
+              </div>
+              <div class="modal-body">
+                <a href="login.html">
+                    <button id="button_tologin">Yes</button>
+                </a>
+                <br><br>
+              </div>
+            </div>
         </div>
         <hr>
         
@@ -64,9 +92,74 @@
             var popup = document.getElementById("myPopupgame");
             popup.classList.toggle("show");
         }
-        function showrank() {
-            var popup = document.getElementById("myPopuprank");
-            popup.classList.toggle("show");
+
+        // Get the modal for rank
+        var modalr = document.getElementById("modal_rank");
+        // Get the button that opens the modal
+        var btnr = document.getElementById("button_rank");
+        // Get the <span> element that closes the modal
+        var spanr = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal 
+        btnr.onclick = function() {
+        modalr.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+            spanr.onclick = function() {
+        modalr.style.display = "none";
+        }
+        
+
+
+        // Get the modal for game
+        var modalg = document.getElementById("modal_game");
+        // Get the button that opens the modal
+        var btng = document.getElementById("button_start");
+        // Get the <span> element that closes the modal
+        var spang = document.getElementsByClassName("close")[1];
+        // When the user clicks the button, open the modal 
+        btng.onclick = function() {
+        modalg.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        spang.onclick = function() {
+            modalg.style.display = "none";
+        }
+        
+
+
+        // Get the modal for exit
+        var modale = document.getElementById("modal_exit");
+        // Get the button that opens the modal
+        var btne = document.getElementById("button_exit");
+        // Get the <span> element that closes the modal
+        var spane = document.getElementsByClassName("close")[2];
+        // When the user clicks the button, open the modal 
+        btne.onclick = function() {
+            modale.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        spane.onclick = function() {
+            modale.style.display = "none";
+        }
+        
+        
+        // When the user clicks anywhere outside of the modals, close it
+        window.onclick = function(event) {
+            if (event.target == modalr) {
+                modalr.style.display = "none";
+            }
+            if (event.target == modalg) {
+                modalg.style.display = "none";
+            }
+            if (event.target == modale) {
+                modale.style.display = "none";
+            }
+        }
+
+
+        //change source of link
+        function changeSrc(change) {
+            document.getElementById("MyFrame").src=change;
         }
     </script>
 </body>
