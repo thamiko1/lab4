@@ -17,7 +17,7 @@
     left: 0px;
 }
 
-#option{
+#option, .option{
     font-size: 25px;
     width:420px;
     height: 40px;
