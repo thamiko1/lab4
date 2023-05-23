@@ -1,0 +1,85 @@
+#box{
+    border: 4px solid;
+    width: 450px;
+    height: 680px;
+    text-align: center;
+    background-color: #fff;
+
+    transform: translateX(000px); /*500px*/
+}
+
+#options_set{
+    background-color: gray;
+    width: 450px;
+    height: 250px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+#option{
+    font-size: 25px;
+    width:420px;
+    height: 40px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+#squirrel{
+    position: fixed;
+    left:15px;
+    top: 180px;
+}
+
+#squirrel_fig{
+    width: 170px;
+    position: fixed;
+    left: 15px;
+    top: 240px;
+}
+
+#squirrel_hp{
+    /* transform: translate(-30px, -200px); */
+    accent-color: greenyellow;
+    position: fixed;
+    left: 15px;
+    top: 220px;
+}
+
+#pointhead{
+    position: fixed;
+    right: 110px;
+    top: 0px;
+}
+
+#pointhead_fig{
+    width: 130px;
+    position: fixed;
+    right: 45px;
+    top: 90px;
+}
+
+#point_hp{
+    accent-color: tomato;
+    position: fixed;
+    right: 15px;
+    top: 40px;
+}
+
+/* Container holding the image and the text */
+.container {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  text-align: center;
+  color: black;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+}

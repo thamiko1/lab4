@@ -1,4 +1,6 @@
 
 .env
-filter_categories.py
+package-lock.json
+package.json
 jsonFormat.py
+filter_categories.py
