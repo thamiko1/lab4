@@ -1,2 +1,4 @@
-node_modules
+
 .env
+filter_categories.py
+jsonFormat.py
