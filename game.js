@@ -3,11 +3,11 @@
 //
 import express from 'express'
 import http from 'http'
-import SocketIO from 'socket.io'
+import {Server} from 'socket.io'
 
 var	app = express();
 var server = http.createServer(app);
-var io = SocketIO.listen(server);
+var io = new Server(server);
 var nicknames = [];
 
 import path from 'path';
