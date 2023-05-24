@@ -49,19 +49,19 @@
 
         $option0.click(function(e) {
             socket.emit("game clicked", $option0.text());
-        })
+        });
 
         $option1.click(function(e) {
             socket.emit("game clicked", $option1.text());
-        })
+        });
 
         $option2.click(function(e) {
             socket.emit("game clicked", $option2.text());
-        })
+        });
 
         $option3.click(function(e) {
             socket.emit("game clicked", $option3.text());
-        })
+        });
 
         socket.on('new question', function(def, options) {
             $option0.text(options[0]);
@@ -69,12 +69,19 @@
             $option2.text(options[2]);
             $option3.text(options[3]);
             $question.text(def);
-        })
+        });
 
         socket.on('question result', function(result) {
-            if (result != "correct") $squirrel_hp.val($squirrel_hp.val() - 20);
-            else $point_hp.val($point_hp.val() - 10);
-        })
+            // if (result != "correct") $squirrel_hp.val($squirrel_hp.val() - 20);
+            // else $point_hp.val($point_hp.val() - 10);
+        });
+
+        socket.on('update hp', function(player_hp, boss_hp) {
+            $squirrel_hp.val(player_hp);
+            $point_hp.val(boss_hp);
+            if (player_hp <= 0) window.location.href = "/end";
+            else if (boss_hp <= 0) window.location.href = "/end"
+        });
 
     });
     </script>

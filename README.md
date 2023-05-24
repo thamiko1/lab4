@@ -15,5 +15,7 @@ MYSQL_DATABASE='ACCOUNTS'
 ```sh
 npm install # install modules in package.json
 node game.js
+# node --version
+# v18.16.0
 ```
 Then you can connect to `localhost:3000` with your browser.
