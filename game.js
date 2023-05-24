@@ -55,6 +55,12 @@ app.post("/menu_start", function(req, res) {
 	res.redirect("/game");
 });
 
+//
+// profile
+//
+
+
+
 
 // 
 // GAME
