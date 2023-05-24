@@ -38,7 +38,16 @@
     top: 240px;
 }
 
-#squirrel_hp{
+.progress {
+    border: none;
+    background: grey;
+}
+
+.progress::-webkit-progress-value {
+    background: rgb(47, 234, 14);
+}
+
+.squirrel_hp{
     /* transform: translate(-30px, -200px); */
     accent-color: greenyellow;
     position: fixed;
@@ -59,7 +68,7 @@
     top: 90px;
 }
 
-#point_hp{
+.point_hp{
     accent-color: tomato;
     position: fixed;
     right: 15px;
@@ -82,4 +91,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 40px;
+}
+
+#pbar{
+    width: 100%;
+    margin: 10px auto;
+    height: 22px;
+    position: fixed;
+    bottom: 240px;
+    left: 00px;
 }

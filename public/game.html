@@ -19,13 +19,13 @@
         <!-- squirrel -->
         <div id="squirrel">
             <p class="progress-label">squirrel</p>
-            <progress value="100" max="100" id="squirrel_hp"></progress>
+            <progress value="100" max="100" class="squirrel_hp"></progress>
             <img src="soul_painter/game/squirrel.webp" id="squirrel_fig">
         </div>
         <!-- pointhead -->
         <div id="pointhead">
             <p class="progress-label">pointhead</p>
-            <progress value="100" max="100" id="point_hp"></progress>
+            <progress value="100" max="100" class="point_hp"></progress>
             <img src="soul_painter/end/pointhead.png" id="pointhead_fig">
         </div>
         <!-- Questions -->
@@ -33,57 +33,75 @@
             <img src="soul_painter/game/question.webp" width="200">
             <div class="centered" id="question">Question</div>
         </div>
+        <!-- count down progress bar -->
+        <progress value="10" max="10" id="pbar" class="progress"></progress>
     </div>
     <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-    $(function() {
-        var socket = io.connect();
-        var $option0 = $('#option0');
-        var $option1 = $('#option1');
-        var $option2 = $('#option2');
-        var $option3 = $('#option3');
-        var $question = $('#question');
-        var $point_hp = $('#point_hp');
-        var $squirrel_hp = $('#squirrel_hp');
+        $(function() {
+            var socket = io.connect();
+            var $option0 = $('#option0');
+            var $option1 = $('#option1');
+            var $option2 = $('#option2');
+            var $option3 = $('#option3');
+            var $question = $('#question');
+            var $point_hp = $('#point_hp');
+            var $squirrel_hp = $('#squirrel_hp');
 
-        $option0.click(function(e) {
-            socket.emit("game clicked", $option0.text());
+            $option0.click(function(e) {
+                socket.emit("game clicked", $option0.text());
+            });
+
+            $option1.click(function(e) {
+                socket.emit("game clicked", $option1.text());
+            });
+
+            $option2.click(function(e) {
+                socket.emit("game clicked", $option2.text());
+            });
+
+            $option3.click(function(e) {
+                socket.emit("game clicked", $option3.text());
+            });
+
+            socket.on('new question', function(def, options) {
+                $option0.text(options[0]);
+                $option1.text(options[1]);
+                $option2.text(options[2]);
+                $option3.text(options[3]);
+                $question.text(def);
+            });
+
+            socket.on('question result', function(result) {
+                // if (result != "correct") $squirrel_hp.val($squirrel_hp.val() - 20);
+                // else $point_hp.val($point_hp.val() - 10);
+            });
+
+            socket.on('update hp', function(player_hp, boss_hp) {
+                $squirrel_hp.val(player_hp);
+                $point_hp.val(boss_hp);
+                if (player_hp <= 0) window.location.href = "/end";
+                else if (boss_hp <= 0) window.location.href = "/end"
+            });
+
         });
-
-        $option1.click(function(e) {
-            socket.emit("game clicked", $option1.text());
-        });
-
-        $option2.click(function(e) {
-            socket.emit("game clicked", $option2.text());
-        });
-
-        $option3.click(function(e) {
-            socket.emit("game clicked", $option3.text());
-        });
-
-        socket.on('new question', function(def, options) {
-            $option0.text(options[0]);
-            $option1.text(options[1]);
-            $option2.text(options[2]);
-            $option3.text(options[3]);
-            $question.text(def);
-        });
-
-        socket.on('question result', function(result) {
-            // if (result != "correct") $squirrel_hp.val($squirrel_hp.val() - 20);
-            // else $point_hp.val($point_hp.val() - 10);
-        });
-
-        socket.on('update hp', function(player_hp, boss_hp) {
-            $squirrel_hp.val(player_hp);
-            $point_hp.val(boss_hp);
-            if (player_hp <= 0) window.location.href = "/end";
-            else if (boss_hp <= 0) window.location.href = "/end"
-        });
-
-    });
+        // count down progress bar
+        window.onload=start_countdown()
+        function start_countdown(){
+            var counter = 10;
+            var downloadTimer = setInterval(
+                function(){
+                    counter--;
+                    document.getElementById("pbar").value = counter;
+                    if(counter >= 10){
+                        clearInterval(downloadTimer);
+                    }
+                    // document.getElementById("counting").innerHTML = counter;
+                },
+                1000
+            );
+        }
     </script>
 </body>
 </html>
