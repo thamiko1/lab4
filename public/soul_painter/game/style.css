@@ -101,3 +101,15 @@
     bottom: 240px;
     left: 00px;
 }
+
+/* stop watch */
+.digit {
+	font-size: 30px;
+	color: #100f0f;
+}
+
+#time{
+    position:fixed;
+    top: 320px;
+    left: 270px;
+}
