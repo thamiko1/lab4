@@ -13,12 +13,21 @@
     left: 0px;
 }
 
-#button_back{
+.button_back{
+    font-size: 30px;
     position: absolute;
-    height: 30px;
-    width: 50px;
     top: -10px;
-    left: 330px;
+    left: 350px;
+    border-radius: 100%;
+    border: None;
+    background-color: black;
+    color: white;
+    z-index: 4;
+}
+
+.button_back:hover {
+    color: black;
+    background-color: white;
 }
 
 #headshot{ /*headshot picture in user profile page*/
