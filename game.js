@@ -168,6 +168,8 @@ io.sockets.on("connection", function (socket) {
         if (res == "correct") point_hp -= 10;
         else squirrel_hp -= 20;
         socket.emit("update hp", squirrel_hp, point_hp);
+        var counter = 0;
+        socket.emit("bounce back", counter);
         if (squirrel_hp <= 0 || point_hp <= 0) socket.disconnect();
 
         question_id++;

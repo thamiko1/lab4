@@ -54,6 +54,7 @@
             stopWatch();
         };
         // options
+        var click = 0;
         $(function() {
             var socket = io.connect();
             var $option0 = $('#option0');
@@ -100,6 +101,13 @@
                 else if (boss_hp <= 0) window.location.href = "/end"
             });
 
+            socket.on('bounce back', function(counter){
+                click = 1;
+                // console.log("counter: "+$counter.value);
+                // $counter.value = 0;
+                // console.log("bounce back "+counter+" "+$counter.value);
+            });
+
         });
         // count down progress bar
         function start_countdown(){
@@ -111,6 +119,10 @@
                 function(){
                     counter -= 0.01;
                     document.getElementById("pbar").value = counter;
+                    if(click == 1){
+                        click = 0;
+                        counter = 0;
+                    }
                     if(counter <= 0){
                         clearInterval(downloadTimer);
                         bounce_back();
