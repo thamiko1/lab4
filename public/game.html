@@ -106,14 +106,28 @@
             var counter = 10;
             var downloadTimer = setInterval(
                 function(){
-                    counter--;
+                    counter -= 0.01;
+                    document.getElementById("pbar").value = counter;
+                    if(counter <= 0){
+                        clearInterval(downloadTimer);
+                        bounce_back();
+                    }
+                },
+                1
+            );
+        }
+        function bounce_back(){
+            var counter = 0;
+            var downloadTimer = setInterval(
+                function(){
+                    counter += 0.2;
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer);
+                        start_countdown();
                     }
-                    // document.getElementById("counting").innerHTML = counter;
                 },
-                1000
+                1
             );
         }
         // stop watch
