@@ -61,8 +61,8 @@
             var $option2 = $('#option2');
             var $option3 = $('#option3');
             var $question = $('#question');
-            var $point_hp = $('#point_hp');
-            var $squirrel_hp = $('#squirrel_hp');
+            var $point_hp = $('.point_hp');
+            var $squirrel_hp = $('.squirrel_hp');
 
             $option0.click(function(e) {
                 socket.emit("game clicked", $option0.text());
@@ -104,6 +104,9 @@
         // count down progress bar
         function start_countdown(){
             var counter = 10;
+            // document.getElementById("pbar").classList.remove("progress-yellow");
+            // document.getElementById("pbar").classList.add("progress-green");
+            // console.log("green "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background);
             var downloadTimer = setInterval(
                 function(){
                     counter -= 0.01;
@@ -118,9 +121,12 @@
         }
         function bounce_back(){
             var counter = 0;
+            // document.getElementById("pbar").classList.remove("progress");
+            // document.getElementById("pbar").classList.add("progress-yellow");
+            // console.log("yellow "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background)
             var downloadTimer = setInterval(
                 function(){
-                    counter += 0.2;
+                    counter += 0.1;
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer);
@@ -136,8 +142,6 @@
         let count = 00;
         function stopWatch() {
             timer = true;
-            console.log("fuck");
-            console.log("fuck you again")
             if (timer) {
                 count++;
 

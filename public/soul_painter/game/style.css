@@ -25,6 +25,7 @@
     margin-top: 15px;
 }
 
+/* character */
 #squirrel{
     position: fixed;
     left:15px;
@@ -38,23 +39,6 @@
     top: 240px;
 }
 
-.progress {
-    border: none;
-    background: grey;
-}
-
-.progress::-webkit-progress-value {
-    background: rgb(47, 234, 14);
-}
-
-.squirrel_hp{
-    /* transform: translate(-30px, -200px); */
-    accent-color: greenyellow;
-    position: fixed;
-    left: 15px;
-    top: 220px;
-}
-
 #pointhead{
     position: fixed;
     right: 110px;
@@ -66,6 +50,26 @@
     position: fixed;
     right: 45px;
     top: 90px;
+}
+
+/* progress bar */
+.progress {
+    border: none;
+    background: grey;
+}
+
+.progress::-webkit-progress-value {
+    background: rgb(47, 234, 14);
+}
+/* .progress-yellow::-webkit-progress-bar{
+    background: yellow;
+} */
+
+.squirrel_hp{
+    accent-color: greenyellow;
+    position: fixed;
+    left: 15px;
+    top: 220px;
 }
 
 .point_hp{
