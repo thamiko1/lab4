@@ -52,13 +52,19 @@ app.post("/menu_start", function (req, res) {
     console.log(req.body);
     player_category = req.body.topic;
     player_mode = req.body.mode;
-    res.redirect("/game");
+    console.log(player_mode)
+    if(player_mode == "single-player")
+        res.redirect("/game");
+    else
+        res.redirect("/pending");
 });
 
 //
-// profile
+// pending
 //
-
+app.get('/pending', function (req, res) {
+    res.sendFile(__dirname + '/public/pending.html');
+});
 
 
 

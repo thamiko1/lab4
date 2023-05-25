@@ -21,6 +21,22 @@
     animation-duration: 2.5s;
 }
 
+.close{
+    font-size: 30px;
+    position: fixed;
+    top: 220px;
+    left: 1000px;
+    border-radius: 100%;
+    border: None;
+    background-color: black;
+    color: white;
+    z-index: 4;
+}
+.close:hover {
+    color: black;
+    background-color: white;
+}
+
 @import url('https://fonts.cdnfonts.com/css/comic-sans');
 #text{
     font-size: 30px;
