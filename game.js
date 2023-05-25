@@ -176,8 +176,15 @@ io.sockets.on("connection", function (socket) {
         send_question(socket);
     });
 
+    socket.on("timeout", function () {
+        squirrel_hp -= 20;
+        socket.emit("update hp", squirrel_hp, point_hp);
+        question_id++;
+        send_question(socket);
+    });
 
 });
+
 
 
 //

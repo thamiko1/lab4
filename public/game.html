@@ -54,9 +54,10 @@
             stopWatch();
         };
         // options
-        var click = 0;
+        var click = 0; // click before timeout(boolean)
+        var socket = io.connect();
         $(function() {
-            var socket = io.connect();
+            // var socket = io.connect();
             var $option0 = $('#option0');
             var $option1 = $('#option1');
             var $option2 = $('#option2');
@@ -103,9 +104,6 @@
 
             socket.on('bounce back', function(counter){
                 click = 1;
-                // console.log("counter: "+$counter.value);
-                // $counter.value = 0;
-                // console.log("bounce back "+counter+" "+$counter.value);
             });
 
         });
@@ -119,12 +117,14 @@
                 function(){
                     counter -= 0.01;
                     document.getElementById("pbar").value = counter;
-                    if(click == 1){
-                        click = 0;
+                    if(click == 1){ // if the user click any option before timeout, initialize the count down progress bar.
                         counter = 0;
                     }
                     if(counter <= 0){
                         clearInterval(downloadTimer);
+                        if(click == 0)
+                            socket.emit('timeout'); // penalty of timeout
+                        click = 0;
                         bounce_back();
                     }
                 },
