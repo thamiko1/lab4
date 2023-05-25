@@ -191,16 +191,16 @@ io.sockets.on("connection", function (socket) {
 // END
 //
 
-app.get('/end', function (req, res) {
+app.get('/win_end', function (req, res) {
     // Send gaming.html to client
-    res.sendFile(__dirname + '/public/end.html');
+    res.sendFile(__dirname + '/public/win_end.html');
 
 });
 
 
-app.get('/end', function (req, res) {
+app.get('/lose_end', function (req, res) {
     // Send gaming.html to client
-    res.sendFile(__dirname + '/public/end.html');
+    res.sendFile(__dirname + '/public/lose_end.html');
 
 
 });

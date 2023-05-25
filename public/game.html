@@ -98,8 +98,8 @@
             socket.on('update hp', function(player_hp, boss_hp) {
                 $squirrel_hp.val(player_hp);
                 $point_hp.val(boss_hp);
-                if (player_hp <= 0) window.location.href = "/end";
-                else if (boss_hp <= 0) window.location.href = "/end"
+                if (player_hp <= 0) window.location.href = "/lose_end";
+                else if (boss_hp <= 0) window.location.href = "/win_end"
             });
 
             socket.on('bounce back', function(counter){
