@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ranking</title>
+</head>
+<body>
+    <div id="box">
+        <!-- header and exit button -->
+        <h1 id="header">
+            Ranking
+            <!-- link for back button requires change -->
+            <a href="../end/win_end.html"> 
+                <button class="button_back">&#x2715</button>
+            </a>
+        </h1>
+        <!-- record -->
+        <div>
+            <button onclick="changeSrc('../user_profile/single_record.html');">Single Mode</button>
+            <button onclick="changeSrc('../user_profile/multi_record.html');">Multi Mode</button>
+            <br><br>
+            <iframe src="../user_profile/single_record.html" width="350" height="530" id="MyFrame"></iframe>
+        </div>
+    </div>
+    <script>
+        function changeSrc(change) {
+            document.getElementById("MyFrame").src=change;
+        }
+    </script>
+</body>
+</html>

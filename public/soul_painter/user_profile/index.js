@@ -1,5 +1,5 @@
-console.log("I like pizza!");
-console.log("It's really good");
+// console.log("I like pizza!");
+// console.log("It's really good");
 
 // window.alert("It is cool!");
 
