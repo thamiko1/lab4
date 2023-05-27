@@ -30,7 +30,6 @@ app.get('/login', (req, res) => {
   res.render('login', { error: null }); // Render the login.ejs view with no error
 });
 
-
 // Handle login form submission
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
@@ -38,9 +37,17 @@ app.post('/login', async (req, res) => {
   const fetchedPassword = await getPassword(username);
 
   if (fetchedUsername && fetchedPassword === password) {
-    // Render the profile view and pass the username as a variable
-    res.render(path.join(userProfilesDirectory, 'profile'), { username: fetchedUsername });
-    // ...
+    // Redirect to port 3000
+    res.redirect('http://localhost:3333');
+
+    // Execute game.js using the "node" command
+    exec('node game.js', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing game.js: ${error}`);
+        return;
+      }
+      console.log(`game.js executed successfully.`);
+    });
   } else {
     res.render('login', { error: 'Invalid username or password.' });
   }
