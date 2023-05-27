@@ -1,0 +1,40 @@
+#box{
+    border: 4px solid;
+    width: 400px;
+    height: 680px;
+    text-align: center;
+    background-color: #fff;
+
+    transform: translateX(500px); /*500px*/
+}
+
+#header{
+    position: relative;
+    left: 0px;
+}
+
+#button_back{
+    position: absolute;
+    height: 30px;
+    width: 50px;
+    top: -10px;
+    left: 330px;
+}
+
+#headshot{ /*headshot picture in user profile page*/
+    float: left;
+    margin: 15px;
+    width: 90px;
+    border: blue 3px solid;
+}
+
+#intro{ /*id, username*/
+    font-size: 20px;
+    text-align: left;
+}
+
+#voc_record{ /*record for each topic*/
+    font-size: 20px;
+    text-align: left;
+    margin-left: 15px;
+}

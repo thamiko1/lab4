@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="container" id="box">
+        <!-- header and exit button -->
+        <div class="container">
+            <h1 id="header">
+                User Profile
+                <a href="../menu/menu.html">
+                    <button id="button_back">Back</button>
+                </a>
+            </h1>
+        </div>
+        <hr>
+        <!-- ID, username, and headshot -->
+        <div id="intro">
+            <img src="img.jpg" id="headshot">
+            <br>
+            <p><b>ID:</b> JonathanLi0521</p>
+            <p><b>Username:</b> <%= username %></p>
+            <br>
+        </div>
+   
+        <hr>
+        <!-- score(time) record -->
+        <div>
+            <h3>Personal Record</h3>
+            <button onclick="changeSrc('single_record.html');">Single Mode</button>
+            <button onclick="changeSrc('multi_record.html');">Multi Mode</button>
+            <br><br>
+            <iframe src="single_record.html" width="300" height="150" id="MyFrame"></iframe>
+        </div>
+        <hr>
+        <!-- voc record -->
+        <h3>VOC Record</h3>
+        <div>
+            <a href="topic1.html">
+                <button>Topic 1</button>
+            </a>
+            <a href="topic2.html">
+                <button>Topic 2</button>
+            </a>
+            <a href="topic3.html">
+                <button>Topic 3</button>
+            </a>
+            <br><br>
+            <a href="topic4.html">
+                <button>Topic 4</button>
+            </a>
+            <a href="topic5.html">
+                <button>Topic 5</button>
+            </a>
+            <a href="topic6.html">
+                <button>Topic 6</button>
+            </a>
+            <a href="topic7.html">
+                <button>Topic 7</button>
+            </a>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
