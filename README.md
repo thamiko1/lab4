@@ -11,6 +11,8 @@ MYSQL_DATABASE='ACCOUNTS'
 ```
 Some other settings for SQL:
 ```
+CREATE DATABASE ACCOUNTS;
+USE ACCOUNTS;
 CREATE TABLE account(username varchar(255), password varchar(255));
 INSERT INTO account (username, password) VALUES ("test", "test"); 
 CREATE USER 'lab4'@'localhost' IDENTIFIED BY 'Squirrel1.';
