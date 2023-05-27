@@ -16,7 +16,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.listen(3000);
+server.listen(4000);
 
 // Use the public directory to access files
 app.use("", express.static(__dirname + '/public'));
