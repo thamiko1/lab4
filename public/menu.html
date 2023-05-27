@@ -21,7 +21,7 @@
             <a href="profile.html">
                 <button id="button_profile">User Profile</button>
             </a>
-            <a href="./soul_painter/ranking/ranking.html">
+            <a href="ranking.html">
                 <button id="button_rank">Ranking</button>
             </a>
             <button id="button_exit">Exit</button>
@@ -36,7 +36,6 @@
             </span>
         </div>
         <div id="modal_rank" class="modal">
-            <!-- Modal content -->
             <div class="modal-content">
               <div class="modal-header">
                 <span id="rank_x" class="close">&times;</span>
@@ -153,20 +152,20 @@
             popup.classList.toggle("show");
         }
 
-        // Get the modal for rank
-        var modalr = document.getElementById("modal_rank");
-        // Get the button that opens the modal
-        var btnr = document.getElementById("button_rank");
-        // Get the <span> element that closes the modal
-        var spanr = document.getElementsByClassName("close")[0];
-        // When the user clicks the button, open the modal 
-        btnr.onclick = function() {
-        modalr.style.display = "block";
-        }
-        // When the user clicks on <span> (x), close the modal
-            spanr.onclick = function() {
-        modalr.style.display = "none";
-        }
+        // // Get the modal for rank
+        // var modalr = document.getElementById("modal_rank");
+        // // Get the button that opens the modal
+        // var btnr = document.getElementById("button_rank");
+        // // Get the <span> element that closes the modal
+        // var spanr = document.getElementsByClassName("close")[0];
+        // // When the user clicks the button, open the modal 
+        // btnr.onclick = function() {
+        // modalr.style.display = "block";
+        // }
+        // // When the user clicks on <span> (x), close the modal
+        //     spanr.onclick = function() {
+        // modalr.style.display = "none";
+        // }
         
 
 
@@ -205,9 +204,9 @@
         
         // When the user clicks anywhere outside of the modals, close it
         window.onclick = function(event) {
-            if (event.target == modalr) {
-                modalr.style.display = "none";
-            }
+            // if (event.target == modalr) {
+            //     modalr.style.display = "none";
+            // }
             if (event.target == modalg) {
                 modalg.style.display = "none";
             }
