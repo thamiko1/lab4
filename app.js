@@ -3,11 +3,20 @@ import { dirname, join } from 'path';
 import { getUsername, getPassword, createUser } from './database.js';
 import express from 'express';
 import ejs from 'ejs';
+import http from 'http'
+import {Server} from 'socket.io'
+import { spawn, exec } from 'child_process';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const userProfilesDirectory = path.join(__dirname, 'views', 'soul_painter', 'user_profile');
+
 
 const app = express();
+var server1 = http.createServer(app);
+var io = new Server(server1);
+var nicknames = [];
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // Set EJS as the view engine
@@ -28,11 +37,23 @@ app.post('/login', async (req, res) => {
   const fetchedPassword = await getPassword(username);
 
   if (fetchedUsername && fetchedPassword === password) {
-    res.send(`Welcome, ${fetchedUsername}!`); // Replace with the appropriate response
+    // Redirect to port 3000
+    res.redirect('http://localhost:3333');
+
+    // Execute game.js using the "node" command
+    exec('node game.js', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing game.js: ${error}`);
+        return;
+      }
+      console.log(`game.js executed successfully.`);
+    });
   } else {
-    res.render('login', { error: 'Invalid username or password.' }); // Render the login.ejs view with the error message
+    res.render('login', { error: 'Invalid username or password.' });
   }
 });
+
+
 
 // Route to Register Page
 app.get('/register', (req, res) => {
@@ -58,7 +79,12 @@ app.post('/register', async (req, res) => {
   res.render('register', { success: true, error: null }); // Render the register.ejs view with the success message
 });
 
-const server = app.listen(8081, () => {
+const server = app.listen(5000, () => {
   const host = server.address().address;
   const port = server.address().port;
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+server.on('error', (error) => {
+  console.error('Server failed to start:', error);
 });

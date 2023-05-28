@@ -1,0 +1,58 @@
+#box{
+    border: 4px solid;
+    width: 400px;
+    height: 680px;
+    text-align: center;
+    background-color: #ffffff;
+
+    transform: translateX(500px); /*500px*/
+}
+
+#header{
+    position: relative;
+    left: 0px;
+}
+
+#box2{
+    border: 2px solid;
+    width: 260px;
+    height: 420px;
+    background-color:burlywood;
+
+    transform: translate(15px, 20px);
+}
+
+#time_record{
+    font-size: 20px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+#voc_list{
+    width: 230px; 
+    height: 200px;
+    border: 2px solid;
+    background-color: #fff; 
+}
+
+#play_again{
+    transform: translate(-50px, 80px);
+    font-size: 25px;
+    width: 200px;
+    height: 40px;
+}
+
+#button_set{
+    transform: translate(140px, -400px);
+}
+
+#leave_button{
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#pointhead{
+    width: 130px;
+    transform: translate(130px, -170px);
+}

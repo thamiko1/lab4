@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="soul_painter/menu/style.css">
+    <title>Menu</title>
+</head>
+<body>
+    <div class="container" id="box">
+        <!-- header -->
+        <div class="container">
+            <h1 id="header">
+                Squirrel V.S. Pointy
+            </h1>
+        </div>
+
+        <div class="container">
+            <button id="button_start">START</button>
+            <a href="soul_painter/user_profile/profile.html">
+                <button id="button_profile">User Profile</button>
+            </a>
+            <button id="button_rank">Ranking</button>
+            <button id="button_exit">Exit</button>
+            <button id="button_q" onclick="showq()">?</button>
+        </div>
+        <div class="popup" onclick="showq()">
+            <span class="popuptext" id="myPopup">
+                <p>asdf</p>
+                <p>enter a lot of instructions here</p>
+                <p>asdfagwe</p>
+                <p>awegasdg</p>
+            </span>
+        </div>
+        <div id="modal_rank" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="rank_x" class="close">&times;</span>
+                <h2>Rankings</h2>
+              </div>
+              <div class="modal-body">
+                <button onclick="changeSrc('single_rank.html');">Single Mode</button>
+                <button onclick="changeSrc('multi_rank.html');">Multi Mode</button>
+                <br><br>
+                <iframe src="single_rank.html" width="300" height="100" id="MyFrame"></iframe>
+              </div>
+            </div>
+        </div>
+        <div id="modal_game" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="close_x" class="close">&times;</span>
+                <h2>Start a New Game?</h2>
+              </div>
+              <div class="modal-body">
+                <!-- <button>Single Mode</button>
+                <button>Multi Mode</button> -->
+                <form action="/menu_start" method="post">
+                    <fieldset id="group1">
+                        <legend>Select a game mode:</legend>
+                        <div>
+                          <input type="radio" id="single-player" name="mode" value="single-player"
+                                 checked>
+                          <label for="single-player">Single-Player</label>
+                        </div>
+                    
+                        <div>
+                          <input type="radio" id="multi-player" name="mode" value="multi-player">
+                          <label for="multi-player">Multi-Player</label>
+                        </div>
+                    </fieldset>
+                  
+                    <fieldset id="group2">
+                        <legend>Select a topic:</legend>
+                    
+                        <div>
+                            <input type="radio" id="t1" name="topic" value="common"
+                                    checked>
+                            <label for="t1">Common</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t2" name="topic" value="food"
+                                    checked>
+                            <label for="t2">Food</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t3" name="topic" value="school"
+                                    checked>
+                            <label for="t3">School</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t4" name="topic" value="traffic"
+                                    checked>
+                            <label for="t4">Traffic</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t5" name="topic" value="sport"
+                                    checked>
+                            <label for="t5">Sport</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t6" name="topic" value="nature"
+                                    checked>
+                            <label for="t6">Nature</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="t7" name="topic" value="computer"
+                                    checked>
+                            <label for="t7">Computer</label>
+                        </div>
+                    </fieldset>
+                    <button id="button_togame" type="submit" value="Express_Go"> Go</buttion>
+                  </form>
+                <br>
+                <!--
+                <a href="/game">
+                    <button id="button_togame">Go</button>
+                </a>
+                -->
+              </div>
+            </div>
+        </div>
+        <hr>
+        <div id="modal_exit" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span id="exit_x" class="close">&times;</span>
+                <h2>Are you sure you want to leave?</h2>
+              </div>
+              <div class="modal-body">
+                <a href="login.html">
+                    <button id="button_tologin">Yes</button>
+                </a>
+                <br><br>
+              </div>
+            </div>
+        </div>
+        <hr>
+        
+    </div>
+    <script src="index.js"></script>
+    <script>
+        function showq() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+        }
+        function showgame() {
+            var popup = document.getElementById("myPopupgame");
+            popup.classList.toggle("show");
+        }
+
+        // Get the modal for rank
+        var modalr = document.getElementById("modal_rank");
+        // Get the button that opens the modal
+        var btnr = document.getElementById("button_rank");
+        // Get the <span> element that closes the modal
+        var spanr = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal 
+        btnr.onclick = function() {
+        modalr.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+            spanr.onclick = function() {
+        modalr.style.display = "none";
+        }
+        
+
+
+        // Get the modal for game
+        var modalg = document.getElementById("modal_game");
+        // Get the button that opens the modal
+        var btng = document.getElementById("button_start");
+        // Get the <span> element that closes the modal
+        var spang = document.getElementsByClassName("close")[1];
+        // When the user clicks the button, open the modal 
+        btng.onclick = function() {
+        modalg.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        spang.onclick = function() {
+            modalg.style.display = "none";
+        }
+        
+
+
+        // Get the modal for exit
+        var modale = document.getElementById("modal_exit");
+        // Get the button that opens the modal
+        var btne = document.getElementById("button_exit");
+        // Get the <span> element that closes the modal
+        var spane = document.getElementsByClassName("close")[2];
+        // When the user clicks the button, open the modal 
+        btne.onclick = function() {
+            modale.style.display = "block";
+        }
+        // When the user clicks on <span> (x), close the modal
+        spane.onclick = function() {
+            modale.style.display = "none";
+        }
+        
+        
+        // When the user clicks anywhere outside of the modals, close it
+        window.onclick = function(event) {
+            if (event.target == modalr) {
+                modalr.style.display = "none";
+            }
+            if (event.target == modalg) {
+                modalg.style.display = "none";
+            }
+            if (event.target == modale) {
+                modale.style.display = "none";
+            }
+        }
+
+
+        //change source of link
+        function changeSrc(change) {
+            document.getElementById("MyFrame").src=change;
+        }
+    </script>
+    <script type="text/javascript">
+    $(function() {
+        $express_go = $('#express_go')
+    });
+    </script>
+</body>
+</html>
