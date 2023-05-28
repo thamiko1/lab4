@@ -1,0 +1,191 @@
+#box{
+    border: 4px solid;
+    width: 450px;
+    height: 680px;
+    text-align: center;
+    background-color: #fff;
+
+    transform: translateX(500px); /*500px*/
+}
+
+#options_set{
+    background-color: gray;
+    width: 450px;
+    height: 250px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+#option, .option{
+    font-size: 25px;
+    width:420px;
+    height: 40px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+/* character */
+#squirrel{
+    position: fixed;
+    left:15px;
+    top: 180px;
+}
+
+#squirrel_fig{
+    width: 170px;
+    position: fixed;
+    left: 15px;
+    top: 240px;
+}
+
+#pointhead{
+    position: fixed;
+    right: 110px;
+    top: 0px;
+}
+
+#pointhead_fig{
+    width: 130px;
+    position: fixed;
+    right: 45px;
+    top: 90px;
+}
+
+/* progress bar */
+.progress {
+    border: none;
+    background: grey;
+}
+
+.progress::-webkit-progress-value {
+    background: rgb(47, 234, 14);
+}
+/* .progress-yellow::-webkit-progress-bar{
+    background: yellow;
+} */
+
+.squirrel_hp{
+    accent-color: greenyellow;
+    position: fixed;
+    left: 15px;
+    top: 220px;
+}
+
+.point_hp{
+    accent-color: tomato;
+    position: fixed;
+    right: 15px;
+    top: 40px;
+}
+
+/* Container holding the image and the text */
+.container {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  text-align: center;
+  color: black;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+}
+
+#pbar{
+    width: 100%;
+    margin: 10px auto;
+    height: 22px;
+    position: fixed;
+    bottom: 240px;
+    left: 00px;
+}
+
+/* stop watch */
+.digit {
+	font-size: 30px;
+	color: #100f0f;
+}
+
+#time{
+    position:fixed;
+    top: 320px;
+    left: 270px;
+}
+
+
+/*
+For pending:
+*/
+
+.hole {
+    text-align: center;
+    position: fixed;
+    width: 600px;
+    height: 300px;
+    transform: translate(450px, 200px);
+    box-shadow: 0 0 0 99999px black;
+    z-index: 3;
+}
+
+.pending_icon{
+    position: fixed;
+    width: 180px;
+    z-index: 2;
+    margin-top: 300px;
+
+    animation: mySlide;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 2.5s;
+}
+
+#pending_status{
+    position: fixed;
+    width: 180px;
+    z-index: 2;
+    margin-top: 300px;
+    transform: translateX(600px);
+}
+
+
+.close{
+    font-size: 30px;
+    position: fixed;
+    top: 220px;
+    left: 1000px;
+    border-radius: 100%;
+    border: None;
+    /background-color: black;
+    color: white;
+    z-index: 4;
+}
+.close:hover {
+    color: black;
+    background-color: white;
+}
+
+
+@import url('https://fonts.cdnfonts.com/css/comic-sans');
+#text{
+    font-size: 30px;
+    font-family: 'Comic Sans', sans-serif;
+    transform: translateY(-20px);
+}
+
+@keyframes mySlide{
+    from{margin-left: 20%}
+    to{margin-left: 80%;}
+}
+
+/*
+#pending {
+    display: none;
+}
+*/

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="soul_painter/game/style2.css">
+    <!--
+    <link rel="stylesheet" href="soul_painter/pending/style.css">
+    -->
+    <title>Gaming</title>
+</head>
+<body>
+    <div id="box"> <!-- The block for gaming -->
+        <!-- options -->
+        <div id="options_set">
+            <button id="option0" class="option">option1</button><br>
+            <button id="option1" class="option">option2</button><br>
+            <button id="option2" class="option">option3</button><br>
+            <button id="option3" class="option">option4</button><br>
+        </div>
+        <!-- squirrel -->
+        <div id="squirrel">
+            <p class="progress-label">squirrel</p>
+            <progress value="100" max="100" class="squirrel_hp"></progress>
+            <img src="soul_painter/game/squirrel.webp" id="squirrel_fig">
+        </div>
+        <!-- pointhead -->
+        <div id="pointhead">
+            <p class="progress-label">pointhead</p>
+            <progress value="100" max="100" class="point_hp"></progress>
+            <img src="soul_painter/end/pointhead.png" id="pointhead_fig">
+        </div>
+        <!-- Questions -->
+        <div class="container">
+            <img src="soul_painter/game/question.webp" width="200">
+            <div class="centered" id="question">Question</div>
+        </div>
+        <!-- count down progress bar -->
+        <progress value="10" max="10" id="pbar" class="progress"></progress>
+        <!-- stop watch -->
+        <div id="time">
+			<span class="digit" id="min">00</span>
+			<span class="digit">:</span>
+			<span class="digit" id="sec">00</span>
+			<span class="digit">:</span>
+			<span class="digit" id="count">00</span>
+		</div>
+    </div>
+    <div id="pending"> <!-- The block for pending -->
+        <div class="hole"></div>
+        <p class="pending_icon" id="text">Pending......</p>
+        <p id="pending_status"> 0 / 0 </p>
+        <img src="soul_painter/pending/pending-run-unscreen.gif" class="pending_icon">
+    </div>
+
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+        // run the function upon loaded
+        window.onload=function() {
+            document.getElementById("box").style.display = "none";
+            start_countdown();
+            timer=true;
+            stopWatch();
+        };
+        
+        // $('#pending').css("display") = "none";
+        
+
+        var click = 0; // click before timeout(boolean)
+        var socket = io.connect();
+        var userID = -1, roomID = -1;
+        $(function() {
+            /// for PENDING
+
+            var $pending_status = $("#pending_status");
+
+            socket.on('update num_user', function(num_user, max_user) {
+                console.log(`${num_user} / ${max_user}`);
+                $("#pending_status").text(`${num_user} / ${max_user}`);
+
+            });
+
+            socket.on('game start', function() {
+                $('#pending').css("display", "none");
+                $('#box').css("display", "block");
+            });
+
+
+            /// for GAMING
+
+            // var socket = io.connect();
+            var $option0 = $('#option0');
+            var $option1 = $('#option1');
+            var $option2 = $('#option2');
+            var $option3 = $('#option3');
+            var $question = $('#question');
+            var $point_hp = $('.point_hp');
+            var $squirrel_hp = $('.squirrel_hp');
+
+            $option0.click(function(e) {
+                socket.emit("game clicked", $option0.text());
+            });
+
+            $option1.click(function(e) {
+                socket.emit("game clicked", $option1.text());
+            });
+
+            $option2.click(function(e) {
+                socket.emit("game clicked", $option2.text());
+            });
+
+            $option3.click(function(e) {
+                socket.emit("game clicked", $option3.text());
+            });
+
+            socket.on('new question', function(def, options) {
+                $option0.text(options[0]);
+                $option1.text(options[1]);
+                $option2.text(options[2]);
+                $option3.text(options[3]);
+                $question.text(def);
+            });
+
+            socket.on('question result', function(result) {
+                // if (result != "correct") $squirrel_hp.val($squirrel_hp.val() - 20);
+                // else $point_hp.val($point_hp.val() - 10);
+            });
+
+            socket.on('update player hp', function(player_hp) {
+                $squirrel_hp.val(player_hp);
+                if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
+            });
+
+            socket.on('update boss hp', function(boss_hp) {
+                $point_hp.val(boss_hp);
+                if (boss_hp <= 0) window.location.href = "/win_end"
+            });
+
+            socket.on('bounce back', function(counter){
+                click = 1;
+            });
+
+        });
+        // count down progress bar
+        function start_countdown(){
+            var counter = 10;
+            // document.getElementById("pbar").classList.remove("progress-yellow");
+            // document.getElementById("pbar").classList.add("progress-green");
+            // console.log("green "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background);
+            var downloadTimer = setInterval(
+                function(){
+                    counter -= 0.01;
+                    document.getElementById("pbar").value = counter;
+                    if(click == 1){ // if the user click any option before timeout, initialize the count down progress bar.
+                        counter = 0;
+                    }
+                    if(counter <= 0){
+                        clearInterval(downloadTimer);
+                        if(click == 0)
+                            socket.emit('timeout'); // penalty of timeout
+                        click = 0;
+                        bounce_back();
+                    }
+                },
+                1
+            );
+        }
+        function bounce_back(){
+            var counter = 0;
+            // document.getElementById("pbar").classList.remove("progress");
+            // document.getElementById("pbar").classList.add("progress-yellow");
+            // console.log("yellow "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background)
+            var downloadTimer = setInterval(
+                function(){
+                    counter += 0.1;
+                    document.getElementById("pbar").value = counter;
+                    if(counter >= 10){
+                        clearInterval(downloadTimer);
+                        start_countdown();
+                    }
+                },
+                1
+            );
+        }
+        // stop watch
+        let minute = 00;
+        let second = 00;
+        let count = 00;
+        function stopWatch() {
+            timer = true;
+            if (timer) {
+                count++;
+
+                if (count == 100) {
+                    second++;
+                    count = 0;
+                }
+
+                if (second == 60) {
+                    minute++;
+                    second = 0;
+                }
+
+                let minString = minute;
+                let secString = second;
+                let countString = count;
+
+
+                if (minute < 10) {
+                    minString = "0" + minString;
+                }
+
+                if (second < 10) {
+                    secString = "0" + secString;
+                }
+
+                if (count < 10) {
+                    countString = "0" + countString;
+                }
+
+                document.getElementById('min').innerHTML = minString;
+                document.getElementById('sec').innerHTML = secString;
+                document.getElementById('count').innerHTML = countString;
+                setTimeout(stopWatch, 10);
+            }
+        }
+    </script>
+</body>
+</html>
