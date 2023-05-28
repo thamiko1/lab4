@@ -36,6 +36,28 @@ create table multi (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd v
 insert into multi (mode) values ("Common"),("Food"),("School"),("Traffic"),("Sport"),("Nature"),("Computer");
 ```
 
+Write json in game.js example
+```
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+var fs = require('fs');
+
+var person = {
+  "name": "林品翰",
+  "want to say": "感謝各位大神carry我!",
+};
+
+var jsonString = JSON.stringify(person);
+
+fs.writeFile('person.json', jsonString, function(err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('檔案已成功寫入！');
+  }
+});
+```
+
 ## For game.js
 ```sh
 npm install # install modules in package.json
