@@ -56,6 +56,9 @@ fs.writeFile('person.json', jsonString, function(err) {
     console.log('檔案已成功寫入！');
   }
 });
+
+output : a new file named person.json
+{"name":"林品翰","want to say":"感謝各位大神carry我!"}
 ```
 
 ## For game.js
