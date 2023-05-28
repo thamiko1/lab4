@@ -4,6 +4,7 @@
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
+import * as fs from 'fs'
 
 var app = express();
 var server = http.createServer(app);
@@ -157,18 +158,47 @@ function send_question(socket) {
     socket.emit("new question", question["definition"], question["options"]);
 }
 
+// function generateHTMLContent() {
+//     let htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
+//     htmlContent += '<h1>Questions and Answers</h1>\n';
+  
+//     questions.forEach((question, index) => {
+//       htmlContent += `<h2>Question ${index + 1}</h2>\n`;
+//       htmlContent += `<p>${question.question}</p>\n`;
+  
+//       htmlContent += '<ul>\n';
+//       question.answers.forEach((answer, answerIndex) => {
+//         htmlContent += `<li>Option ${answerIndex + 1}: ${answer}</li>\n`;
+//       });
+//       htmlContent += '</ul>\n';
+  
+//       htmlContent += '<hr>\n'; // Add a horizontal line separator between questions
+//     });
+  
+//     htmlContent += '</body>\n</html>';
+//     return htmlContent;
+//   }
+  
 
+// const fs = require("fs");
 io.sockets.on("connection", function (socket) {
     console.log("New user");
     squirrel_hp = 100, point_hp = 100;
     send_question(socket);
-
+    let htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
+    htmlContent += '<h1>Answer Logs</h1>\n'
     socket.on("game clicked", function (data) {
         console.log(data);
         let res;
         // Determine whether the answer is correct or wrong.
-        if (data == questions[question_id]["correct_option"]) res = "correct";
-        else res = "wrong";
+        if (data == questions[question_id]["correct_option"]) {    
+            res = "correct";
+            htmlContent += `<p> <span>&#10004;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
+        }
+        else {
+            res = "wrong";
+            htmlContent += `<p> <span>&#10008;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}. The correct answer was: ${questions[question_id]["correct_option"]}</p>\n`;
+        }
         console.log(res);
         socket.emit("question result", res);
         if (res == "correct") point_hp -= 10;
@@ -176,8 +206,17 @@ io.sockets.on("connection", function (socket) {
         socket.emit("update hp", squirrel_hp, point_hp);
         var counter = 0;
         socket.emit("bounce back", counter);
-        if (squirrel_hp <= 0 || point_hp <= 0) socket.disconnect();
-
+        if (squirrel_hp <= 0 || point_hp <= 0) {
+            socket.disconnect();
+            // Write questions and answers to a new HTML file
+            fs.writeFile("./public/wrong_answer.html", htmlContent, (err) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log("Questions and answers written to questions.html");
+                }
+            });
+        }
         question_id++;
         send_question(socket);
     });
