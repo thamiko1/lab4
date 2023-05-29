@@ -159,7 +159,7 @@ var manager = new RoomManager();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.listen(3000);
+server.listen(3333);
 
 const sessionMiddleware = session({
 	secret: 'secret',

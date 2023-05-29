@@ -14,10 +14,10 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "",
     "mysql": "^2.18.1",
     "mysql2": "^3.3.1",
     "nodemon": "^2.0.22",
-    "socket.io": "^4.6.1",
-    "express-session": ""
+    "socket.io": "^4.6.1"
   }
 }
