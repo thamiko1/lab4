@@ -147,11 +147,12 @@ For pending:
 }
 
 #pending_status{
-    position: fixed;
+    /* position: fixed; */
     width: 180px;
     z-index: 2;
-    margin-top: 300px;
-    transform: translateX(600px);
+    font-size: 30px;
+    /* margin-top: 300px; */
+    transform: translate(200px, -20px);
 }
 
 
@@ -162,7 +163,7 @@ For pending:
     left: 1000px;
     border-radius: 100%;
     border: None;
-    /background-color: black;
+    background-color: black;
     color: white;
     z-index: 4;
 }
