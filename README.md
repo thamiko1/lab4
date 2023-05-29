@@ -1,16 +1,19 @@
-```
+# CNL Final Project
+## login page setup
+```sh
 npm install
 npm i dotenv ejs
 nodemon app.js
-NEED .env TO SET YOUR DATABASE.
-sample .env:
+```
+* NEED .env TO SET YOUR DATABASE. Here is a sample for .env.
+```
 MYSQL_HOST='127.0.0.1'
 MYSQL_USER='lab4'
 MYSQL_PASSWORD='Squirrel1.'
 MYSQL_DATABASE='ACCOUNTS'
 ```
-Some other settings for SQL:
-```
+* Some other settings for SQL:
+```sh
 CREATE DATABASE ACCOUNTS;
 USE ACCOUNTS;
 CREATE TABLE account(username varchar(255), password varchar(255));
@@ -19,9 +22,8 @@ CREATE USER 'lab4'@'localhost' IDENTIFIED BY 'Squirrel1.';
 GRANT ALL PRIVILEGES ON *.* TO 'lab4'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
-
-User & Ranking database setup
-```
+## User & Ranking database setup
+```sh
 sudo mysql
 show databases;
 create DATABASE USR_GAME_RECORD;
@@ -36,8 +38,8 @@ create table multi (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd v
 insert into multi (mode) values ("Common"),("Food"),("School"),("Traffic"),("Sport"),("Nature"),("Computer");
 ```
 
-Write json in game.js example
-```
+## Write json in game.js example
+```js
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 var fs = require('fs');
@@ -60,7 +62,6 @@ fs.writeFile('person.json', jsonString, function(err) {
 output : a new file named person.json
 {"name":"林品翰","want to say":"感謝各位大神carry我!"}
 ```
-
 ## For game.js
 ```sh
 npm install # install modules in package.json
