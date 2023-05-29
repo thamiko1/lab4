@@ -23,7 +23,7 @@ class UserProfile {
         this.max_user = max_user;
         this.topic = topic;
         this.hp = 100;
-        this.question_id = 1;
+        this.question_id = 0;
     }
 }
 
