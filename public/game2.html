@@ -136,12 +136,23 @@
 
             socket.on('update player hp', function(player_hp) {
                 $squirrel_hp.val(player_hp);
-                if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
+                // if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
+                if (player_hp <= 0) {
+                    let time_str = create_time_string();
+                    window.localStorage.setItem("time_str", time_str);
+                    window.location.href = "/lose_end";
+                }
             });
 
             socket.on('update boss hp', function(boss_hp) {
                 $point_hp.val(boss_hp);
-                if (boss_hp <= 0) window.location.href = "/win_end"
+                // if (boss_hp <= 0) window.location.href = "/win_end"
+                if (boss_hp <= 0){
+                    let time_str = create_time_string();
+                    console.log(time_str);
+                    window.localStorage.setItem("time_str", time_str);
+                    window.location.href = "/win_end";
+                }
             });
 
             socket.on('bounce back', function(counter){
@@ -194,6 +205,27 @@
         let minute = 00;
         let second = 00;
         let count = 00;
+
+        function create_time_string() {
+            let minString = minute;
+            let secString = second;
+            let countString = count;
+
+
+            if (minute < 10) {
+                minString = "0" + minString;
+            }
+
+            if (second < 10) {
+                secString = "0" + secString;
+            }
+
+            if (count < 10) {
+                countString = "0" + countString;
+            }
+            return minString + ":" +secString + ":" + countString;
+        }
+
         function stopWatch() {
             timer = true;
             if (timer) {

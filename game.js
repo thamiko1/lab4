@@ -22,7 +22,7 @@ class UserProfile {
         this.userID = userID;
         this.max_user = max_user;
         this.topic = topic;
-        this.hp = 100;
+        // this.hp = 100;
         this.question_id = 0;
     }
 }
@@ -39,6 +39,7 @@ class RoomProfile {
 
         this.questions = build_questions(topic);
         this.boss_hp = 100;
+        this.user_hp = 100;
         this.start_time = 0; // Date.now();
         this.end_time = 0;
     }
@@ -192,7 +193,7 @@ var manager = new RoomManager();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.listen(3333);
+server.listen(3000);
 
 const sessionMiddleware = session({
 	secret: 'secret',
@@ -303,6 +304,7 @@ io.sockets.on("connection", function (socket) {
         io.to(roomID).emit("game start");
         let question = room.questions[0];
         io.to(roomID).emit("new question", question["definition"], question["options"]);
+        room.start();
     }
 
 
@@ -335,13 +337,13 @@ io.sockets.on("connection", function (socket) {
             io.to(roomID).emit("update boss hp", room.boss_hp);
         }
         else {
-            user.hp -= 20;
-            socket.emit("update player hp", user.hp);
+            room.user_hp -= 20;
+            socket.emit("update player hp", room.user_hp);
         }
         
         var counter = 0;
-        // socket.emit("bounce back", counter);
-        if (user.hp <= 0 || room.boss_hp <= 0) {
+        socket.emit("bounce back", counter);
+        if (room.user_hp <= 0 || room.boss_hp <= 0) {
             socket.disconnect();
             // Write questions and answers to a new HTML file
             /*
@@ -365,8 +367,8 @@ io.sockets.on("connection", function (socket) {
         let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
         let room = manager.rooms[roomID], user = room.users[userID];
         
-        user.hp -= 20;
-        socket.emit("update player hp", user.hp);
+        room.user_hp -= 20;
+        socket.emit("update player hp", room.user_hp);
         user.question_id++;
         send_question(socket, room, userID);
         // squirrel_hp -= 20;
