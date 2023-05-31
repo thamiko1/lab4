@@ -33,23 +33,23 @@
 }
 
 #squirrel_fig{
-    width: 170px;
+    width: 130px;
     position: fixed;
     left: 15px;
-    top: 240px;
+    top: 260px;
 }
 
 #pointhead{
     position: fixed;
-    right: 110px;
+    right: 30px;
     top: 0px;
 }
 
 #pointhead_fig{
-    width: 130px;
+    width: 110px;
     position: fixed;
     right: 45px;
-    top: 90px;
+    top: 100px;
 }
 
 /* progress bar */

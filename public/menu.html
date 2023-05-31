@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="soul_painter/menu/style.css">
+    <link href="https://fonts.cdnfonts.com/css/cartoon-free" rel="stylesheet">
     <title>Menu</title>
 </head>
 <body>
@@ -17,15 +19,15 @@
         </div>
 
         <div class="container">
-            <button id="button_start">START</button>
+            <button class="button wood" id="button_start">START</button>
             <a href="profile.html">
-                <button id="button_profile">User Profile</button>
+                <button class="button wood2" id="button_profile">User Profile</button>
             </a>
             <a href="ranking.html">
-                <button id="button_rank">Ranking</button>
+                <button class="button wood" id="button_rank">Ranking</button>
             </a>
-            <button id="button_exit">Exit</button>
-            <button id="button_q" onclick="showq()">?</button>
+            <button class="button wood2" id="button_exit">Exit</button>
+            <button class="button wood" id="button_q" onclick="showq()">?</button>
         </div>
         <div class="popup" onclick="showq()">
             <span class="popuptext" id="myPopup">
@@ -114,7 +116,7 @@
                             <label for="t7">Computer</label>
                         </div>
                     </fieldset>
-                    <button id="button_togame" type="submit" value="Express_Go"> Go</buttion>
+                    <button class="button" id="button_togame" type="submit" value="Express_Go"> Go</buttion>
                   </form>
                 <br>
                 <!--
@@ -125,7 +127,6 @@
               </div>
             </div>
         </div>
-        <hr>
         <div id="modal_exit" class="modal">
             <div class="modal-content">
               <div class="modal-header">
@@ -140,7 +141,7 @@
               </div>
             </div>
         </div>
-        <hr>
+        
         
     </div>
     <script src="index.js"></script>
