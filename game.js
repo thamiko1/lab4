@@ -186,6 +186,30 @@ var server = http.createServer(app);
 var io = new Server(server);
 var manager = new RoomManager();
 
+// import * as mysql from 'mysql2'
+
+// var connection_usr_game_record = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'USR_GAME_RECORD',
+// });
+
+// var connection_global_rank = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'Global_Ranking'
+// });
+
+// connection_usr_game_record.connect(function(err){
+//     if (err) throw err;
+//     console.log("Connected!");
+// });
+
+// connection_global_rank.connect(function(err){
+//     if (err) throw err;
+//     console.log("Connected!");
+// });
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -259,9 +283,10 @@ app.get("/game", function (req, res) {
   res.sendFile(__dirname + "/public/game2.html");
 });
 
-function send_question(socket, room, userID) {
-  let question = room.questions[room.users[userID].question_id];
-  socket.emit("new question", question["definition"], question["options"]);
+
+function send_question(socket, room, userID, roomID) {
+    let question = room.questions[room.question_id];
+    io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
 }
 
 // function generateHTMLContent() {
@@ -300,15 +325,12 @@ io.sockets.on("connection", function (socket) {
   socket.join(roomID);
   io.to(roomID).emit("update num_user", room.num_user, room.max_user);
 
-  if (room.canStart) {
-    io.to(roomID).emit("game start");
-    let question = room.questions[0];
-    io.to(roomID).emit(
-      "new question",
-      question["definition"],
-      question["options"]
-    );
-  }
+    if (room.canStart) {
+        io.to(roomID).emit("game start");
+        let question = room.questions[0];
+        io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
+        room.start();
+    }
 
   // FOR GAMING:
 
@@ -327,29 +349,48 @@ io.sockets.on("connection", function (socket) {
 
     // Determine whether the answer is correct or wrong.
 
-    if (data == room.questions[user.question_id]["correct_option"]) {
-      res = "correct";
-      // htmlContent += `<p> <span>&#10004;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
-    } else {
-      res = "wrong";
-      // htmlContent += `<p> <span>&#10008;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}. The correct answer was: ${questions[question_id]["correct_option"]}</p>\n`;
-    }
-    console.log(res);
-    // socket.emit("question result", res);
-    if (res == "correct") {
-      room.boss_hp -= 10;
-      io.to(roomID).emit("update boss hp", room.boss_hp);
-    } else {
-      user.hp -= 20;
-      socket.emit("update player hp", user.hp);
-    }
-
-    var counter = 0;
-    // socket.emit("bounce back", counter);
-    if (user.hp <= 0 || room.boss_hp <= 0) {
-      socket.disconnect();
-      // Write questions and answers to a new HTML file
-      /*
+        if (data == room.questions[room.question_id]["correct_option"]) {    
+            res = "correct";
+            // htmlContent += `<p> <span>&#10004;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
+        }
+        else {
+            res = "wrong";
+            // htmlContent += `<p> <span>&#10008;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}. The correct answer was: ${questions[question_id]["correct_option"]}</p>\n`;
+        }
+        console.log(res, room.correct, room.wrong);
+        // socket.emit("question result", res);
+        
+        if (!room.click_set.has(userID)){
+            if(res == "wrong")
+                room.wrong += 1;
+            else
+                room.correct += 1;
+            room.click_set.add(userID);
+            io.to(roomID).emit("update block state", room.click_set.size, room.max_user);
+            console.log(room.click_set);
+            console.log(userID);
+            handle_stage();
+        }
+        
+        // if (res == "correct") {
+        //     room.end();
+        //     io.to(roomID).emit("game end", room.time_str);
+        //     room.boss_hp -= 10;
+        //     io.to(roomID).emit("update boss hp", room.boss_hp);
+        // }
+        // else {
+        //     room.end();
+        //     io.to(roomID).emit("game end", room.time_str);
+        //     room.user_hp -= 20;
+        //     socket.emit("update player hp", room.user_hp);
+        // }
+        
+        
+        if (room.user_hp <= 0 || room.boss_hp <= 0) {
+            socket.disconnect();
+            return;
+            // Write questions and answers to a new HTML file
+            /*
             fs.writeFile("./public/wrong_answer.html", htmlContent, (err) => {
                 if (err) {
                     console.error(err);
