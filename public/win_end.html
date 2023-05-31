@@ -19,9 +19,15 @@
         <!-- Result of the play -->
         <div id="box2">
             <div id="time_record">
-                <p><b>Time: </b>00:00</p>
-                <p><b>Personal Best: </b>00:00</p>
-                <p><b>Best: </b>00:00</p>
+                <p><b>Time: </b>
+                    <span id="game_time">00:00:00</span>
+                </p>
+                <p><b>Personal Best: </b>
+                    <span id="personal_best">00:00:00</span>
+                </p>
+                <p><b>Best: </b>
+                    <span id="best">00:00:00</span>
+                </p>
             </div>
             <h2>Vocabulary List</h2>
             <iframe src="wrong_answer.html" id="voc_list"></iframe>
@@ -47,5 +53,11 @@
         <!-- pointhead larry -->
         <img src="soul_painter/end/pointhead.png" id="pointhead">
     </div>
+    <script>
+        let time_str = window.localStorage.getItem("time_str");
+        let count_element = document.getElementById("game_time");
+        count_element.innerText = time_str;
+        console.log(time_str);
+    </script>
 </body>
 </html>
