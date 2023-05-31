@@ -66,9 +66,9 @@
         // run the function upon loaded
         window.onload=function() {
             document.getElementById("box").style.display = "none";
-            start_countdown();
-            timer=true;
-            stopWatch();
+            // start_countdown();
+            // timer=true;
+            // stopWatch();
         };
         
         // $('#pending').css("display") = "none";
@@ -91,6 +91,9 @@
             socket.on('game start', function() {
                 $('#pending').css("display", "none");
                 $('#box').css("display", "block");
+                start_countdown();
+                timer=true;
+                stopWatch();
             });
 
 
@@ -227,6 +230,7 @@
         }
 
         function stopWatch() {
+            console.log("stopwatch")
             timer = true;
             if (timer) {
                 count++;
