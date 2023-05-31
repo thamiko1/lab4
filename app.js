@@ -3,23 +3,36 @@ import { dirname, join } from 'path';
 import { getUsername, getPassword, createUser } from './database.js';
 import express from 'express';
 import ejs from 'ejs';
-import http from 'http'
-import {Server} from 'socket.io'
-import { spawn, exec } from 'child_process';
+import http from 'http';
+import { Server } from 'socket.io';
+import { exec } from 'child_process';
 import path from 'path';
+import session from 'express-session';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const userProfilesDirectory = path.join(__dirname, 'views', 'soul_painter', 'user_profile');
-
+const userProfilesDirectory = path.join(
+  __dirname,
+  'views',
+  'soul_painter',
+  'user_profile'
+);
 
 const app = express();
-var server1 = http.createServer(app);
-var io = new Server(server1);
-var nicknames = [];
+const server = http.createServer(app);
+const io = new Server(server);
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // Set EJS as the view engine
+
+// Configure express-session middleware
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
@@ -37,8 +50,12 @@ app.post('/login', async (req, res) => {
   const fetchedPassword = await getPassword(username);
 
   if (fetchedUsername && fetchedPassword === password) {
-    // Redirect to port 3000
+    // Store the username in the session
+    req.session.username = username;
+    // console.log("before",req.sessionID);
+    res.cookie('username', username, { maxAge: 3600000 });
     res.redirect('http://localhost:3333');
+    // console.log(`after: ${req.sessionID}`)
 
     // Execute game.js using the "node" command
     exec('node game.js', (error, stdout, stderr) => {
@@ -52,8 +69,6 @@ app.post('/login', async (req, res) => {
     res.render('login', { error: 'Invalid username or password.' });
   }
 });
-
-
 
 // Route to Register Page
 app.get('/register', (req, res) => {
@@ -79,7 +94,7 @@ app.post('/register', async (req, res) => {
   res.render('register', { success: true, error: null }); // Render the register.ejs view with the success message
 });
 
-const server = app.listen(5000, () => {
+server.listen(5000, () => {
   const host = server.address().address;
   const port = server.address().port;
   console.log(`Server is running on http://localhost:${port}`);
