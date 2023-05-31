@@ -137,31 +137,49 @@
                 // else $point_hp.val($point_hp.val() - 10);
             });
 
-            socket.on('update player hp', function(player_hp) {
+            // socket.on('update player hp', function(player_hp) {
+            //     $squirrel_hp.val(player_hp);
+            //     // if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
+            //     if (player_hp <= 0) {
+            //         // let time_str = create_time_string();
+            //         // window.localStorage.setItem("time_str", time_str);
+            //         window.location.href = "/lose_end";
+            //     }
+            // });
+
+            // socket.on('update boss hp', function(boss_hp) {
+            //     $point_hp.val(boss_hp);
+            //     // if (boss_hp <= 0) window.location.href = "/win_end"
+            //     if (boss_hp <= 0){
+            //         // let time_str = create_time_string();
+            //         // console.log(time_str);
+            //         // window.localStorage.setItem("time_str", time_str);
+            //         window.location.href = "/win_end";
+            //     }
+            // });
+
+            // socket.on('bounce back', function(counter){
+            //     click = 1;
+            // });
+            
+            // socket.on("game end", function(span_time) {
+            //     window.localStorage.setItem("time_str", span_time);
+            // })
+
+            socket.on("stage", function(span_time, boss_hp, player_hp){
+                console.log("update")
                 $squirrel_hp.val(player_hp);
                 // if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
                 if (player_hp <= 0) {
-                    let time_str = create_time_string();
-                    window.localStorage.setItem("time_str", time_str);
                     window.location.href = "/lose_end";
                 }
-            });
-
-            socket.on('update boss hp', function(boss_hp) {
                 $point_hp.val(boss_hp);
-                // if (boss_hp <= 0) window.location.href = "/win_end"
                 if (boss_hp <= 0){
-                    let time_str = create_time_string();
-                    console.log(time_str);
-                    window.localStorage.setItem("time_str", time_str);
                     window.location.href = "/win_end";
                 }
-            });
-
-            socket.on('bounce back', function(counter){
+                window.localStorage.setItem("time_str", span_time);
                 click = 1;
-            });
-
+            })
         });
         // count down progress bar
         function start_countdown(){
@@ -171,7 +189,7 @@
             // console.log("green "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background);
             var downloadTimer = setInterval(
                 function(){
-                    counter -= 0.01;
+                    counter -= 0.001;
                     document.getElementById("pbar").value = counter;
                     if(click == 1){ // if the user click any option before timeout, initialize the count down progress bar.
                         counter = 0;

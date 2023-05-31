@@ -40,6 +40,18 @@ class RoomProfile {
         this.questions = build_questions(topic);
         this.boss_hp = 100;
         this.user_hp = 100;
+        if (this.max_user == 1){
+            this.de_boss = 10;
+            this.de_user = 20;
+        }
+        else{
+            this.de_boss = 5;
+            this.de_user = 10;
+        }
+
+        this.correct = 0;
+        this.wrong = 0;
+
         this.start_time = 0; // Date.now();
         this.end_time = 0;
     }
@@ -81,10 +93,16 @@ class RoomProfile {
         if (count < 10) {
             countString = "0" + countString;
         }
+        this.time_str = minString + ":" + secString + ":" + countString;
+
     }
 
     addUser(userID, max_user, topic) {
         this.users[userID] = new UserProfile(userID, max_user, topic);
+    }
+
+    removeUser(userID) {
+        delete this.users[userID];
     }
 }
 
@@ -294,7 +312,7 @@ io.sockets.on("connection", function (socket) {
     console.log("socket session:", socket.request.session);
     console.log("New user");
     let roomID = socket.request.session.roomID, userID = socket.request.session.userID;
-    let room = manager.rooms[roomID];
+    let room = manager.rooms[roomID], user = room.users[userID];
 
     console.log(room.num_user, room.max_user);
     socket.join(roomID);
@@ -317,34 +335,52 @@ io.sockets.on("connection", function (socket) {
     socket.on("game clicked", function (data) {
         console.log(data);
         let res;
-        let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
-        let room = manager.rooms[roomID], user = room.users[userID];
+        // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
+        // let room = manager.rooms[roomID], user = room.users[userID];
 
         // Determine whether the answer is correct or wrong.
 
         if (data == room.questions[user.question_id]["correct_option"]) {    
             res = "correct";
+            room.correct += 1;
             // htmlContent += `<p> <span>&#10004;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
         }
         else {
             res = "wrong";
+            room.wrong += 1;
             // htmlContent += `<p> <span>&#10008;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}. The correct answer was: ${questions[question_id]["correct_option"]}</p>\n`;
         }
-        console.log(res);
+        console.log(res, room.correct, room.wrong);
         // socket.emit("question result", res);
-        if (res == "correct") {
-            room.boss_hp -= 10;
-            io.to(roomID).emit("update boss hp", room.boss_hp);
+        if(room.correct + room.wrong == room.max_user){
+            room.end();
+            // io.to(roomID).emit("game end", room.time_str);
+            room.boss_hp -= room.de_boss * room.correct;
+            // io.to(roomID).emit("update boss hp", room.boss_hp);
+            room.user_hp -= room.de_user * room.wrong;
+            // socket.emit("update player hp", room.user_hp);
+            // socket.emit("bounce back", 0);
+            io.to(roomID).emit("stage", room.time_str, room.boss_hp, room.user_hp);
+            room.correct = 0;
+            room.wrong = 0;
         }
-        else {
-            room.user_hp -= 20;
-            socket.emit("update player hp", room.user_hp);
-        }
+        // if (res == "correct") {
+        //     room.end();
+        //     io.to(roomID).emit("game end", room.time_str);
+        //     room.boss_hp -= 10;
+        //     io.to(roomID).emit("update boss hp", room.boss_hp);
+        // }
+        // else {
+        //     room.end();
+        //     io.to(roomID).emit("game end", room.time_str);
+        //     room.user_hp -= 20;
+        //     socket.emit("update player hp", room.user_hp);
+        // }
         
-        var counter = 0;
-        socket.emit("bounce back", counter);
+        
         if (room.user_hp <= 0 || room.boss_hp <= 0) {
             socket.disconnect();
+            return;
             // Write questions and answers to a new HTML file
             /*
             fs.writeFile("./public/wrong_answer.html", htmlContent, (err) => {
@@ -364,8 +400,8 @@ io.sockets.on("connection", function (socket) {
 
     
     socket.on("timeout", function () {
-        let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
-        let room = manager.rooms[roomID], user = room.users[userID];
+        // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
+        // let room = manager.rooms[roomID], user = room.users[userID];
         
         room.user_hp -= 20;
         socket.emit("update player hp", room.user_hp);
@@ -377,7 +413,11 @@ io.sockets.on("connection", function (socket) {
         // send_question(socket);
     });
     
-
+    socket.on("disconnect", function (reason) {
+        console.log("disconnect", reason);
+        room.removeUser(userID);
+        io.to(roomID).emit("update num_user", room.num_user, room.max_user);
+    });
 });
 
 
