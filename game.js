@@ -23,7 +23,7 @@ class UserProfile {
         this.max_user = max_user;
         this.topic = topic;
         // this.hp = 100;
-        this.question_id = 0;
+        // this.question_id = 0;
     }
 }
 
@@ -51,7 +51,9 @@ class RoomProfile {
 
         this.correct = 0;
         this.wrong = 0;
-
+        this.question_id = 0;
+        this.click_set = new Set();
+        
         this.start_time = 0; // Date.now();
         this.end_time = 0;
     }
@@ -207,7 +209,6 @@ var server = http.createServer(app);
 var io = new Server(server);
 var manager = new RoomManager();
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -276,9 +277,9 @@ app.get('/game', function (req, res) {
 });
 
 
-function send_question(socket, room, userID) {
-    let question = room.questions[room.users[userID].question_id];
-    socket.emit("new question", question["definition"], question["options"]);
+function send_question(socket, room, userID, roomID) {
+    let question = room.questions[room.question_id];
+    io.to(roomID).emit("new question", question["definition"], question["options"]);
 }
 
 // function generateHTMLContent() {
@@ -340,30 +341,28 @@ io.sockets.on("connection", function (socket) {
 
         // Determine whether the answer is correct or wrong.
 
-        if (data == room.questions[user.question_id]["correct_option"]) {    
+        if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.correct += 1;
             // htmlContent += `<p> <span>&#10004;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
         }
         else {
             res = "wrong";
-            room.wrong += 1;
             // htmlContent += `<p> <span>&#10008;</span> ${question_id}. ${questions[question_id]["definition"]} You answered: ${data}. The correct answer was: ${questions[question_id]["correct_option"]}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
         // socket.emit("question result", res);
-        if(room.correct + room.wrong == room.max_user){
-            room.end();
-            // io.to(roomID).emit("game end", room.time_str);
-            room.boss_hp -= room.de_boss * room.correct;
-            // io.to(roomID).emit("update boss hp", room.boss_hp);
-            room.user_hp -= room.de_user * room.wrong;
-            // socket.emit("update player hp", room.user_hp);
-            // socket.emit("bounce back", 0);
-            io.to(roomID).emit("stage", room.time_str, room.boss_hp, room.user_hp);
-            room.correct = 0;
-            room.wrong = 0;
+        
+        if (!room.click_set.has(userID)){
+            if(res == "wrong")
+                room.wrong += 1;
+            else
+                room.correct += 1;
+            room.click_set.add(userID);
+            console.log(room.click_set);
+            console.log(userID);
+            handle_stage();
         }
+        
         // if (res == "correct") {
         //     room.end();
         //     io.to(roomID).emit("game end", room.time_str);
@@ -392,8 +391,6 @@ io.sockets.on("connection", function (socket) {
             });
             */
         }
-        user.question_id++;
-        send_question(socket, room, userID);
     });
     
 
@@ -403,10 +400,12 @@ io.sockets.on("connection", function (socket) {
         // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
         // let room = manager.rooms[roomID], user = room.users[userID];
         
-        room.user_hp -= 20;
-        socket.emit("update player hp", room.user_hp);
-        user.question_id++;
-        send_question(socket, room, userID);
+        // room.user_hp -= 20;
+        // socket.emit("update player hp", room.user_hp);
+        room.wrong += 1;
+        handle_stage();
+        // room.question_id++;
+        // send_question(socket, room, userID, roomID);
         // squirrel_hp -= 20;
         // socket.emit("update hp", squirrel_hp, point_hp);
         // question_id++;
@@ -418,6 +417,21 @@ io.sockets.on("connection", function (socket) {
         room.removeUser(userID);
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
+
+    function handle_stage(){
+        if(room.correct + room.wrong >= room.max_user){
+            room.end();
+            room.boss_hp -= room.de_boss * room.correct;
+            room.user_hp -= room.de_user * room.wrong;
+            io.to(roomID).emit("stage", room.time_str, room.boss_hp, room.user_hp);
+            room.correct = 0;
+            room.wrong = 0;
+            room.click_set.clear();
+
+            room.question_id++;
+            send_question(socket, room, userID, roomID);
+        }
+    }
 });
 
 

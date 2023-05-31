@@ -169,7 +169,6 @@
             socket.on("stage", function(span_time, boss_hp, player_hp){
                 console.log("update")
                 $squirrel_hp.val(player_hp);
-                // if (player_hp <= 0) window.location.href = "/lose_end"; // 觀戰的話還沒刻
                 if (player_hp <= 0) {
                     window.location.href = "/lose_end";
                 }
@@ -212,7 +211,7 @@
             // console.log("yellow "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background)
             var downloadTimer = setInterval(
                 function(){
-                    counter += 0.1;
+                    counter += 0.1; // 0.01
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer);
