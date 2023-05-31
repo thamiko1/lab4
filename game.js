@@ -39,6 +39,8 @@ class RoomProfile {
 
         this.questions = build_questions(topic);
         this.boss_hp = 100;
+        this.start_time = 0; // Date.now();
+        this.end_time = 0;
     }
 
     get num_user() {
@@ -47,6 +49,37 @@ class RoomProfile {
 
     get canStart() {
         return (this.num_user >= this.max_user);
+    }
+
+    start() {
+        this.start_time = Date.now();
+    }
+
+    end() {
+        this.end_time = Date.now();
+
+        let total_time = Math.floor((this.end_time - this.start_time) / 10);
+        let count = total_time % 100;
+        total_time = Math.floor(total_time / 100)
+        let second = total_time % 60;
+        total_time = Math.floor(total_time / 60);
+        let minute = total_time;
+
+        let minString = minute;
+        let secString = second;
+        let countString = count;
+
+        if (minute < 10) {
+            minString = "0" + minString;
+        }
+
+        if (second < 10) {
+            secString = "0" + secString;
+        }
+
+        if (count < 10) {
+            countString = "0" + countString;
+        }
     }
 
     addUser(userID, max_user, topic) {
@@ -327,14 +360,21 @@ io.sockets.on("connection", function (socket) {
     
 
 
-    /*
+    
     socket.on("timeout", function () {
+        let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
+        let room = manager.rooms[roomID], user = room.users[userID];
+        
+        user.hp -= 20;
+        socket.emit("update player hp", user.hp);
+        user.question_id++;
+        send_question(socket, room, userID);
         // squirrel_hp -= 20;
-        socket.emit("update hp", squirrel_hp, point_hp);
+        // socket.emit("update hp", squirrel_hp, point_hp);
         // question_id++;
         // send_question(socket);
     });
-    */
+    
 
 });
 
