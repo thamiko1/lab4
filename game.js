@@ -210,7 +210,6 @@ io.engine.use(sessionMiddleware);
 app.get("/", function (req, res) {
   // This is just a test for menu, so it will redirect to menu immediately.
   // req.session.userID = new_userID++;
-  //   const username = req.cookies.username;
   res.redirect("/menu");
   //   res.send(`Username: ${username}, after:${req.sessionID}`);
 });
@@ -220,17 +219,24 @@ app.get("/", function (req, res) {
 //
 
 app.get("/menu", function (req, res) {
-  const username = req.cookies.username;
-  res.render("menu", { username: username });
+  // const username = req.cookies.username;
+  // res.render("menu", { username: username });
+  res.sendFile(__dirname + "/public/menu.html");
 });
 
 app.post("/menu_start", function (req, res) {
-  const username = req.cookies.username;
+  console.log("receive start respose.");
+  console.log(req.body);
+
+  req.session.max_user = req.body.mode == "single-player" ? 1 : 3;
+  req.session.topic = req.body.topic;
   res.redirect("/game");
 });
 
 app.get("/profile", (req, res) => {
-  res.render("profile", { username: req.cookies.username }); // Render the profile.ejs view and pass the username
+  console.log(req.session.userID);
+  res.sendFile(__dirname + "/public/pending.html");
+  // res.render("profile", { username: req.cookies.username }); // Render the profile.html view and pass the username
 });
 
 //
