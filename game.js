@@ -279,7 +279,7 @@ app.get('/game', function (req, res) {
 
 function send_question(socket, room, userID, roomID) {
     let question = room.questions[room.question_id];
-    io.to(roomID).emit("new question", question["definition"], question["options"]);
+    io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
 }
 
 // function generateHTMLContent() {
@@ -320,10 +320,10 @@ io.sockets.on("connection", function (socket) {
     io.to(roomID).emit("update num_user", room.num_user, room.max_user);
 
     if (room.canStart) {
-        io.to(roomID).emit("game start");
-        let question = room.questions[0];
-        io.to(roomID).emit("new question", question["definition"], question["options"]);
-        room.start();
+      io.to(roomID).emit("game start");
+      let question = room.questions[0];
+      io.to(roomID).emit("new question", question["definition"], question["options"]);
+      room.start();
     }
 
 
@@ -358,6 +358,7 @@ io.sockets.on("connection", function (socket) {
             else
                 room.correct += 1;
             room.click_set.add(userID);
+            io.to(roomID).emit("update block state", room.click_set.size, room.max_user);
             console.log(room.click_set);
             console.log(userID);
             handle_stage();
@@ -392,10 +393,7 @@ io.sockets.on("connection", function (socket) {
             */
         }
     });
-    
-
-
-    
+        
     socket.on("timeout", function () {
         // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
         // let room = manager.rooms[roomID], user = room.users[userID];
