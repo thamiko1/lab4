@@ -1,4 +1,5 @@
 # CNL Final Project
+* Before you run `game.js`, please make a directory `log` in `public/`.
 ## login page setup
 ```sh
 npm install
