@@ -14,11 +14,21 @@
 <body>
     <div id="box"> <!-- The block for gaming -->
         <!-- options -->
-        <div id="options_set">
-            <button id="option0" class="option">option1</button><br>
-            <button id="option1" class="option">option2</button><br>
-            <button id="option2" class="option">option3</button><br>
-            <button id="option3" class="option">option4</button><br>
+        <div id="main_block">
+            <div id="options">
+                <button id="option0" class="option">option1</button><br>
+                <button id="option1" class="option">option2</button><br>
+                <button id="option2" class="option">option3</button><br>
+                <button id="option3" class="option">option4</button><br>
+            </div>
+            <div id="waiting">
+                <p><b>Waiting...</b></p>
+                <p id="block_status"> 0 / 0 </p>
+            </div>
+            <div id="result">
+                <p><b>Result</b></p>
+            </div>
+                
         </div>
         <!-- squirrel -->
         <div id="squirrel">
@@ -59,13 +69,14 @@
         </a>
     </div>
 
-
     <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
         // run the function upon loaded
         window.onload=function() {
             document.getElementById("box").style.display = "none";
+            document.getElementById("waiting").style.display = "none";
+            document.getElementById("result").style.display = "none";
             // start_countdown();
             // timer=true;
             // stopWatch();
@@ -88,6 +99,12 @@
 
             });
 
+            socket.on('update block state', function(num_user, max_user) {
+                console.log(`${num_user} / ${max_user}`);
+                $("#block_status").text(`(${num_user} / ${max_user})`);
+                
+            });
+
             socket.on('game start', function() {
                 $('#pending').css("display", "none");
                 $('#box').css("display", "block");
@@ -108,23 +125,39 @@
             var $point_hp = $('.point_hp');
             var $squirrel_hp = $('.squirrel_hp');
 
+            function handle_click() {
+                $('#options').css("display", "none");
+                $('#quesion').css("display", "none");
+                $('#waiting').css("display", "block");
+            }
+
             $option0.click(function(e) {
                 socket.emit("game clicked", $option0.text());
+                handle_click();
             });
 
             $option1.click(function(e) {
                 socket.emit("game clicked", $option1.text());
+                handle_click();
             });
 
             $option2.click(function(e) {
                 socket.emit("game clicked", $option2.text());
+                handle_click();
             });
 
             $option3.click(function(e) {
                 socket.emit("game clicked", $option3.text());
+                handle_click();
             });
 
-            socket.on('new question', function(def, options) {
+            socket.on('new question', function(def, options, qid) {
+                $('#waiting').css("display", "none");
+                if (qid > 0){
+                    $('#options').css("display", "none");
+                    $('#question').css("display", "none");
+                    $('#result').css("display", "block");
+                }
                 $option0.text(options[0]);
                 $option1.text(options[1]);
                 $option2.text(options[2]);
@@ -188,7 +221,7 @@
             // console.log("green "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background);
             var downloadTimer = setInterval(
                 function(){
-                    counter -= 0.001;
+                    counter -= 0.01;
                     document.getElementById("pbar").value = counter;
                     if(click == 1){ // if the user click any option before timeout, initialize the count down progress bar.
                         counter = 0;
@@ -211,11 +244,14 @@
             // console.log("yellow "+document.getElementById("pbar").classList.value+" "+document.getElementById("pbar").style.background)
             var downloadTimer = setInterval(
                 function(){
-                    counter += 0.1; // 0.01
+                    counter += 0.01; // 0.01
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer);
                         start_countdown();
+                        $('#result').css("display", "none");
+                        $('#options').css("display", "block");
+                        $('#question').css("display", "block");
                     }
                 },
                 1
