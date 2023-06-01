@@ -1,4 +1,7 @@
 # CNL Final Project
+## Warning
+* Before running `game.js`, please build a directory `log` in `public`
+* Since we apply sha256 to the password, the account set up before will be invalid.
 ## login page setup
 ```sh
 npm install
@@ -64,6 +67,7 @@ output : a new file named person.json
 ```
 ## For game.js
 ```sh
+npm install crypto-js
 npm install # install modules in package.json
 node game.js
 # node --version
