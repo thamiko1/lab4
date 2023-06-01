@@ -204,7 +204,7 @@
             var counter = 10;
             downloadTimer = setInterval(
                 function(){
-                    counter -= 0.005;
+                    counter -= 0.01;
                     document.getElementById("pbar").value = counter;
                     if(counter <= 0){
                         clearInterval(downloadTimer);

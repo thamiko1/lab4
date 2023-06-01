@@ -39,7 +39,7 @@ class RoomProfile {
 
         this.questions = build_questions(topic);
         this.boss_hp = 100;
-        this.user_hp = 100;
+        this.user_hp = 1;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -346,11 +346,11 @@ io.sockets.on("connection", function (socket) {
 
         if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}, which is correct. ~ ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}, which is correct. &#8680 ${userID}</p>\n`;
         }
         else {
             res = "wrong";
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]} ~ ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]} &#8680 ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
         // socket.emit("question result", res);
@@ -366,34 +366,6 @@ io.sockets.on("connection", function (socket) {
             console.log(userID);
             handle_stage();
         }
-        
-        
-        if (room.user_hp <= 0 || room.boss_hp <= 0) {
-            fs.writeFile("public/" + room.logFile, room.htmlContent, (err) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log("Questions and answers written to questions.html");
-                    console.log(room.logFile);
-                }
-            });
-            var game_result = 0;
-            if (room.user_hp <= 0)
-                game_result = 1;
-            io.to(roomID).emit("game over", room.logFile, game_result);
-            socket.disconnect();
-            return;
-            // Write questions and answers to a new HTML file
-            /*
-            fs.writeFile("./public/wrong_answer.html", htmlContent, (err) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log("Questions and answers written to questions.html");
-                }
-            });
-            */
-        }
     });
         
     socket.on("timeout", function () {
@@ -406,7 +378,7 @@ io.sockets.on("connection", function (socket) {
         console.log(room.click_set.has(userID));
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
-        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} Wake up!!! ~ ${userID}</p>\n`;
+        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} Wake up!!! &#8680 ${userID}</p>\n`;
         handle_stage();
         // room.question_id++;
         // send_question(socket, room, userID, roomID);
@@ -441,6 +413,23 @@ io.sockets.on("connection", function (socket) {
             room.correct = 0;
             room.wrong = 0;
             room.click_set = new Set();
+
+            if (room.user_hp <= 0 || room.boss_hp <= 0) {
+                fs.writeFile("public/" + room.logFile, room.htmlContent, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log("Questions and answers written to questions.html");
+                        console.log(room.logFile);
+                    }
+                });
+                var game_result = 0;
+                if (room.user_hp <= 0)
+                    game_result = 1;
+                io.to(roomID).emit("game over", room.logFile, game_result);
+                socket.disconnect();
+                return;
+            }
 
             room.question_id++;
             send_question(socket, room, userID, roomID);

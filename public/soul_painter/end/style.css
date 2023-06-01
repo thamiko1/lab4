@@ -15,11 +15,11 @@
 
 #box2{
     border: 2px solid;
-    width: 260px;
-    height: 420px;
+    width: 360px;
+    height: 150px;
     background-color:burlywood;
-
-    transform: translate(15px, 20px);
+    z-index: -1;
+    transform: translate(20px, 10px);
 }
 
 #time_record{
@@ -29,21 +29,23 @@
 }
 
 #voc_list{
-    width: 230px; 
-    height: 200px;
+    width: 360px; 
+    height: 250px;
     border: 2px solid;
     background-color: #fff; 
+    transform: translate(5px, 30px);
 }
 
 #play_again{
-    transform: translate(-50px, 80px);
+    transform: translate(0px, 0px);
     font-size: 25px;
     width: 200px;
     height: 40px;
 }
 
 #button_set{
-    transform: translate(140px, -400px);
+    transform: translate(100px, -135px);
+    z-index: 3;
 }
 
 #leave_button{
@@ -54,5 +56,5 @@
 
 #pointhead{
     width: 130px;
-    transform: translate(130px, -170px);
+    transform: translate(30px, 30px);
 }
