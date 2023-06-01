@@ -27,6 +27,11 @@
             </div>
             <div id="result">
                 <p><b>Result</b></p>
+                <p>Ans: <span id="ans"> </span></p>
+                <p>&#10004: <span id="num_correct"> </span></p>
+                <p>&#10008: <span id="num_wrong"> </span></p>
+                <p>Pointy: - <span id="de_boss"> </span></p>
+                <p>Squirrel: - <span id="de_player"> </span></p>
             </div>
                 
         </div>
@@ -171,13 +176,19 @@
                 // else $point_hp.val($point_hp.val() - 10);
             });
 
-            socket.on("stage", function(span_time, boss_hp, player_hp){
+            socket.on("stage", function(span_time, boss_hp, player_hp, de_boss, de_player, ans, num_correct, num_wrong){
                 console.log("update stage")
                 window.localStorage.setItem("time_str", span_time);
                 $squirrel_hp.val(player_hp);
                 $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
+
+                $("#ans").text(ans);
+                $('#num_correct').text(num_correct);
+                $('#num_wrong').text(num_wrong);
+                $('#de_boss').text(de_boss);
+                $('#de_player').text(de_player);
             })
 
             socket.on("game over", function(logFile, game_result){

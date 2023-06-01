@@ -346,11 +346,11 @@ io.sockets.on("connection", function (socket) {
 
         if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}, which is correct.</p>\n`;
+            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}, which is correct. ~ ${userID}</p>\n`;
         }
         else {
             res = "wrong";
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]}</p>\n`;
+            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]} ~ ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
         // socket.emit("question result", res);
@@ -405,7 +405,8 @@ io.sockets.on("connection", function (socket) {
         room.wrong += 1;
         console.log(room.click_set.has(userID));
         if (!room.click_set.has(userID))
-          room.click_set.add(userID);
+            room.click_set.add(userID);
+        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} Wake up!!! ~ ${userID}</p>\n`;
         handle_stage();
         // room.question_id++;
         // send_question(socket, room, userID, roomID);
@@ -426,7 +427,17 @@ io.sockets.on("connection", function (socket) {
             room.end();
             room.boss_hp -= room.de_boss * room.correct;
             room.user_hp -= room.de_user * room.wrong;
-            io.to(roomID).emit("stage", room.time_str, room.boss_hp, room.user_hp);
+            io.to(roomID).emit(
+                "stage", 
+                room.time_str, 
+                room.boss_hp, 
+                room.user_hp,
+                room.de_boss * room.correct,
+                room.de_user * room.wrong,
+                room.questions[room.question_id]["correct_option"], 
+                room.correct,
+                room.wrong
+            );
             room.correct = 0;
             room.wrong = 0;
             room.click_set = new Set();
