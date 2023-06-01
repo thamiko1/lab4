@@ -37,7 +37,7 @@ class RoomProfile {
         this.users = new Object(); // users[userID] = userProfile
 
         this.questions = build_questions(topic);
-        this.boss_hp = 10;
+        this.boss_hp = 100;
         this.user_hp = 100;
         if (this.max_user == 1){
             this.de_boss = 10;
@@ -228,17 +228,19 @@ var manager = new RoomManager();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// var connection_usr_game_record = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'USR_GAME_RECORD'
-//   });
+var connection_usr_game_record = mysql.createConnection({
+    host: 'localhost',
+    user: 'lab4',
+    database: 'USR_GAME_RECORD',
+    password: 'Squirrel1.'
+  });
 
-// var connection_global_rank = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'Global_Ranking'
-//   });
+var connection_global_rank = mysql.createConnection({
+    host: 'localhost',
+    user: 'lab4',
+    database: 'Global_Ranking',
+    password: 'Squirrel1.'
+  });
 
 server.listen(3000);
 
@@ -340,89 +342,89 @@ function send_question(socket, room, userID, roomID) {
     io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
 }
 
-// function update_usr_db(mode,UID,room_total_time,topic){
-//     let sql_select=`SELECT ${topic.charAt(0).toUpperCase() + topic.slice(1)} FROM USR_GAME_RECORD.${mode} WHERE UID = "${UID}"`;
-//     console.log(`call update_usr_db UID=${UID}`);
-//     console.log(`${sql_select}`);
-//     connection_usr_game_record.query(
-//         sql_select, 
-//         function(err, results, fields) {
-//             //result_undefined=(typeof results === undefined);
-//             //console.log(`select single ${results} ${typeof Object.keys(results)} ${results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]}`);
-//             //console.log(results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]);
-//             if(`${results}`==`` || `${typeof results}`==undefined || `${typeof results}`==`undefined`){
-//                 //result_str='empty';
-//                 //result_undefined=true;
-//                 let sql_insert=`insert into USR_GAME_RECORD.${mode} (UID, ${topic.charAt(0).toUpperCase() + topic.slice(1)}) values ("${UID}","${room_total_time}")`;
-//                 console.log(`select single insert`);
-//                 console.log(`${sql_insert}`);
-//                 connection_usr_game_record.query( sql_insert,
-//                     function(err, rows) {
-//                         console.log(`insert single ${UID}`);
-//                     }
-//                 );
-//             }
-//             else{
-//                 console.log(`select single update`);
-//                 let sql_update=`UPDATE USR_GAME_RECORD.${mode} set ${topic.charAt(0).toUpperCase() + topic.slice(1)} = "${format_time_cmp(room_total_time,results[0][topic.charAt(0).toUpperCase() + topic.slice(1)])}" where UID = "${UID}"`
-//                 console.log(sql_update);
-//                 connection_usr_game_record.query( sql_update,
-//                     function(err, rows) {
-//                         console.log(`update single ${UID}`);
-//                     }
-//                 );
-//             }
-//             console.log(`select single ${results}`); // results contains rows returned by server
-//             //console.log(`select single result_str ${result_str}`);
-//             //console.log(fields); // fields contains extra meta data about results, if available
-//         }
-//     );
-// }
+function update_usr_db(mode,UID,room_total_time,topic){
+    let sql_select=`SELECT ${topic.charAt(0).toUpperCase() + topic.slice(1)} FROM USR_GAME_RECORD.${mode} WHERE UID = "${UID}"`;
+    console.log(`call update_usr_db UID=${UID}`);
+    console.log(`${sql_select}`);
+    connection_usr_game_record.query(
+        sql_select, 
+        function(err, results, fields) {
+            //result_undefined=(typeof results === undefined);
+            //console.log(`select single ${results} ${typeof Object.keys(results)} ${results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]}`);
+            //console.log(results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]);
+            if(`${results}`==`` || `${typeof results}`==undefined || `${typeof results}`==`undefined`){
+                //result_str='empty';
+                //result_undefined=true;
+                let sql_insert=`insert into USR_GAME_RECORD.${mode} (UID, ${topic.charAt(0).toUpperCase() + topic.slice(1)}) values ("${UID}","${room_total_time}")`;
+                console.log(`select single insert`);
+                console.log(`${sql_insert}`);
+                connection_usr_game_record.query( sql_insert,
+                    function(err, rows) {
+                        console.log(`insert single ${UID}`);
+                    }
+                );
+            }
+            else{
+                console.log(`select single update`);
+                let sql_update=`UPDATE USR_GAME_RECORD.${mode} set ${topic.charAt(0).toUpperCase() + topic.slice(1)} = "${format_time_cmp(room_total_time,results[0][topic.charAt(0).toUpperCase() + topic.slice(1)])}" where UID = "${UID}"`
+                console.log(sql_update);
+                connection_usr_game_record.query( sql_update,
+                    function(err, rows) {
+                        console.log(`update single ${UID}`);
+                    }
+                );
+            }
+            console.log(`select single ${results}`); // results contains rows returned by server
+            //console.log(`select single result_str ${result_str}`);
+            //console.log(fields); // fields contains extra meta data about results, if available
+        }
+    );
+}
 
-// function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
-//     let sql_select=`SELECT * FROM Global_Ranking.${mode} WHERE mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`;
-//     //console.log(`call update_usr_db UID=${UID}`);
-//     console.log(`${sql_select}`);
-//     connection_global_rank.query(
-//         sql_select, 
-//         function(err, results, fields) { 
-//             console.log(`select single update`);
-//             console.log(results);
-//             let columns=['1st','2nd','3rd','4th','5th'];
-//             let i = 0;
-//             let update_str=room_total_time+' '+UID1+','+UID2+','+UID3;
-//             let sql_update='';
-//             while (i < columns.length) {
-//                 if(update_str<results[0][columns[i]]){
-//                     let j=3;
-//                     while(j>=i){
-//                         sql_update=`UPDATE Global_Ranking.${mode} set ${columns[j+1]} = "${results[0][columns[j]]}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
-//                         console.log(`${sql_update}`);
-//                         connection_usr_game_record.query( sql_update,
-//                             function(err, rows) {
-//                                 console.log(`update ${mode}`);
-//                             }
-//                         );
-//                         j--;
-//                     }
-//                     sql_update=`UPDATE Global_Ranking.${mode} set ${columns[i]} = "${update_str}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
-//                     console.log(`${sql_update}`);
-//                     connection_usr_game_record.query( sql_update,
-//                         function(err, rows) {
-//                             console.log(`update ${mode}`);
-//                         }
-//                     );
-//                     break
-//                 }
-//                 else{
-//                     console.log(`cmp ${results[0][columns[i]]} ${update_str}`);
-//                 }
-//                 i++;
-//             }
-//             console.log(`select single ${results}`); // results contains rows returned by server
-//         }
-//     );
-// }  
+function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
+    let sql_select=`SELECT * FROM Global_Ranking.${mode} WHERE mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`;
+    //console.log(`call update_usr_db UID=${UID}`);
+    console.log(`${sql_select}`);
+    connection_global_rank.query(
+        sql_select, 
+        function(err, results, fields) { 
+            console.log(`select single update`);
+            console.log(results);
+            let columns=['1st','2nd','3rd','4th','5th'];
+            let i = 0;
+            let update_str=room_total_time+' '+UID1+','+UID2+','+UID3;
+            let sql_update='';
+            while (i < columns.length) {
+                if(update_str<results[0][columns[i]]){
+                    let j=3;
+                    while(j>=i){
+                        sql_update=`UPDATE Global_Ranking.${mode} set ${columns[j+1]} = "${results[0][columns[j]]}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
+                        console.log(`${sql_update}`);
+                        connection_usr_game_record.query( sql_update,
+                            function(err, rows) {
+                                console.log(`update ${mode}`);
+                            }
+                        );
+                        j--;
+                    }
+                    sql_update=`UPDATE Global_Ranking.${mode} set ${columns[i]} = "${update_str}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
+                    console.log(`${sql_update}`);
+                    connection_usr_game_record.query( sql_update,
+                        function(err, rows) {
+                            console.log(`update ${mode}`);
+                        }
+                    );
+                    break
+                }
+                else{
+                    console.log(`cmp ${results[0][columns[i]]} ${update_str}`);
+                }
+                i++;
+            }
+            console.log(`select single ${results}`); // results contains rows returned by server
+        }
+    );
+}  
 
 io.sockets.on("connection", function (socket) {
 
@@ -527,23 +529,23 @@ io.sockets.on("connection", function (socket) {
 
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
 
-                // let users=Object.keys(room.users);
-                // if(room.max_user==1){
-                //     update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
-                // }
-                // else{
-                //     update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
-                // }
-                // console.log(users);
+                let users=Object.keys(room.users);
+                if(room.max_user==1){
+                    update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
+                }
+                else{
+                    update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
+                }
+                console.log(users);
 
-                // for (const [for_userID, for_user] of Object.entries(room.users)) {
-                //     if(room.max_user==1){
-                //         update_usr_db('single',for_userID,room.time_str,room.topic);
-                //     }
-                //     else {
-                //         update_usr_db('multi',for_userID,room.time_str,room.topic);
-                //     }
-                // }
+                for (const [for_userID, for_user] of Object.entries(room.users)) {
+                    if(room.max_user==1){
+                        update_usr_db('single',for_userID,room.time_str,room.topic);
+                    }
+                    else {
+                        update_usr_db('multi',for_userID,room.time_str,room.topic);
+                    }
+                }
 
                 fs.writeFile("public/" + room.logFile, room.htmlContent, (err) => {
                     if (err) {
