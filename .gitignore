@@ -6,3 +6,4 @@ package.json
 jsonFormat.py
 filter_categories.py
 no_use
+public/log/*

@@ -10,9 +10,9 @@ import vocab from './public/new.json' assert {type: 'json'}
 
 var new_userID = 0, new_roomID = 0;
 
-//
-// SOME CLASSES
-//
+///
+/// SOME CLASSES
+///
 
 class UserProfile {
     constructor (userID, max_user, topic) {
@@ -39,7 +39,7 @@ class RoomProfile {
 
         this.questions = build_questions(topic);
         this.boss_hp = 100;
-        this.user_hp = 1;
+        this.user_hp = 100;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -117,6 +117,7 @@ class RoomManager {
         this.pending_rooms = new Object(); // pending_rooms[topic] = roomID
         this.user2room = new Object();     // user2room[userID] = roomID
         this.rooms = new Object();         // rooms[roomID] = roomProfile
+        this.users = new Set();            // the users in the room
         // this.users = new Object();         // users[userID] = userProfile
     }
 
@@ -144,9 +145,9 @@ class RoomManager {
 }
 
 
-//
-// SOME FUNCTIONS
-//
+///
+/// SOME FUNCTIONS
+///
 
 function getRandom(min, max) {
     // Sample from [min, max)
@@ -204,9 +205,9 @@ function build_questions(category = "school") {
 }
 
 
-//
-// SETUP
-//
+///
+/// SETUP
+///
 
 var app = express();
 var server = http.createServer(app);
@@ -233,18 +234,34 @@ io.engine.use(sessionMiddleware);
 
 
 app.get("/", function (req, res) {
-    // This is just a test for menu, so it will redirect to menu immediately.
-    req.session.userID = new_userID++;
-    res.redirect('/menu');
+    let debug = true;
+    if (debug) {
+        // If debug is true, it will redirect to the menu page.
+        // The new userID will be new_userID.
+        req.session.userID = new_userID++;
+        res.redirect('/menu');
+    }
+    else {
+        // If debug is false, it will ask the user to login first.
+        res.redirect('/login');
+    }
 })
 
 
-//
-// MENU
-//
+///
+/// MENU
+///
 
 app.get("/menu", function (req, res) {
-    res.sendFile(__dirname + '/public/menu.html');
+    console.log('Logged in users:', manager.users);
+    if (req.session.userID == null) {
+        res.redirect("/");
+    }
+    else {
+        manager.users.add(req.session.userID);
+        console.log(req.session.userID, 'goes to the menu.');
+        res.sendFile(__dirname + '/public/menu.html');
+    }
 });
 
 // handle input form
@@ -257,22 +274,25 @@ app.post("/menu_start", function (req, res) {
     res.redirect("/game");
 });
 
-//
-// pending
-//
-
+///
+/// pending
+///
+/*
 app.get('/pending', function (req, res) {
     console.log(req.session.userID);
     res.sendFile(__dirname + '/public/pending.html');
 });
+*/
 
-
-// 
-// GAME
-//
+/// 
+/// GAME
+///
 
 // Handle the GET request with "/game" URL suffix
 app.get('/game', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
     let roomID = manager.addUser(req.session.userID, req.session.max_user, req.session.topic);
     req.session.roomID  = roomID;
     console.log(req.session);
@@ -439,11 +459,14 @@ io.sockets.on("connection", function (socket) {
 
 
 
-//
-// END
-//
+///
+/// END
+///
 
 app.get('/win_end', function (req, res) {
+    if (req.session.userID == null) {
+        res.redirect("/");
+    }
     // Send gaming.html to client
     res.sendFile(__dirname + '/public/win_end.html');
 
@@ -451,7 +474,140 @@ app.get('/win_end', function (req, res) {
 
 
 app.get('/lose_end', function (req, res) {
+    if (req.session.userID == null) {
+        res.redirect("/");
+    }
     // Send gaming.html to client
     res.sendFile(__dirname + '/public/lose_end.html');
 
 });
+
+
+///
+/// LOGIN
+///
+
+/*
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+import express from 'express';
+import http from 'http'
+import {Server} from 'socket.io'
+import { spawn, exec } from 'child_process';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const userProfilesDirectory = path.join(__dirname, 'views', 'soul_painter', 'user_profile');
+
+
+const app = express();
+var server1 = http.createServer(app);
+var io = new Server(server1);
+var nicknames = [];
+
+app.use(express.urlencoded({ extended: true }));
+*/
+app.set('view engine', 'ejs'); // Set EJS as the view engine
+import { getUsername, getPassword, createUser } from './database.js';
+
+
+///
+/// LOGIN
+///
+
+// Route to Login Page
+app.get('/login', (req, res) => {
+  // res.sendFile(__dirname + '/public/login.html');
+  if (req.session.userID) {
+    res.redirect('/you_have_already_logged_in'); // already logged in
+  } else {
+    res.render('login', { error: null }); // Render the login.ejs view with no error
+  }
+});
+
+// Handle login form submission
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const fetchedUsername = await getUsername(username);
+  const fetchedPassword = await getPassword(username);
+
+  if (fetchedUsername && fetchedPassword === password) {
+    // Redirect to port 3000
+    req.session.userID = fetchedUsername;
+
+    
+
+    if (manager.users.has(fetchedUsername)) {
+        res.render('login', { error: 'You have already logged in.' });
+    }
+    else {
+        res.redirect('/menu');
+    }
+
+    // Execute game.js using the "node" command
+    /*
+    exec('node game.js', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing game.js: ${error}`);
+        return;
+      }
+      console.log(`game.js executed successfully.`);
+    });
+    */
+  } else {
+    // res.redirect('/login');
+    res.render('login', { error: 'Invalid username or password.' });
+  }
+    
+});
+
+
+///
+/// REGISTER
+///
+
+// Route to Register Page
+app.get('/register', (req, res) => {
+  // res.sendFile(__dirname + '/public/register.html');
+  res.render('register', { success: false, error: null }); // Render the register.ejs view
+});
+
+// Handle registration form submission
+app.post('/register', async (req, res) => {
+  const { username, password, confirmPassword } = req.body;
+
+  if (password !== confirmPassword) {
+    res.render('register', { success: false, error: 'password_mismatch' }); // Render the register.ejs view with the password mismatch error
+    return;
+  }
+
+  const existingUser = await getUsername(username);
+  if (existingUser) {
+    res.render('register', { success: false, error: 'username_exists' }); // Render the register.ejs view with the username exists error
+    return;
+  }
+
+  await createUser(username, password);
+  res.render('register', { success: true, error: null }); // Render the register.ejs view with the success message
+  
+});
+
+
+server.on('error', (error) => {
+  console.error('Server failed to start:', error);
+});
+
+
+///
+/// LOGOUT
+///
+
+app.get('/logout', (req, res) => {
+  manager.users.delete(req.session.userID);
+  req.session.userID = null;
+  req.session.roomID = null;
+  res.redirect('/login');
+});
+
