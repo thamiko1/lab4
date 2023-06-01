@@ -22,8 +22,7 @@ class UserProfile {
         this.userID = userID;
         this.max_user = max_user;
         this.topic = topic;
-        // this.hp = 100;
-        // this.question_id = 0;
+        this.question_log = new Object();
     }
 }
 
@@ -274,16 +273,6 @@ app.post("/menu_start", function (req, res) {
     res.redirect("/game");
 });
 
-///
-/// pending
-///
-/*
-app.get('/pending', function (req, res) {
-    console.log(req.session.userID);
-    res.sendFile(__dirname + '/public/pending.html');
-});
-*/
-
 /// 
 /// GAME
 ///
@@ -304,31 +293,8 @@ app.get('/game', function (req, res) {
 function send_question(socket, room, userID, roomID) {
     let question = room.questions[room.question_id];
     io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
-}
+}  
 
-// function generateHTMLContent() {
-//     let htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
-//     htmlContent += '<h1>Questions and Answers</h1>\n';
-  
-//     questions.forEach((question, index) => {
-//       htmlContent += `<h2>Question ${index + 1}</h2>\n`;
-//       htmlContent += `<p>${question.question}</p>\n`;
-  
-//       htmlContent += '<ul>\n';
-//       question.answers.forEach((answer, answerIndex) => {
-//         htmlContent += `<li>Option ${answerIndex + 1}: ${answer}</li>\n`;
-//       });
-//       htmlContent += '</ul>\n';
-  
-//       htmlContent += '<hr>\n'; // Add a horizontal line separator between questions
-//     });
-  
-//     htmlContent += '</body>\n</html>';
-//     return htmlContent;
-//   }
-  
-
-// const fs = require("fs");
 io.sockets.on("connection", function (socket) {
 
     // FOR PENDING:
@@ -370,6 +336,7 @@ io.sockets.on("connection", function (socket) {
         }
         else {
             res = "wrong";
+            user.question_log.push(room.questions[room.question_id]);
             room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]} &#8680 ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
@@ -398,14 +365,9 @@ io.sockets.on("connection", function (socket) {
         console.log(room.click_set.has(userID));
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
+        user.question_log.push(room.questions[room.question_id]);
         room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} Wake up!!! &#8680 ${userID}</p>\n`;
         handle_stage();
-        // room.question_id++;
-        // send_question(socket, room, userID, roomID);
-        // squirrel_hp -= 20;
-        // socket.emit("update hp", squirrel_hp, point_hp);
-        // question_id++;
-        // send_question(socket);
     });
     
     socket.on("disconnect", function (reason) {
@@ -487,28 +449,6 @@ app.get('/lose_end', function (req, res) {
 /// LOGIN
 ///
 
-/*
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
-import express from 'express';
-import http from 'http'
-import {Server} from 'socket.io'
-import { spawn, exec } from 'child_process';
-import path from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const userProfilesDirectory = path.join(__dirname, 'views', 'soul_painter', 'user_profile');
-
-
-const app = express();
-var server1 = http.createServer(app);
-var io = new Server(server1);
-var nicknames = [];
-
-app.use(express.urlencoded({ extended: true }));
-*/
 app.set('view engine', 'ejs'); // Set EJS as the view engine
 import { getUsername, getPassword, createUser } from './database.js';
 
