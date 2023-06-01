@@ -173,19 +173,20 @@
 
             socket.on("stage", function(span_time, boss_hp, player_hp){
                 console.log("update stage")
-                $squirrel_hp.val(player_hp);
-                if (player_hp <= 0) {
-                    window.location.href = "/lose_end";
-                }
-                $point_hp.val(boss_hp);
-                if (boss_hp <= 0){
-                    window.location.href = "/win_end";
-                }
                 window.localStorage.setItem("time_str", span_time);
-                // click = 1;
+                $squirrel_hp.val(player_hp);
+                $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
             })
+
+            socket.on("game over", function(logFile, game_result){
+                window.localStorage.setItem("log_file", logFile);
+                if (game_result == 1)
+                    window.location.href = "/lose_end";
+                else
+                    window.location.href = "/win_end";
+            });
         });
         // count down progress bar
         function start_countdown(){

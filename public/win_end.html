@@ -54,10 +54,15 @@
         <img src="soul_painter/end/pointhead.png" id="pointhead">
     </div>
     <script>
+        console.log(window.localStorage);
         let time_str = window.localStorage.getItem("time_str");
         let count_element = document.getElementById("game_time");
         count_element.innerText = time_str;
         console.log(time_str);
+        let logFile = window.localStorage.getItem("log_file");
+        console.log(logFile);
+        document.getElementById("voc_list").src = logFile;
+        localStorage.clear();
     </script>
 </body>
 </html>
