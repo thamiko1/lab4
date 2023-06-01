@@ -204,6 +204,7 @@ function build_questions(category = "school") {
     */
     return questions;
 }
+
 function format_time_cmp(t1, t2) {
     console.log(`cmp ${t1} ${t2} ${typeof t1} ${typeof t2}`);
     if(t1>t2 || t1==null){
@@ -226,17 +227,19 @@ var manager = new RoomManager();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-var connection_usr_game_record = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'USR_GAME_RECORD'
-  });
 
-var connection_global_rank = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'Global_Ranking'
-  });
+// var connection_usr_game_record = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'USR_GAME_RECORD'
+//   });
+
+// var connection_global_rank = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'Global_Ranking'
+//   });
+
 server.listen(3000);
 
 const sessionMiddleware = session({
@@ -294,6 +297,27 @@ app.post("/menu_start", function (req, res) {
     res.redirect("/game");
 });
 
+app.post("/menu_profile", function (req, res) {
+    console.log("receive profile respose.")
+    console.log(req.body);
+    res.redirect("/profile");
+})
+
+///
+/// PROFILE
+///
+
+app.get('/profile', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'goes to the profile.');
+        res.sendFile(__dirname + '/public/profile.html');
+    }
+});
+
+
 /// 
 /// GAME
 ///
@@ -315,111 +339,91 @@ function send_question(socket, room, userID, roomID) {
     let question = room.questions[room.question_id];
     io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
 }
-function update_usr_db(mode,UID,room_total_time,topic){
-    let sql_select=`SELECT ${topic.charAt(0).toUpperCase() + topic.slice(1)} FROM USR_GAME_RECORD.${mode} WHERE UID = "${UID}"`;
-    console.log(`call update_usr_db UID=${UID}`);
-    console.log(`${sql_select}`);
-    connection_usr_game_record.query(
-        sql_select, 
-        function(err, results, fields) {
-            //result_undefined=(typeof results === undefined);
-            //console.log(`select single ${results} ${typeof Object.keys(results)} ${results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]}`);
-            //console.log(results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]);
-            if(`${results}`==`` || `${typeof results}`==undefined || `${typeof results}`==`undefined`){
-                //result_str='empty';
-                //result_undefined=true;
-                let sql_insert=`insert into USR_GAME_RECORD.${mode} (UID, ${topic.charAt(0).toUpperCase() + topic.slice(1)}) values ("${UID}","${room_total_time}")`;
-                console.log(`select single insert`);
-                console.log(`${sql_insert}`);
-                connection_usr_game_record.query( sql_insert,
-                    function(err, rows) {
-                        console.log(`insert single ${UID}`);
-                    }
-                );
-            }
-            else{
-                console.log(`select single update`);
-                let sql_update=`UPDATE USR_GAME_RECORD.${mode} set ${topic.charAt(0).toUpperCase() + topic.slice(1)} = "${format_time_cmp(room_total_time,results[0][topic.charAt(0).toUpperCase() + topic.slice(1)])}" where UID = "${UID}"`
-                console.log(sql_update);
-                connection_usr_game_record.query( sql_update,
-                function(err, rows) {
-                    console.log(`update single ${UID}`);
-                }
-            );
-            }
-            console.log(`select single ${results}`); // results contains rows returned by server
-            //console.log(`select single result_str ${result_str}`);
-            //console.log(fields); // fields contains extra meta data about results, if available
-        }
-    );
-}
-function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
-    let sql_select=`SELECT * FROM Global_Ranking.${mode} WHERE mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`;
-    //console.log(`call update_usr_db UID=${UID}`);
-    console.log(`${sql_select}`);
-    connection_global_rank.query(
-        sql_select, 
-        function(err, results, fields) { 
-            console.log(`select single update`);
-            console.log(results);
-            let columns=['1st','2nd','3rd','4th','5th'];
-            let i = 0;
-            let update_str=room_total_time+' '+UID1+','+UID2+','+UID3;
-            let sql_update='';
-            while (i < columns.length) {
-                if(update_str<results[0][columns[i]]){
-                    let j=3;
-                    while(j>=i){
-                        sql_update=`UPDATE Global_Ranking.${mode} set ${columns[j+1]} = "${results[0][columns[j]]}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
-                        console.log(`${sql_update}`);
-                        connection_usr_game_record.query( sql_update,
-                            function(err, rows) {
-                                console.log(`update ${mode}`);
-                            }
-                        );
-                        j--;
-                    }
-                    sql_update=`UPDATE Global_Ranking.${mode} set ${columns[i]} = "${update_str}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
-                    console.log(`${sql_update}`);
-                    connection_usr_game_record.query( sql_update,
-                        function(err, rows) {
-                            console.log(`update ${mode}`);
-                        }
-                    );
-                    break
-                }
-                else{
-                    console.log(`cmp ${results[0][columns[i]]} ${update_str}`);
-                }
-                i++;
-            }
-            console.log(`select single ${results}`); // results contains rows returned by server
-        }
-    );
-}
-// function generateHTMLContent() {
-//     let htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
-//     htmlContent += '<h1>Questions and Answers</h1>\n';
-  
-//     questions.forEach((question, index) => {
-//       htmlContent += `<h2>Question ${index + 1}</h2>\n`;
-//       htmlContent += `<p>${question.question}</p>\n`;
-  
-//       htmlContent += '<ul>\n';
-//       question.answers.forEach((answer, answerIndex) => {
-//         htmlContent += `<li>Option ${answerIndex + 1}: ${answer}</li>\n`;
-//       });
-//       htmlContent += '</ul>\n';
-  
-//       htmlContent += '<hr>\n'; // Add a horizontal line separator between questions
-//     });
-  
-//     htmlContent += '</body>\n</html>';
-//     return htmlContent;
-//   }
-  
 
-// const fs = require("fs");
+// function update_usr_db(mode,UID,room_total_time,topic){
+//     let sql_select=`SELECT ${topic.charAt(0).toUpperCase() + topic.slice(1)} FROM USR_GAME_RECORD.${mode} WHERE UID = "${UID}"`;
+//     console.log(`call update_usr_db UID=${UID}`);
+//     console.log(`${sql_select}`);
+//     connection_usr_game_record.query(
+//         sql_select, 
+//         function(err, results, fields) {
+//             //result_undefined=(typeof results === undefined);
+//             //console.log(`select single ${results} ${typeof Object.keys(results)} ${results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]}`);
+//             //console.log(results[UID][topic.charAt(0).toUpperCase() + topic.slice(1)]);
+//             if(`${results}`==`` || `${typeof results}`==undefined || `${typeof results}`==`undefined`){
+//                 //result_str='empty';
+//                 //result_undefined=true;
+//                 let sql_insert=`insert into USR_GAME_RECORD.${mode} (UID, ${topic.charAt(0).toUpperCase() + topic.slice(1)}) values ("${UID}","${room_total_time}")`;
+//                 console.log(`select single insert`);
+//                 console.log(`${sql_insert}`);
+//                 connection_usr_game_record.query( sql_insert,
+//                     function(err, rows) {
+//                         console.log(`insert single ${UID}`);
+//                     }
+//                 );
+//             }
+//             else{
+//                 console.log(`select single update`);
+//                 let sql_update=`UPDATE USR_GAME_RECORD.${mode} set ${topic.charAt(0).toUpperCase() + topic.slice(1)} = "${format_time_cmp(room_total_time,results[0][topic.charAt(0).toUpperCase() + topic.slice(1)])}" where UID = "${UID}"`
+//                 console.log(sql_update);
+//                 connection_usr_game_record.query( sql_update,
+//                     function(err, rows) {
+//                         console.log(`update single ${UID}`);
+//                     }
+//                 );
+//             }
+//             console.log(`select single ${results}`); // results contains rows returned by server
+//             //console.log(`select single result_str ${result_str}`);
+//             //console.log(fields); // fields contains extra meta data about results, if available
+//         }
+//     );
+// }
+
+// function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
+//     let sql_select=`SELECT * FROM Global_Ranking.${mode} WHERE mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`;
+//     //console.log(`call update_usr_db UID=${UID}`);
+//     console.log(`${sql_select}`);
+//     connection_global_rank.query(
+//         sql_select, 
+//         function(err, results, fields) { 
+//             console.log(`select single update`);
+//             console.log(results);
+//             let columns=['1st','2nd','3rd','4th','5th'];
+//             let i = 0;
+//             let update_str=room_total_time+' '+UID1+','+UID2+','+UID3;
+//             let sql_update='';
+//             while (i < columns.length) {
+//                 if(update_str<results[0][columns[i]]){
+//                     let j=3;
+//                     while(j>=i){
+//                         sql_update=`UPDATE Global_Ranking.${mode} set ${columns[j+1]} = "${results[0][columns[j]]}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
+//                         console.log(`${sql_update}`);
+//                         connection_usr_game_record.query( sql_update,
+//                             function(err, rows) {
+//                                 console.log(`update ${mode}`);
+//                             }
+//                         );
+//                         j--;
+//                     }
+//                     sql_update=`UPDATE Global_Ranking.${mode} set ${columns[i]} = "${update_str}" where mode = "${topic.charAt(0).toUpperCase() + topic.slice(1)}"`
+//                     console.log(`${sql_update}`);
+//                     connection_usr_game_record.query( sql_update,
+//                         function(err, rows) {
+//                             console.log(`update ${mode}`);
+//                         }
+//                     );
+//                     break
+//                 }
+//                 else{
+//                     console.log(`cmp ${results[0][columns[i]]} ${update_str}`);
+//                 }
+//                 i++;
+//             }
+//             console.log(`select single ${results}`); // results contains rows returned by server
+//         }
+//     );
+// }  
+
 io.sockets.on("connection", function (socket) {
 
     // FOR PENDING:
@@ -523,23 +527,23 @@ io.sockets.on("connection", function (socket) {
 
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
 
-                let users=Object.keys(room.users);
-                if(room.max_user==1){
-                    update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
-                }
-                else{
-                    update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
-                }
-                console.log(users);
+                // let users=Object.keys(room.users);
+                // if(room.max_user==1){
+                //     update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
+                // }
+                // else{
+                //     update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
+                // }
+                // console.log(users);
 
-                for (const [for_userID, for_user] of Object.entries(room.users)) {
-                    if(room.max_user==1){
-                        update_usr_db('single',for_userID,room.time_str,room.topic);
-                    }
-                    else {
-                        update_usr_db('multi',for_userID,room.time_str,room.topic);
-                    }
-                }
+                // for (const [for_userID, for_user] of Object.entries(room.users)) {
+                //     if(room.max_user==1){
+                //         update_usr_db('single',for_userID,room.time_str,room.topic);
+                //     }
+                //     else {
+                //         update_usr_db('multi',for_userID,room.time_str,room.topic);
+                //     }
+                // }
 
                 fs.writeFile("public/" + room.logFile, room.htmlContent, (err) => {
                     if (err) {
@@ -562,8 +566,6 @@ io.sockets.on("connection", function (socket) {
         }
     }
 });
-
-
 
 ///
 /// END
@@ -611,39 +613,29 @@ app.get('/login', (req, res) => {
   }
 });
 
+import sha256 from 'crypto-js/sha256.js';
+
 // Handle login form submission
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  const fetchedUsername = await getUsername(username);
-  const fetchedPassword = await getPassword(username);
+    const { username, password } = req.body;
+    const fetchedUsername = await getUsername(username);
+    const fetchedPassword = await getPassword(username);
 
-  if (fetchedUsername && fetchedPassword === password) {
-    // Redirect to port 3000
-    req.session.userID = fetchedUsername;
+    if (fetchedUsername && fetchedPassword === JSON.stringify(sha256(password))) {
+        // Redirect to port 3000
+        req.session.userID = fetchedUsername;
 
-    
-
-    if (manager.users.has(fetchedUsername)) {
-        res.render('login', { error: 'You have already logged in.' });
-    }
+        if (manager.users.has(fetchedUsername)) {
+            res.render('login', { error: 'You have already logged in.' });
+        }
+        else {
+            res.redirect('/menu');
+        }
+    } 
     else {
-        res.redirect('/menu');
+        // res.redirect('/login');
+        res.render('login', { error: 'Invalid username or password.' });
     }
-
-    // Execute game.js using the "node" command
-    /*
-    exec('node game.js', (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing game.js: ${error}`);
-        return;
-      }
-      console.log(`game.js executed successfully.`);
-    });
-    */
-  } else {
-    // res.redirect('/login');
-    res.render('login', { error: 'Invalid username or password.' });
-  }
     
 });
 
@@ -673,7 +665,7 @@ app.post('/register', async (req, res) => {
     return;
   }
 
-  await createUser(username, password);
+  await createUser(username, JSON.stringify(sha256(password)));
   res.render('register', { success: true, error: null }); // Render the register.ejs view with the success message
   
 });
