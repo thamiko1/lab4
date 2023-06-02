@@ -241,6 +241,13 @@ var connection_global_rank = mysql.createConnection({
     password: 'Squirrel1.'
   });
 
+var connection_history = mysql.createConnection({
+    host: 'localhost',
+    user: 'lab4',
+    database: 'History',
+    password: 'Squirrel1.'
+  });
+
 server.listen(3000);
 
 const sessionMiddleware = session({
@@ -535,6 +542,18 @@ io.sockets.on("connection", function (socket) {
                 console.log(users);
 
                 for (const [for_userID, for_user] of Object.entries(room.users)) {
+                    //while(i<for)
+                    for_user.question_log.forEach(question => {
+                        let definition = question["definition"];
+                        let correct_option = question["correct_option"];
+                        let sql_insert=`insert into History.wrong_answers (UID, topic, definition, answer) values ("${for_userID}","${room.topic}","${definition}","${correct_option}")`;
+                        console.log(`${sql_insert}`);
+                        connection_history.query(
+                            sql_insert,
+                        )
+                    });
+
+
                     if(room.max_user==1){
                         update_usr_db('single', for_userID, room.time_str, room.topic);
                     }
