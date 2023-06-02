@@ -442,8 +442,6 @@ io.sockets.on("connection", function (socket) {
     if (room.canStart) {
       io.to(roomID).emit("game start");
       let question = room.questions[0];
-      console.log("topic: " + room.topic);
-      console.log("question: " + room.questions)
       io.to(roomID).emit("new question", question["definition"], question["options"]);
       room.start();
     }
@@ -464,15 +462,14 @@ io.sockets.on("connection", function (socket) {
 
         if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct~~~ &#10132 ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
         }
         else {
             res = "wrong";
             user.question_log.push(room.questions[room.question_id]);
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10132 ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
-        // socket.emit("question result", res);
         
         if (!room.click_set.has(userID)){
             if(res == "wrong")
@@ -491,14 +488,12 @@ io.sockets.on("connection", function (socket) {
         // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
         // let room = manager.rooms[roomID], user = room.users[userID];
         
-        // room.user_hp -= 20;
-        // socket.emit("update player hp", room.user_hp);
         room.wrong += 1;
         console.log(room.click_set.has(userID));
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
         user.question_log.push(room.questions[room.question_id]);
-        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10132 ${userID}</p>\n`;
+        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
         handle_stage();
     });
     
@@ -571,11 +566,15 @@ io.sockets.on("connection", function (socket) {
                     find_personal_best,
                     function (err, results, fields){
                         personal_best = results[0][room.topic];
+                        if (room.time_str < personal_best)
+                            personal_best = room.time_str;
                         // find all best
                         connection_global_rank.query(
                             find_all_best,
                             function (err, results, fields){
                                 all_best = results[0]['1st'];
+                                if (room.time_str < all_best)
+                                    all_best = room.time_str;
                                 io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
                                 socket.disconnect();
                             }
