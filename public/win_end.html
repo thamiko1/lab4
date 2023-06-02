@@ -26,7 +26,7 @@
                     <span id="personal_best">00:00:00</span>
                 </p>
                 <p><b>Best: </b>
-                    <span id="best">00:00:00</span>
+                    <span id="all_best">00:00:00</span>
                 </p>
             </div>
             <!-- Others bottom -->
@@ -55,13 +55,26 @@
     </div>
     <script>
         console.log(window.localStorage);
+        
         let time_str = window.localStorage.getItem("time_str");
         let count_element = document.getElementById("game_time");
         count_element.innerText = time_str;
         console.log(time_str);
+
         let logFile = window.localStorage.getItem("log_file");
         console.log(logFile);
         document.getElementById("voc_list").src = logFile;
+
+        let personal_best = window.localStorage.getItem("Personal Best");
+        let personal_best_shown = document.getElementById("personal_best");
+        personal_best_shown.innerText = personal_best;
+        console.log(personal_best);
+
+        let all_best = window.localStorage.getItem("All Best");
+        let all_best_shown = document.getElementById("all_best");
+        all_best_shown.innerText = all_best.substring(0, 8);
+        console.log(all_best);
+
         localStorage.clear();
     </script>
 </body>

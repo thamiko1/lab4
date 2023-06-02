@@ -37,8 +37,8 @@ class RoomProfile {
         this.users = new Object(); // users[userID] = userProfile
 
         this.questions = build_questions(topic);
-        this.boss_hp = 100;
-        this.user_hp = 100;
+        this.boss_hp = 10;
+        this.user_hp = 10;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -144,7 +144,6 @@ class RoomManager {
     }
 
 }
-
 
 ///
 /// SOME FUNCTIONS
@@ -463,12 +462,12 @@ io.sockets.on("connection", function (socket) {
 
         if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}, which is correct. &#8680 ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct~~~ &#10132 ${userID}</p>\n`;
         }
         else {
             res = "wrong";
             user.question_log.push(room.questions[room.question_id]);
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} You answered: ${data}. The correct answer was: ${room.questions[room.question_id]["correct_option"]} &#8680 ${userID}</p>\n`;
+            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10132 ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
         // socket.emit("question result", res);
@@ -497,7 +496,7 @@ io.sockets.on("connection", function (socket) {
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
         user.question_log.push(room.questions[room.question_id]);
-        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id}. ${room.questions[room.question_id]["definition"]} Wake up!!! &#8680 ${userID}</p>\n`;
+        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]} Wake up!!! &#10132 ${userID}</p>\n`;
         handle_stage();
     });
     
@@ -507,7 +506,7 @@ io.sockets.on("connection", function (socket) {
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
 
-    function handle_stage(){
+    async function handle_stage(){
         if(room.click_set.size == room.max_user){
             room.end();
             room.boss_hp -= room.de_boss * room.correct;
@@ -528,9 +527,9 @@ io.sockets.on("connection", function (socket) {
             room.click_set = new Set();
 
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
-
-                let users=Object.keys(room.users);
-                if(room.max_user==1){
+                // update the DataBases
+                let users = Object.keys(room.users);
+                if(room.max_user == 1){
                     update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
                 }
                 else{
@@ -540,13 +539,13 @@ io.sockets.on("connection", function (socket) {
 
                 for (const [for_userID, for_user] of Object.entries(room.users)) {
                     if(room.max_user==1){
-                        update_usr_db('single',for_userID,room.time_str,room.topic);
+                        update_usr_db('single', for_userID, room.time_str, room.topic);
                     }
                     else {
-                        update_usr_db('multi',for_userID,room.time_str,room.topic);
+                        update_usr_db('multi', for_userID, room.time_str, room.topic);
                     }
                 }
-
+                // Write Answer Log
                 fs.writeFile("public/" + room.logFile, room.htmlContent, (err) => {
                     if (err) {
                         console.error(err);
@@ -555,11 +554,34 @@ io.sockets.on("connection", function (socket) {
                         console.log(room.logFile);
                     }
                 });
+                // send the result of the game
                 var game_result = 0;
                 if (room.user_hp <= 0)
                     game_result = 1;
-                io.to(roomID).emit("game over", room.logFile, game_result);
-                socket.disconnect();
+                // Find Personal Best and All Best
+                var game_mode = "multi";
+                if (room.max_user == 1)
+                    game_mode = "single";
+                let find_personal_best = `SELECT ${room.topic} FROM USR_GAME_RECORD.` + game_mode + ` WHERE UID = "${userID}"`;
+                let find_all_best = `SELECT 1st FROM Global_Ranking.` + game_mode + ` WHERE mode = "${room.topic}"`;
+                let personal_best = "", all_best = "";
+                connection_usr_game_record.query(
+                    find_personal_best,
+                    function (err, results, fields){
+                        personal_best = results[0][room.topic];
+                        // find all best
+                        connection_global_rank.query(
+                            find_all_best,
+                            function (err, results, fields){
+                                all_best = results[0]['1st'];
+                                io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
+                                socket.disconnect();
+                            }
+                        )
+                    }
+                )
+                // io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
+                // socket.disconnect();
                 return;
             }
 

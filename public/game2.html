@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/comic-sans" rel="stylesheet">
     <link rel="stylesheet" href="soul_painter/game/style2.css">
-    <!--
-    <link rel="stylesheet" href="soul_painter/pending/style.css">
-    -->
     <title>Gaming</title>
 </head>
 <body>
@@ -82,14 +79,8 @@
             document.getElementById("box").style.display = "none";
             document.getElementById("waiting").style.display = "none";
             document.getElementById("result").style.display = "none";
-            // start_countdown();
-            // timer=true;
-            // stopWatch();
         };
         
-        // $('#pending').css("display") = "none";
-        
-
         var click = 0; // click before timeout(boolean)
         var downloadTimer;
         var socket = io.connect();
@@ -191,8 +182,10 @@
                 $('#de_player').text(de_player);
             })
 
-            socket.on("game over", function(logFile, game_result){
+            socket.on("game over", function(logFile, game_result, personal_best, all_best){
                 window.localStorage.setItem("log_file", logFile);
+                window.localStorage.setItem("Personal Best", personal_best);
+                window.localStorage.setItem("All Best", all_best);
                 if (game_result == 1)
                     window.location.href = "/lose_end";
                 else
