@@ -442,6 +442,8 @@ io.sockets.on("connection", function (socket) {
     if (room.canStart) {
       io.to(roomID).emit("game start");
       let question = room.questions[0];
+      console.log("topic: " + room.topic);
+      console.log("question: " + room.questions)
       io.to(roomID).emit("new question", question["definition"], question["options"]);
       room.start();
     }
@@ -496,7 +498,7 @@ io.sockets.on("connection", function (socket) {
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
         user.question_log.push(room.questions[room.question_id]);
-        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]} Wake up!!! &#10132 ${userID}</p>\n`;
+        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10132 ${userID}</p>\n`;
         handle_stage();
     });
     

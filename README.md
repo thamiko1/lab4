@@ -33,13 +33,19 @@ show databases;
 create DATABASE USR_GAME_RECORD;
 use USR_GAME_RECORD;
 create table single (UID varchar(255),Common varchar(255),Food varchar(255),School varchar(255),Traffic varchar(255),Sport varchar(255),Nature varchar(255),Computer varchar(255));
+alter table single add column GRE varchar(255) after Computer; # For GRE
 create table multi (UID varchar(255),Common varchar(255),Food varchar(255),School varchar(255),Traffic varchar(255),Sport varchar(255),Nature varchar(255),Computer varchar(255));
+alter table multi add column GRE varchar(255) after Computer; # For GRE
+
 create database Global_Ranking;
 use Global_Ranking;
 create table single (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd varchar(255), 4th varchar(255), 5th varchar(255));
 insert into single (mode,1st,2nd,3rd,4th,5th) values ("Common","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Food","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("School","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Traffic","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Sport","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Nature","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Computer","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1");
+insert into single (mode,1st,2nd,3rd,4th,5th) values ("99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"); # For GRE
+
 create table multi (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd varchar(255), 4th varchar(255), 5th varchar(255));
 insert into multi (mode,1st,2nd,3rd,4th,5th) values ("Common","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Food","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("School","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Traffic","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Sport","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Nature","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Computer","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1");
+insert into multi (mode,1st,2nd,3rd,4th,5th) values ("GRE", "99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"); # For GRE
 ```
 * If you have some exist table, please drop it with the following command.
 ```sh
@@ -72,7 +78,6 @@ output : a new file named person.json
 ```
 ## For game.js
 ```sh
-npm install crypto-js
 npm install # install modules in package.json
 node game.js
 # node --version
