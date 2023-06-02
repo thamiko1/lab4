@@ -1171,7 +1171,7 @@
   },
   {
     "word": "bungee jumping",
-    "definition": ["蹦極跳"],
+    "definition": ["高空彈跳"],
     "tag": ["noun"],
     "category": ["sport"]
   },
@@ -1213,7 +1213,7 @@
   },
   {
     "word": "pedestrian crossing",
-    "definition": ["人行橫道"],
+    "definition": ["行人穿越道"],
     "tag": ["noun"],
     "category": ["traffic"]
   },
@@ -1303,7 +1303,7 @@
   },
   {
     "word": "cuisine",
-    "definition": ["烹飪"],
+    "definition": ["烹飪，美食"],
     "tag": ["noun"],
     "category": ["food"]
   },
@@ -1428,8 +1428,8 @@
     "category": ["nature"]
   },
   {
-    "word": "synchronized swimming",
-    "definition": ["花式游泳"],
+    "word": "artistic swimming",
+    "definition": ["水上芭蕾"],
     "tag": ["noun"],
     "category": ["sport"]
   },
@@ -1489,13 +1489,13 @@
   },
   {
     "word": "kayaking",
-    "definition": ["皮划艇"],
+    "definition": ["皮艇"],
     "tag": ["noun"],
     "category": ["sport"]
   },
   {
     "word": "ski jumping",
-    "definition": ["滑雪跳躍"],
+    "definition": ["跳台滑雪"],
     "tag": ["noun"],
     "category": ["sport"]
   },
@@ -1513,7 +1513,7 @@
   },
   {
     "word": "epicurean",
-    "definition": ["享樂主義者"],
+    "definition": ["講究飲食的，享樂主義者"],
     "tag": ["noun"],
     "category": ["food"]
   },
@@ -1783,7 +1783,7 @@
   },
   {
     "word": "flamingo",
-    "definition": ["火烈鳥"],
+    "definition": ["紅鸛，火烈鳥"],
     "tag": ["noun"],
     "category": ["nature"]
   },
@@ -1999,7 +1999,7 @@
   },
   {
     "word": "pirouette",
-    "definition": ["腳尖旋轉"],
+    "definition": ["趾尖旋轉"],
     "tag": ["noun"],
     "category": ["sport"]
   },
@@ -2101,7 +2101,7 @@
   },
   {
     "word": "serendipity",
-    "definition": ["意外發現的幸福"],
+    "definition": ["機緣"],
     "tag": ["noun"],
     "category": ["common"]
   },
@@ -2113,7 +2113,7 @@
   },
   {
     "word": "solstice",
-    "definition": ["至點"],
+    "definition": ["至日，至點"],
     "tag": ["noun"],
     "category": ["school"]
   },
@@ -2143,7 +2143,7 @@
   },
   {
     "word": "subatomic",
-    "definition": ["亞原子的"],
+    "definition": ["原子內的"],
     "tag": ["adjective"],
     "category": ["school"]
   },
@@ -3175,7 +3175,7 @@
   },
   {
     "word": "safari",
-    "definition": ["觀光狩獵"],
+    "definition": ["遊獵"],
     "tag": ["noun"],
     "category": ["nature"]
   },
@@ -3337,7 +3337,7 @@
   },
   {
     "word": "radish",
-    "definition": ["小紅蘿蔔"],
+    "definition": ["小蘿蔔"],
     "tag": ["noun"],
     "category": ["food"]
   },
@@ -3553,7 +3553,7 @@
   },
   {
     "word": "netball",
-    "definition": ["籃球"],
+    "definition": ["籃網球"],
     "tag": ["noun"],
     "category": ["sport"]
   },
@@ -3632,12 +3632,6 @@
   {
     "word": "graphic",
     "definition": ["圖形"],
-    "tag": ["noun"],
-    "category": ["computer"]
-  },
-  {
-    "word": "java",
-    "definition": ["Java程式語言"],
     "tag": ["noun"],
     "category": ["computer"]
   },
@@ -3745,31 +3739,31 @@
   },
   {
     "word": "guardrail",
-    "definition": ["防撞欄"],
+    "definition": ["護欄"],
     "tag": ["noun"],
     "category": ["traffic"]
   },
   {
     "word": "helmet",
-    "definition": ["頭盔"],
+    "definition": ["頭盔，安全帽"],
     "tag": ["noun"],
     "category": ["traffic"]
   },
   {
     "word": "jammed",
-    "definition": ["堵塞"],
+    "definition": ["堵塞的"],
     "tag": ["adjective"],
     "category": ["traffic"]
   },
   {
     "word": "merge",
-    "definition": ["合流"],
+    "definition": ["合併"],
     "tag": ["verb"],
     "category": ["traffic"]
   },
   {
     "word": "no entry",
-    "definition": ["禁止通行"],
+    "definition": ["禁止駛入"],
     "tag": ["phrase"],
     "category": ["traffic"]
   },
@@ -3937,7 +3931,7 @@
   },
   {
     "word": "yellow",
-    "definition": ["黃色"],
+    "definition": ["黃色的"],
     "tag": ["adjective"],
     "category": ["school"]
   },
@@ -4237,7 +4231,7 @@
   },
   {
     "word": "yonder",
-    "definition": ["在遠處"],
+    "definition": ["(在)那邊"],
     "tag": ["adverb"],
     "category": ["common"]
   },
@@ -4441,7 +4435,7 @@
   },
   {
     "word": "indoor",
-    "definition": ["室內"],
+    "definition": ["室內的"],
     "tag": ["adjective"],
     "category": ["sport"]
   },
@@ -4578,12 +4572,6 @@
     "category": ["food"]
   },
   {
-    "word": "xigua",
-    "definition": ["西瓜"],
-    "tag": ["noun"],
-    "category": ["food"]
-  },
-  {
     "word": "carpool",
     "definition": ["共乘"],
     "tag": ["noun"],
@@ -4633,7 +4621,7 @@
   },
   {
     "word": "bug",
-    "definition": ["錯誤"],
+    "definition": ["(程式)漏洞"],
     "tag": ["noun"],
     "category": ["computer"]
   },
@@ -4663,7 +4651,7 @@
   },
   {
     "word": "cyber",
-    "definition": ["網絡"],
+    "definition": ["電腦(網絡)的"],
     "tag": ["adjective"],
     "category": ["computer"]
   },
@@ -4675,7 +4663,7 @@
   },
   {
     "word": "digital",
-    "definition": ["數字"],
+    "definition": ["數字的"],
     "tag": ["adjective"],
     "category": ["computer"]
   },
@@ -4735,7 +4723,7 @@
   },
   {
     "word": "malware",
-    "definition": ["惡意軟件"],
+    "definition": ["惡意程式"],
     "tag": ["noun"],
     "category": ["computer"]
   },
@@ -4747,13 +4735,13 @@
   },
   {
     "word": "offline",
-    "definition": ["離線"],
+    "definition": ["離線的"],
     "tag": ["adjective"],
     "category": ["computer"]
   },
   {
     "word": "online",
-    "definition": ["在線"],
+    "definition": ["在線的"],
     "tag": ["adjective"],
     "category": ["computer"]
   },
