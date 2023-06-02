@@ -46,6 +46,11 @@ insert into single (mode,1st,2nd,3rd,4th,5th) values ("GRE","99:99:99 -1,-1,-1",
 create table multi (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd varchar(255), 4th varchar(255), 5th varchar(255));
 insert into multi (mode,1st,2nd,3rd,4th,5th) values ("Common","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Food","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("School","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Traffic","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Sport","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Nature","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Computer","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1");
 insert into multi (mode,1st,2nd,3rd,4th,5th) values ("GRE", "99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"); # For GRE
+
+# For wrong answers
+create database History;
+use History;
+create table wrong_answers (UID varchar(255), Topic varchar(255), Definition varchar(255), Answer varchar(255));
 ```
 * If you have some exist table, please drop it with the following command.
 ```sh
