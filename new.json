@@ -4822,5 +4822,1974 @@
     "definition": ["網頁"],
     "tag": ["noun"],
     "category": ["computer"]
+  },
+  {
+    "word": "abate",
+    "definition": ["減少，減輕"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "aberrant",
+    "definition": ["異常的，反常的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "abeyance",
+    "definition": ["中止，暫停"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "abscond",
+    "definition": ["潛逃，逃亡"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "abstemious",
+    "definition": ["節制的，有節制的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "admonish",
+    "definition": ["警告，告誡"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "adulterate",
+    "definition": ["摻假，摻雜"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "aesthetic",
+    "definition": ["美學的，審美的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "aggregate",
+    "definition": ["總計，集合"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "alacrity",
+    "definition": ["敏捷，樂意"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "alleviate",
+    "definition": ["緩解，減輕"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "amalgamate",
+    "definition": ["合併，融合"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ambiguous",
+    "definition": ["含糊不清的，模棱兩可的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ambivalence",
+    "definition": ["矛盾情感，猶豫不決"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ameliorate",
+    "definition": ["改善，提升"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "anachronism",
+    "definition": ["將某物定位在其不可能存在的時代"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "analogous",
+    "definition": ["在某些方面相似或等同"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "anarchy",
+    "definition": ["無政府狀態，混亂無序"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "anomalous",
+    "definition": ["偏離一般或常見的秩序或類型"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "antipathy",
+    "definition": ["強烈的厭惡或反感"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "apathy",
+    "definition": ["缺乏情感或熱情"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "appease",
+    "definition": ["與某人和解，平息"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "apprise",
+    "definition": ["通知某人某事"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "approbation",
+    "definition": ["正式接受或同意"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "appropriate",
+    "definition": ["適合特定的人、地點或情況"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "arduous",
+    "definition": ["費力的，到極點的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "artless",
+    "definition": ["簡單自然，不狡猾或詭計"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ascetic",
+    "definition": ["作為一種精神修行而節制的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "assiduous",
+    "definition": ["注意的，堅持不懈的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "assuage",
+    "definition": ["提供身體上的舒緩，如緩解疼痛"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "attenuate",
+    "definition": ["變得更弱，無論是力量、價值還是程度上"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "audacious",
+    "definition": ["傾向於冒險或承擔風險的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "austere",
+    "definition": ["嚴厲或嚴格的態度或舉止"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "aver",
+    "definition": ["正式、莊重地聲明或肯定為真"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "banal",
+    "definition": ["因過度重複而過於熟悉或平凡"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "belie",
+    "definition": ["與...相矛盾"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "beneficent",
+    "definition": ["做好事的，產生善行的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "bolster",
+    "definition": ["支持和加強"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "bombastic",
+    "definition": ["誇張、浮誇的風格"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "boorish",
+    "definition": ["舉止或外表粗魯、無禮的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "burgeon",
+    "definition": ["生長和茁壯"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "burnish",
+    "definition": ["擦亮，使光澤"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "buttress",
+    "definition": ["通常是石頭或磚頭的支撐物"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "cacophonous",
+    "definition": ["聲音不悅耳的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "capricious",
+    "definition": ["由機遇或衝動而決定，而非必然的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "castigation",
+    "definition": ["口頭懲罰"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "catalyst",
+    "definition": ["引發或加速化學反應的物質"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "caustic",
+    "definition": ["能夠藉由化學作用來破壞或侵蝕的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "chicanery",
+    "definition": ["使用詭計欺騙他人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "coagulate",
+    "definition": ["從液體轉變為凝固或固體狀態"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "coda",
+    "definition": ["音樂作品的結尾部分"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "cogent",
+    "definition": ["極具說服力的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "commensurate",
+    "definition": ["大小、程度或範圍相對應的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "compendium",
+    "definition": ["包含各種作品的出版物"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "complaisant",
+    "definition": ["樂意為他人效勞的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "compliant",
+    "definition": ["願意按照他人的願望行事的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "conciliatory",
+    "definition": ["作出或願意作出讓步的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "condone",
+    "definition": ["寬恕，原諒或容忍"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "confound",
+    "definition": ["對...感到困惑或迷惑"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "connoisseur",
+    "definition": ["能夠欣賞某個領域的專家"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "contention",
+    "definition": ["競爭，尤指為了獲利或獎品的競爭行為"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "contentious",
+    "definition": ["傾向於持不同意見的，有爭議的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "contrite",
+    "definition": ["感到痛苦或悲痛的，表達悔罪的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "conundrum",
+    "definition": ["一個困難的問題"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "converge",
+    "definition": ["相鄰或聚集在一起"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "convoluted",
+    "definition": ["高度複雜或錯綜複雜的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "craven",
+    "definition": ["缺乏勇氣，非常害怕的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "daunt",
+    "definition": ["使失去勇氣"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "decorum",
+    "definition": ["禮節，行為舉止的得體"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "default",
+    "definition": ["自動選擇的選項"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "deference",
+    "definition": ["對他人感受的禮貌尊重"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "delineate",
+    "definition": ["精確或準確地描繪"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "denigrate",
+    "definition": ["誹謗，攻擊某人的名譽"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "deride",
+    "definition": ["輕蔑對待或嘲笑"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "derivative",
+    "definition": ["從另一化合物中獲得的化合物"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "desiccate",
+    "definition": ["缺乏活力或精神的，無生氣的"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "desultory",
+    "definition": ["缺乏明確計劃、目的或熱情的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "deterrent",
+    "definition": ["干擾行動或進展的非物質性事物"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "diatribe",
+    "definition": ["雷鳴般的口頭攻擊"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dichotomy",
+    "definition": ["分類為兩個對立部分或子類別"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "diffidence",
+    "definition": ["缺乏自信"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "diffuse",
+    "definition": ["分散，不集中在一個地方"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "digression",
+    "definition": ["偏離主題的言論"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dirge",
+    "definition": ["為死者而唱的哀悼之歌或聖歌"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disabuse",
+    "definition": ["使某人擺脫錯誤的信念"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "discerning",
+    "definition": ["具有敏銳洞察力和良好判斷力的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "discordant",
+    "definition": ["不一致或不和諧的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "discredit",
+    "definition": ["受到低估的狀態"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "discrepancy",
+    "definition": ["相互矛盾的事實、主張或觀點之間的差異"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "discrete",
+    "definition": ["構成一個獨立實體或部分的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disingenuous",
+    "definition": ["不坦率或不坦誠的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disinterested",
+    "definition": ["不受關心個人利益的影響"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disjointed",
+    "definition": ["在連接點處分開的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dismiss",
+    "definition": ["停止與...交往"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disparage",
+    "definition": ["對...表示負面意見"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disparate",
+    "definition": ["在質量或類型上基本上不同或不同"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dissemble",
+    "definition": ["行為不自然或做作"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "disseminate",
+    "definition": ["使廣為人知"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dissolution",
+    "definition": ["分解成組成部分"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dissonance",
+    "definition": ["不悅耳的聲音"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "distend",
+    "definition": ["因內部壓力而膨脹"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "distill",
+    "definition": ["經歷冷凝"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "diverge",
+    "definition": ["移動或拉開"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "divest",
+    "definition": ["從某人那裡拿走財產"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "document",
+    "definition": ["以符號標記表示思想的表現"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dogmatic",
+    "definition": ["與被接受為權威的信仰準則有關的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dormant",
+    "definition": ["不活動的，但有能力變得活躍"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "dupe",
+    "definition": ["愚弄或欺騙"],
+    "tag": ["noun", "verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ebullient",
+    "definition": ["歡欣鼓舞的，快樂無拘束的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "eclectic",
+    "definition": ["選擇最好的各種風格或想法"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "efficacy",
+    "definition": ["產生期望結果的能力或力量"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "effrontery",
+    "definition": ["傲慢的行為，你沒有權利這樣做"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "elegy",
+    "definition": ["哀悼詩，為死者的悼詞"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "elicit",
+    "definition": ["引出，引起（情感、感覺或反應）"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "embellish",
+    "definition": ["使更加吸引人，通過增加裝飾或顏色"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "empirical",
+    "definition": ["基於實驗和觀察而非理論"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "emulate",
+    "definition": ["努力追趕或匹敵，尤其是通過模仿"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "endemic",
+    "definition": ["原產於或僅限於某個地區的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "enervate",
+    "definition": ["使身體、精神或道德上虛弱"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "engender",
+    "definition": ["引起，產生"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "enhance",
+    "definition": ["增加"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ephemeral",
+    "definition": ["短暫的，如僅活一天的昆蟲"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "equanimity",
+    "definition": ["在壓力下保持平靜的心境"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "equivocate",
+    "definition": ["故意模棱兩可或不明確"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "erudite",
+    "definition": ["擁有或展示深奧的知識"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "esoteric",
+    "definition": ["只有開明內部圈子能理解的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "eulogy",
+    "definition": ["對已故者的正式讚揚"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "euphemism",
+    "definition": ["用得體的詞語替代冒犯性的詞語"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "exacerbate",
+    "definition": ["使惡化"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "exculpate",
+    "definition": ["宣判無罪"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "exigency",
+    "definition": ["緊急或迫切的情況"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "extrapolation",
+    "definition": ["基於已知事實對未來的推斷"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "facetious",
+    "definition": ["言辭詼諧幽默的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "facilitate",
+    "definition": ["使更容易"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "fallacious",
+    "definition": ["包含或基於錯誤的推理"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "fatuous",
+    "definition": ["缺乏智慧的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "fawning",
+    "definition": ["試圖通過奉承來贏得好感"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+      "word": "felicitous",
+      "definition": ["展現一種宜人適當的方式或風格"],
+      "tag": ["adjective"],
+      "category": ["gre"]
+  },
+  {
+    "word": "fervor",
+    "definition": ["極度熱情和強烈的情感"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "flag",
+    "definition": ["具有獨特設計的長方形布料"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "fledgling",
+    "definition": ["剛剛能夠飛行的幼鳥"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "flout",
+    "definition": ["蔑視、無視"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "foment",
+    "definition": ["試圖煽動"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "forestall",
+    "definition": ["阻止發生或產生，使不可能"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "frugality",
+    "definition": ["節儉、節省"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "futile",
+    "definition": ["無效的、徒勞的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "gainsay",
+    "definition": ["對...表示異議"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "garrulous",
+    "definition": ["充滿琐碎對話的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "goad",
+    "definition": ["戳刺或刺激，如同用尖棍戳刺"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "gouge",
+    "definition": ["在表面上留下的印記，如受到打擊所造成"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "grandiloquent",
+    "definition": ["風格高傲的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "gregarious",
+    "definition": ["性格上喜歡尋求和享受他人的陪伴"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "guileless",
+    "definition": ["無邪的，沒有欺詐的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "gullible",
+    "definition": ["天真且容易被欺騙或上當的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "harangue",
+    "definition": ["帶有強烈情感的大聲誇大的演說"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "homogenous",
+    "definition": ["都是相同或相似類型或性質的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "hyperbole",
+    "definition": ["誇張的言辭"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "iconoclast",
+    "definition": ["攻擊珍視的觀念或制度的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "idolatry",
+    "definition": ["把物體或圖像崇拜為神的行為"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "immutable",
+    "definition": ["不受改變或變動的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "impair",
+    "definition": ["使變得更糟或效果減弱"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "impassive",
+    "definition": ["情感或感知能力很少或不顯露的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "impede",
+    "definition": ["妨礙或阻礙"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "impermeable",
+    "definition": ["防止特別是液體通過或擴散的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "imperturbable",
+    "definition": ["極度冷靜和沉著的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "impervious",
+    "definition": ["不容許通行的或無法受到影響的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "implacable",
+    "definition": ["無法安撫或平息的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "implicit",
+    "definition": ["暗示的，未直接表達的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "implode",
+    "definition": ["向內破裂"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inadvertently",
+    "definition": ["無意地或不經意地"],
+    "tag": ["adverb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inchoate",
+    "definition": ["只部分存在，形成不完全的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "incongruity",
+    "definition": ["不一致的品質"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inconsequential",
+    "definition": ["不重要或無價值的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "incorporate",
+    "definition": ["使成為整體或成為整體的一部分"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "indeterminate",
+    "definition": ["未確定或事先不知道的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "indigence",
+    "definition": ["極度貧困或赤貧狀態"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "indolent",
+    "definition": ["不願工作或努力的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inert",
+    "definition": ["無法移動或抵抗運動的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ingenuous",
+    "definition": ["缺乏老練或世故的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inherent",
+    "definition": ["作為基本組成部分或特徵而存在的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "innocuous",
+    "definition": ["對身體或精神健康無害的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "insensible",
+    "definition": ["幾乎無法察覺的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "insinuate",
+    "definition": ["間接或隱晦地暗示，讓人了解"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "insipid",
+    "definition": ["缺乏興趣、重要性或影響力的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "insularity",
+    "definition": ["對新思想缺乏開放性，心胸狹隘"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "intractable",
+    "definition": ["難以管理或塑造的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "intransigence",
+    "definition": ["固執拒絕妥協或改變"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inundate",
+    "definition": ["完全填滿或覆蓋，通常指水"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "inured",
+    "definition": ["通過經常接觸變得堅韌的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "invective",
+    "definition": ["用於指責或譴責的辱罵性語言"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "irascible",
+    "definition": ["容易激怒的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "irresolute",
+    "definition": ["不確定如何行動或前進的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "itinerary",
+    "definition": ["旅行路線或進入點"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "laconic",
+    "definition": ["簡短而直接的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "lassitude",
+    "definition": ["缺乏興趣或精力的感覺"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "latent",
+    "definition": ["潛在存在但目前尚未顯現或實現的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "laud",
+    "definition": ["讚美、讚揚或尊崇"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "lethargic",
+    "definition": ["警覺度或活動力不足的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "levee",
+    "definition": ["用以防止河流泛濫的堤壩"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "levity",
+    "definition": ["缺乏嚴肅的方式"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "log",
+    "definition": ["去枝的樹幹段"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "loquacious",
+    "definition": ["愛閒聊的，喜歡無聊對話的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "lucid",
+    "definition": ["透明清晰的，易於理解的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "luminous",
+    "definition": ["柔和明亮或輻射的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "magnanimity",
+    "definition": ["高尚和慷慨的精神"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "malingerer",
+    "definition": ["假裝生病或無能力以逃避職責的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "malleable",
+    "definition": ["能夠被塑形或彎曲的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "maverick",
+    "definition": ["思想和行動獨立的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "mendacious",
+    "definition": ["傾向說謊的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "metamorphosis",
+    "definition": ["外貌、性格或情況的驚人變化"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+
+  {
+    "word": "meticulous",
+    "definition": ["遵從細節的精確一致"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "misanthrope",
+    "definition": ["一般不喜歡人類的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "mitigate",
+    "definition": ["減輕或嘗試減輕嚴重程度或範圍"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "mollify",
+    "definition": ["使更傾向於善意"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "morose",
+    "definition": ["顯示沉思的壞脾氣"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "mundane",
+    "definition": ["在日常事件中發現的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "negate",
+    "definition": ["以平衡效果使其無效"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "neophyte",
+    "definition": ["對某項活動沒有經驗的參與者"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "obdurate",
+    "definition": ["在錯誤中固執地持續下去"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "obsequious",
+    "definition": ["試圖通過奉承贏得有影響力的人的青睞"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "obviate",
+    "definition": ["消除"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "occlude",
+    "definition": ["阻塞通道"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "officious",
+    "definition": ["以干擾或冒犯的方式干涉"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "onerous",
+    "definition": ["繁重或難以忍受"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "oscillate",
+    "definition": ["定期從一邊擺動或擺動"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "ostentatious",
+    "definition": ["旨在引起注意並給人留下深刻印象的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "paragon",
+    "definition": ["一個概念的完美體現"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "partisan",
+    "definition": ["對某事物熱烈甚至好戰的擁護者"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pathological",
+    "definition": ["與疾病研究有關的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "paucity",
+    "definition": ["數量或數目不足"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pedantic",
+    "definition": ["以學識的狹隘焦點或展示為特徵"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "penchant",
+    "definition": ["強烈的喜好或偏好"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "penury",
+    "definition": ["極度貧窮或赤貧的狀態"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "perennial",
+    "definition": ["持續無限長時間的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "perfidious",
+    "definition": ["傾向於背叛"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "perfunctory",
+    "definition": ["匆忙而不注意細節，不徹底"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "permeable",
+    "definition": ["允許液體或氣體通過或擴散的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pervasive",
+    "definition": ["遍布或普及"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "phlegmatic",
+    "definition": ["表現出很少情感的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "piety",
+    "definition": ["因虔誠信仰而具有的正義"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "placate",
+    "definition": ["使更傾向於接受"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "plasticity",
+    "definition": ["物理可塑性的特性"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "platitude",
+    "definition": ["陳腔濫調或明顯的話"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "plethora",
+    "definition": ["極度過剩"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "plummet",
+    "definition": ["急劇下降"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "porous",
+    "definition": ["充滿孔隙的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pragmatic",
+    "definition": ["關注實際問題的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "preamble",
+    "definition": ["作為法令或憲法的初步介紹"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "precarious",
+    "definition": ["不穩定的，面臨困難的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "precipitate",
+    "definition": ["突然引起"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "precursor",
+    "definition": ["預示著某事物或某人的東西"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "presumptuous",
+    "definition": ["超出適當、許可或禮貌的範圍"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "prevaricate",
+    "definition": ["故意模棱兩可或含糊其辭"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pristine",
+    "definition": ["完美無瑕的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "probity",
+    "definition": ["完全且經過證實的正直"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "problematic",
+    "definition": ["對思考能力要求很高"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "prodigal",
+    "definition": ["浪費的，揮霍的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "profound",
+    "definition": ["位於或延伸至深處的，深奧的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "prohibitive",
+    "definition": ["傾向於使人氣餒，尤指價格高昂的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "proliferate",
+    "definition": ["快速增長"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "propensity",
+    "definition": ["天生的傾向"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "propitiate",
+    "definition": ["與...和解"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "propriety",
+    "definition": ["正確的行為"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "proscribe",
+    "definition": ["禁止"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "pungent",
+    "definition": ["味道或氣味濃烈而刺激的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "qualified",
+    "definition": ["符合任務的適當標準和要求"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "quibble",
+    "definition": ["逃避事實的觀點，提出不相關的異議"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "quiescent",
+    "definition": ["安靜、靜止或不活躍的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "rarefied",
+    "definition": ["道德或知識價值很高的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "recalcitrant",
+    "definition": ["頑固地抵抗權威或控制的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "recant",
+    "definition": ["正式否定或放棄先前的信念"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "recluse",
+    "definition": ["居於孤獨之中的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "recondite",
+    "definition": ["難以理解的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "refractory",
+    "definition": ["頑固地抵抗權威或控制的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "refute",
+    "definition": ["通過論據、證據或證明來推翻"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "relegate",
+    "definition": ["降低（職位）"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "reproach",
+    "definition": ["對...表示批評"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "reprobate",
+    "definition": ["沒有道德原則的人"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "repudiate",
+    "definition": ["拒絕承認、批准或確認"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "rescind",
+    "definition": ["正式取消"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "resolution",
+    "definition": ["決定要做某事或以某種方式行事"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "resolve",
+    "definition": ["找到解決方案或答案"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "reticent",
+    "definition": ["不願引起注意的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "reverent",
+    "definition": ["感到或表現出深深的尊敬"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "sage",
+    "definition": ["在精神和哲學問題上的導師"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "salubrious",
+    "definition": ["有益健康的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "sanction",
+    "definition": ["官方許可或批准"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "satiate",
+    "definition": ["使滿足，使心滿意足"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "saturate",
+    "definition": ["充斥，浸透，飽和"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+      "word": "savor",
+      "definition": ["品味，細細品嚐"],
+      "tag": ["noun", "verb"],
+      "category": ["gre"]
+  },
+  {
+      "word": "secrete",
+      "definition": ["分泌，隱藏"],
+      "tag": ["verb"],
+      "category": ["gre"]
+  },
+  {
+      "word": "shard",
+      "definition": ["（脆弱物品的）碎片"],
+      "tag": ["noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "skeptic",
+      "definition": ["懷疑論者"],
+      "tag": ["noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "soporific",
+      "definition": ["催眠的，令人昏昏欲睡的"],
+      "tag": ["adjective", "noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "specious",
+      "definition": ["似是而非的，華而不實的"],
+      "tag": ["adjective"],
+      "category": ["gre"]
+  },
+  {
+      "word": "spectrum",
+      "definition": ["範圍，光譜"],
+      "tag": ["noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "sporadic",
+      "definition": ["零星的，偶發的"],
+      "tag": ["adjective"],
+      "category": ["gre"]
+  },
+  {
+      "word": "stigma",
+      "definition": ["汙名，恥辱，烙印"],
+      "tag": ["noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "stint",
+      "definition": ["限制，節制"],
+      "tag": ["verb", "noun"],
+      "category": ["gre"]
+  },
+  {
+      "word": "stipulate",
+      "definition": ["規定，明確要求"],
+      "tag": ["verb"],
+      "category": ["gre"]
+  },
+  {
+    "word": "stolid",
+    "definition": ["麻木的，冷漠的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "strut",
+    "definition": ["趾高氣昂地走"],
+    "tag": ["verb", "noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "subpoena",
+    "definition": ["傳票，傳喚令"],
+    "tag": ["noun", "verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "subside",
+    "definition": ["平息，減退"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "substantiate",
+    "definition": ["證實，證明"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "supersede",
+    "definition": ["取代，代替"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "supposition",
+    "definition": ["假設，猜想"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tacit",
+    "definition": ["默示的，心照不宣的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tangential",
+    "definition": ["離題的，切線的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tenuous",
+    "definition": ["稀薄的，微弱的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tirade",
+    "definition": ["長篇激烈的演說"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "torpor",
+    "definition": ["遲鈍，麻木"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tortuous",
+    "definition": ["迂迴的，曲折的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "tractable",
+    "definition": ["易於駕馭的，溫順的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "transgression",
+    "definition": ["違法，罪過"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "truculence",
+    "definition": ["好鬥，好挑釁"],
+    "tag": ["noun"],
+    "category": ["gre"]
+  },
+  {
+    "word": "vacillate",
+    "definition": ["猶豫不決"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "venerate",
+    "definition": ["尊敬，崇敬"],
+    "tag": ["verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "veracious",
+    "definition": ["誠實的，真實的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "verbose",
+    "definition": ["冗長的，囉嗦的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "viable",
+    "definition": ["可行的，能生存的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "viscous",
+    "definition": ["黏稠的，黏性的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "vituperative",
+    "definition": ["辱罵的，責罵的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "volatile",
+    "definition": ["不穩定的，揮發性的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "wary",
+    "definition": ["小心的，警惕的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "welter",
+    "definition": ["雜亂無章的"],
+    "tag": ["noun", "verb"],
+    "category": ["gre"]
+  },
+  {
+    "word": "whimsical",
+    "definition": ["反覆無常的，異想天開的"],
+    "tag": ["adjective"],
+    "category": ["gre"]
+  },
+  {
+    "word": "zealot",
+    "definition": ["狂熱者，狂熱支持者"],
+    "tag": ["noun"],
+    "category": ["gre"]
   }
 ]
