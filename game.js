@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import vocab from './public/new.json' assert {type: 'json'}
 import * as mysql from 'mysql2'
+
 var new_userID = 0, new_roomID = 0;
 
 ///
@@ -750,10 +751,6 @@ io.sockets.on("connection", function (socket) {
                             personal_best = "99:99:99";
                         if (room.time_str < personal_best || JSON.stringify(personal_best) == "null")
                             personal_best = room.time_str;
-                        
-                        if (room.boss_hp>0){
-                            personal_best = "99:99:99";
-                        }
                         console.log("type " + typeof personal_best);
                         console.log(personal_best);
                         // find all best
@@ -761,7 +758,7 @@ io.sockets.on("connection", function (socket) {
                             find_all_best,
                             function (err, results, fields){
                                 all_best = results[0]['1st'];
-                                if (room.time_str < all_best && room.boss_hp <= 0)
+                                if (room.time_str < all_best)
                                     all_best = room.time_str;
                                 io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
                                 socket.disconnect();
@@ -809,6 +806,7 @@ app.get('/lose_end', function (req, res) {
 ///
 
 app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('views', path.join(__dirname, '/public'));
 import { getUsername, getPassword, createUser } from './database.js';
 
 
