@@ -611,13 +611,13 @@ io.sockets.on("connection", function (socket) {
                     find_personal_best,
                     function (err, results, fields){
                         console.log("debug: " + `${typeof results}` + " when setting personal best")
-                        if (!(`${typeof results}` == undefined))
-                            personal_best = results[0];
+                        if (!(`${typeof results[0]}` == undefined))
+                            personal_best = results[0][room.topic];
                         else
                             personal_best = "99:99:99";
                         if (room.time_str < personal_best || JSON.stringify(personal_best) == "null")
                             personal_best = room.time_str;
-                        console.log("type" + typeof personal_best);
+                        console.log("type " + typeof personal_best);
                         console.log(personal_best);
                         // find all best
                         connection_global_rank.query(

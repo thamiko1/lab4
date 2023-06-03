@@ -6,3 +6,4 @@ jsonFormat.py
 filter_categories.py
 no_use
 public/log/*
+public/history/*
