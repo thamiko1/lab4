@@ -9,6 +9,7 @@ npm install
 # node --version
 # v18.16.0
 sudo mysql < reset_sql.sql # Update SQL settings
+bash dir.sh # mkdir for history
 ```
 <!--
 ## App.js
