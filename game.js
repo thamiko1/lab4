@@ -123,6 +123,7 @@ class RoomManager {
     }
 
     addUser(userID, max_user, topic) {
+        this.users.add(userID);
         let roomID = -1;
         if (max_user == 1 || !(topic in this.pending_rooms)) {
             if (max_user > 1) this.pending_rooms[topic] = new_roomID;
@@ -141,6 +142,13 @@ class RoomManager {
         }
 
         return roomID;
+    }
+
+    removeUser(userID) {
+        let roomID = this.user2room[userID];
+        this.rooms[roomID].removeUser(userID);
+        delete this.user2room[userID];
+        this.users.delete(userID);
     }
 
 }
@@ -265,7 +273,7 @@ io.engine.use(sessionMiddleware);
 
 
 app.get("/", function (req, res) {
-    let debug = true;
+    let debug = false;
     if (debug) {
         // If debug is true, it will redirect to the menu page.
         // The new userID will be new_userID.
@@ -289,7 +297,6 @@ app.get("/menu", function (req, res) {
         res.redirect("/");
     }
     else {
-        manager.users.add(req.session.userID);
         console.log(req.session.userID, 'goes to the menu.');
         res.sendFile(__dirname + '/public/menu.html');
     }
@@ -335,6 +342,10 @@ app.get('/game', function (req, res) {
     if (req.session.userID == null){
         res.redirect("/");
     }
+    if (manager.users.has(req.session.userID)) {
+        res.redirect(`Dear_${req.session.userID},_you_have_already_joined_a_room`);
+    }
+    
     let roomID = manager.addUser(req.session.userID, req.session.max_user, req.session.topic);
     req.session.roomID  = roomID;
     console.log(req.session);
@@ -506,7 +517,8 @@ io.sockets.on("connection", function (socket) {
     
     socket.on("disconnect", function (reason) {
         console.log("disconnect", reason);
-        room.removeUser(userID);
+        // room.removeUser(userID);
+        manager.removeUser(userID);
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
 
@@ -651,7 +663,7 @@ import { getUsername, getPassword, createUser } from './database.js';
 app.get('/login', (req, res) => {
   // res.sendFile(__dirname + '/public/login.html');
   if (req.session.userID) {
-    res.redirect('/you_have_already_logged_in'); // already logged in
+    res.redirect('/menu'); // already logged in
   } else {
     res.render('login', { error: null }); // Render the login.ejs view with no error
   }
@@ -668,13 +680,8 @@ app.post('/login', async (req, res) => {
     if (fetchedUsername && fetchedPassword === JSON.stringify(sha256(password))) {
         // Redirect to port 3000
         req.session.userID = fetchedUsername;
-
-        if (manager.users.has(fetchedUsername)) {
-            res.render('login', { error: 'You have already logged in.' });
-        }
-        else {
-            res.redirect('/menu');
-        }
+        res.redirect('/menu');
+        
     } 
     else {
         // res.redirect('/login');
@@ -725,7 +732,6 @@ server.on('error', (error) => {
 ///
 
 app.get('/logout', (req, res) => {
-  manager.users.delete(req.session.userID);
   req.session.userID = null;
   req.session.roomID = null;
   res.redirect('/login');
