@@ -542,6 +542,8 @@ io.sockets.on("connection", function (socket) {
             room.wrong = 0;
             room.click_set = new Set();
 
+            let path = "./public/history/" + room.topic + "/";
+            // let path = "./";
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
                 // update the DataBases
                 let users = Object.keys(room.users);
