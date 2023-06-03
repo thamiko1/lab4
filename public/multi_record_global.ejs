@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-mode Global Highscores</title>
+</head>
+<body>
+    <div>
+        <u1>
+            <h2>Common</h2>
+            <% for (var key in data.commonrecord) { %>
+                <li><%= key %> - <%= data.commonrecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>Food</h2>
+            <% for (var key in data.foodrecord) { %>
+                <li><%= key %> - <%= data.foodrecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>School</h2>
+            <% for (var key in data.schoolrecord) { %>
+                <li><%= key %> - <%= data.schoolrecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>Traffic</h2>
+            <% for (var key in data.trafficrecord) { %>
+                <li><%= key %> - <%= data.trafficrecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>Sport</h2>
+            <% for (var key in data.sportrecord) { %>
+                <li><%= key %> - <%= data.sportrecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>Nature</h2>
+            <% for (var key in data.naturerecord) { %>
+                <li><%= key %> - <%= data.naturerecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>GRE</h2>
+            <% for (var key in data.grerecord) { %>
+                <li><%= key %> - <%= data.grerecord[key] %></li>
+            <% } %>
+        </u1>
+        <u1>
+            <h2>Computer</h2>
+            <% for (var key in data.computerrecord) { %>
+                <li><%= key %> - <%= data.computerrecord[key] %></li>
+            <% } %>
+        </u1>
+    </div>
+</body>
+</html>

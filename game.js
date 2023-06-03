@@ -302,6 +302,7 @@ app.get("/menu", function (req, res) {
     }
 });
 
+
 // handle input form
 app.post("/menu_start", function (req, res) {
     console.log("receive start respose.");
@@ -317,6 +318,63 @@ app.post("/menu_profile", function (req, res) {
     console.log(req.body);
     res.redirect("/profile");
 })
+
+
+///
+/// Ranking
+///
+
+app.get('/ranking', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'goes to the ranking page.');
+        res.render(__dirname + '/public/ranking.ejs');
+    }
+});
+
+app.get('/single_record_global', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'checks singleplayer global record.');
+        var username = req.session.userID;
+        let sql_select=`SELECT * FROM Global_Ranking.single ORDER BY Global_Ranking.single.mode`;
+        //console.log(`call update_usr_db UID=${UID}`);
+        console.log(`${sql_select}`);
+        connection_global_rank.query(
+            sql_select, 
+            function(err, results, fields) { 
+                console.log(`select single update`);
+                console.log(results);
+                res.render(__dirname + '/public/single_record_global.ejs', {data: {commonrecord: results[0], computerrecord: results[1], foodrecord: results[2], grerecord: results[3], naturerecord: results[4], schoolrecord: results[5], sportrecord: results[6], trafficrecord: results[7]}});
+            }
+        );
+    }
+});
+
+app.get('/multi_record_global', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'checks multiplayer global record.');
+        var username = req.session.userID;
+        let sql_select=`SELECT * FROM Global_Ranking.multi ORDER BY Global_Ranking.multi.mode`;
+        //console.log(`call update_usr_db UID=${UID}`);
+        console.log(`${sql_select}`);
+        connection_global_rank.query(
+            sql_select, 
+            function(err, results, fields) { 
+                console.log(`select multi update`);
+                console.log(results);
+                res.render(__dirname + '/public/multi_record_global.ejs', {data: {commonrecord: results[0], computerrecord: results[1], foodrecord: results[2], grerecord: results[3], naturerecord: results[4], schoolrecord: results[5], sportrecord: results[6], trafficrecord: results[7]}});
+            }
+        );
+    }
+});
 
 ///
 /// PROFILE
