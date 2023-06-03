@@ -249,12 +249,12 @@ var connection_global_rank = mysql.createConnection({
     password: 'Squirrel1.'
   });
 
-var connection_history = mysql.createConnection({
-    host: 'localhost',
-    user: 'lab4',
-    database: 'History',
-    password: 'Squirrel1.'
-  });
+// var connection_history = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'lab4',
+//     database: 'History',
+//     password: 'Squirrel1.'
+//   });
 
 server.listen(3000);
 
@@ -554,17 +554,29 @@ io.sockets.on("connection", function (socket) {
                 console.log(users);
 
                 for (const [for_userID, for_user] of Object.entries(room.users)) {
-                    //while(i<for)
-                    for_user.question_log.forEach(question => {
-                        let definition = question["definition"];
-                        let correct_option = question["correct_option"];
-                        let sql_insert=`insert into History.wrong_answers (UID, topic, definition, answer) values ("${for_userID}","${room.topic}","${definition}","${correct_option}")`;
-                        console.log(`${sql_insert}`);
-                        connection_history.query(
-                            sql_insert,
-                        )
-                    });
-
+                    let userpath = path + for_userID + ".json";
+                    // Check if the JSON file exists
+                    if (!fs.existsSync(userpath)) {
+                        // Generate a new JSON file if it doesn't exist
+                        fs.writeFile(userpath, '{}', (err) =>{
+                            let userdata = JSON.parse(fs.readFileSync(userpath, 'utf-8'));
+                            for_user.question_log.forEach(question => {
+                                let definition = question["definition"];
+                                let correct_option = question["correct_option"];
+                                userdata[definition] = correct_option;
+                            });
+                            fs.writeFile(userpath, JSON.stringify(userdata, null, 4), (err) =>{});
+                        });                
+                    }
+                    else{
+                        let userdata = JSON.parse(fs.readFileSync(userpath, 'utf-8'));
+                        for_user.question_log.forEach(question => {
+                            let definition = question["definition"];
+                            let correct_option = question["correct_option"];
+                            userdata[definition] = correct_option;
+                        });
+                        fs.writeFile(userpath, JSON.stringify(userdata, null, 4), (err) =>{});
+                    }
 
                     if(room.max_user==1){
                         update_usr_db('single', for_userID, room.time_str, room.topic);
@@ -596,9 +608,14 @@ io.sockets.on("connection", function (socket) {
                 connection_usr_game_record.query(
                     find_personal_best,
                     function (err, results, fields){
-                        personal_best = results[0][room.topic];
-                        if (room.time_str < personal_best)
+                        if (!(`${typeof results}` == undefined))
+                            personal_best = results[0][room.topic];
+                        else
+                            personal_best = "99:99:99";
+                        if (room.time_str < personal_best || JSON.stringify(personal_best) == "null")
                             personal_best = room.time_str;
+                        console.log("type" + typeof personal_best);
+                        console.log(personal_best);
                         // find all best
                         connection_global_rank.query(
                             find_all_best,
