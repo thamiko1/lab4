@@ -418,6 +418,49 @@ for (const topic of topiclist){
     });
 }
 
+app.get('/single_record_self', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'checks singleplayer self record.');
+        var username = req.session.userID;
+        // let sql_select=`SELECT * FROM Global_Ranking.single ORDER BY Global_Ranking.single.mode`;
+        let sql_select=`SELECT * FROM USR_GAME_RECORD.single WHERE UID = "${username}"`;
+        //console.log(`call update_usr_db UID=${UID}`);
+        console.log(`${sql_select}`);
+        connection_global_rank.query(
+            sql_select, 
+            function(err, results, fields) { 
+                console.log(`select single update`);
+                console.log(results);
+                res.render(__dirname + '/public/single_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+            }
+        );
+    }
+});
+
+app.get('/multi_record_self', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'checks multiplayer self record.');
+        var username = req.session.userID;
+        // let sql_select=`SELECT * FROM Global_Ranking.single ORDER BY Global_Ranking.single.mode`;
+        let sql_select=`SELECT * FROM USR_GAME_RECORD.multi WHERE UID = "${username}"`;
+        //console.log(`call update_usr_db UID=${UID}`);
+        console.log(`${sql_select}`);
+        connection_global_rank.query(
+            sql_select, 
+            function(err, results, fields) { 
+                console.log(`select multi update`);
+                console.log(results);
+                res.render(__dirname + '/public/multi_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+            }
+        );
+    }
+});
 
 /// 
 /// GAME
