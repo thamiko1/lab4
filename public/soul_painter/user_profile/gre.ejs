@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GRE</title>
+</head>
+<body>
+    <div class="container" id="box">
+        <div class="container">
+            <h1 id="header">
+                GRE
+                <a href="/profile">
+                    <button class="button_back">&#x2715</button>
+                </a>
+            </h1>
+        </div>
+        <hr>
+        <div id="voc_record">
+            <u1>
+                <% for (var key in data.vocab) { %>
+                    <li><%= key %> - <%= data.vocab[key] %></li>
+                <% } %>
+            </u1>
+        </div>
+    </div>
+</body>
+</html>

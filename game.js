@@ -328,9 +328,37 @@ app.get('/profile', function (req, res) {
     }
     else{
         console.log(req.session.userID, 'goes to the profile.');
-        res.sendFile(__dirname + '/public/profile.html');
+        var username = req.session.userID;
+        res.render(__dirname + '/public/profile.ejs', {data: {username}});
     }
 });
+
+
+let topiclist = ["common", "sport", "computer", "nature", "gre", "traffic", "food", "school"];
+for (const topic of topiclist){
+    app.get('/user_profile/' + topic, function (req, res) {
+        if (req.session.userID == null){
+            res.redirect("/");
+        }
+        else{
+            var username = req.session.userID;
+            let vocabfilepath = path.join(__dirname, '/public/history/'+ topic + '/' + username + '.json');
+            if (!fs.existsSync(vocabfilepath)) {
+                // Generate a new JSON file if it doesn't exist
+                fs.writeFile(vocabfilepath, '{}', (err) =>{
+                    let vocabdata = fs.readFileSync(vocabfilepath, 'utf8');
+                    let vocab = JSON.parse(vocabdata);
+                    res.render(__dirname + '/public/soul_painter/user_profile/' + topic + '.ejs', {data: {vocab}});
+                });                
+            }
+            else{
+                let vocabdata = fs.readFileSync(vocabfilepath, 'utf8');
+                let vocab = JSON.parse(vocabdata);
+                res.render(__dirname + '/public/soul_painter/user_profile/' + topic + '.ejs', {data: {vocab}});
+            }  
+        }
+    });
+}
 
 
 /// 
@@ -572,6 +600,7 @@ io.sockets.on("connection", function (socket) {
                     }
                     else{
                         let userdata = JSON.parse(fs.readFileSync(userpath, 'utf-8'));
+                        
                         for_user.question_log.forEach(question => {
                             let definition = question["definition"];
                             let correct_option = question["correct_option"];
