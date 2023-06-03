@@ -610,8 +610,9 @@ io.sockets.on("connection", function (socket) {
                 connection_usr_game_record.query(
                     find_personal_best,
                     function (err, results, fields){
+                        console.log("debug: " + `${typeof results}` + " when setting personal best")
                         if (!(`${typeof results}` == undefined))
-                            personal_best = results[0][room.topic];
+                            personal_best = results[0];
                         else
                             personal_best = "99:99:99";
                         if (room.time_str < personal_best || JSON.stringify(personal_best) == "null")
