@@ -744,8 +744,8 @@ io.sockets.on("connection", function (socket) {
                     function (err, results, fields){
                         console.log("debug: " + `${typeof results}` + " when setting personal best")
                         console.log(results);
-                        if (!(Object.keys(results[0]).length == 0))
-                            personal_best = results[0][room.topic][room.topic];
+                        if (!(Object.keys(results).length == 0))
+                            personal_best = results[0][room.topic];
                         else
                             personal_best = "99:99:99";
                         if (room.time_str < personal_best || JSON.stringify(personal_best) == "null")
