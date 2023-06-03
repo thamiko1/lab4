@@ -611,7 +611,8 @@ io.sockets.on("connection", function (socket) {
                     find_personal_best,
                     function (err, results, fields){
                         console.log("debug: " + `${typeof results}` + " when setting personal best")
-                        if (!(`${typeof results[0]}` == undefined))
+                        console.log(results);
+                        if (!(Object.keys(results).length == 0))
                             personal_best = results[0][room.topic];
                         else
                             personal_best = "99:99:99";
