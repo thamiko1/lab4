@@ -1,60 +1,34 @@
-# CNL Final Project
-## Warning
-* Before running `game.js`, please build a directory `log` in `public`
-* Since we apply sha256 to the password, the account set up before will be invalid.
+# Drop all related databases.
 
-## Setup
-```sh
-npm install
-# node --version
-# v18.16.0
-sudo mysql < reset_sql.sql # Update SQL settings
-```
-<!--
-## App.js
-```sh
-npm install
-npm i dotenv ejs
-sudo mysql < reset_sql.sql
-nodemon app.js
-```
--->
+SELECT 'Deleting databases...' as "";
+DROP DATABASE IF EXISTS ACCOUNTS;
+DROP DATABASE IF EXISTS USR_GAME_RECORD;
+DROP DATABASE IF EXISTS Global_Ranking;
 
-## Run game.js
-```sh
-node game.js
-```
 
-Then you can connect to `localhost:3000` with your browser.
-
-<!-- 
-* NEED .env TO SET YOUR DATABASE. Here is a sample for .env.
-```
-MYSQL_HOST='127.0.0.1'
-MYSQL_USER='lab4'
-MYSQL_PASSWORD='Squirrel1.'
-MYSQL_DATABASE='ACCOUNTS'
-```
-* Some other settings for SQL:
-```sh
+# For SQL account setup.
+SELECT 'Updating ACCOUNTS...' as "";
 CREATE DATABASE ACCOUNTS;
 USE ACCOUNTS;
 CREATE TABLE account(username varchar(255), password varchar(255));
 INSERT INTO account (username, password) VALUES ("test", "test"); 
-CREATE USER 'lab4'@'localhost' IDENTIFIED BY 'Squirrel1.';
+CREATE USER IF NOT EXISTS 'lab4'@'localhost' IDENTIFIED BY 'Squirrel1.';
 GRANT ALL PRIVILEGES ON *.* TO 'lab4'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-```
-## User & Ranking database setup
-```sh
-sudo mysql -u lab4 -p # Squirrel1.
-show databases;
-create DATABASE USR_GAME_RECORD;
+
+
+# For user game record setup.
+SELECT 'Updating USR_GAME_RECORD...' as "";
+create database USR_GAME_RECORD;
 use USR_GAME_RECORD;
 create table single (UID varchar(255),Common varchar(255),Food varchar(255),School varchar(255),Traffic varchar(255),Sport varchar(255),Nature varchar(255),Computer varchar(255));
 alter table single add column GRE varchar(255) after Computer; # For GRE
 create table multi (UID varchar(255),Common varchar(255),Food varchar(255),School varchar(255),Traffic varchar(255),Sport varchar(255),Nature varchar(255),Computer varchar(255));
 alter table multi add column GRE varchar(255) after Computer; # For GRE
+
+
+# For global game setup.
+SELECT 'Updating Global_Ranking...' as "";
 
 create database Global_Ranking;
 use Global_Ranking;
@@ -65,36 +39,6 @@ insert into single (mode,1st,2nd,3rd,4th,5th) values ("GRE","99:99:99 -1,-1,-1",
 create table multi (mode varchar(255), 1st varchar(255), 2nd varchar(255), 3rd varchar(255), 4th varchar(255), 5th varchar(255));
 insert into multi (mode,1st,2nd,3rd,4th,5th) values ("Common","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Food","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("School","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Traffic","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Sport","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Nature","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"),("Computer","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1");
 insert into multi (mode,1st,2nd,3rd,4th,5th) values ("GRE", "99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1","99:99:99 -1,-1,-1"); # For GRE
-```
--->
 
-* If you have some exist table, please drop it with the following command.
-```sh
-DROP table $i;
-```
 
-## Write json in game.js example
-```js
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-var fs = require('fs');
-
-var person = {
-  "name": "林品翰",
-  "want to say": "感謝各位大神carry我!",
-};
-
-var jsonString = JSON.stringify(person);
-
-fs.writeFile('person.json', jsonString, function(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('檔案已成功寫入！');
-  }
-});
-
-output : a new file named person.json
-{"name":"林品翰","want to say":"感謝各位大神carry我!"}
-```
-
+# sudo mysql < reset_sql.sql
