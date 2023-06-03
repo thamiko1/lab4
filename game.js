@@ -100,6 +100,7 @@ class RoomProfile {
         if (count < 10) {
             countString = "0" + countString;
         }
+
         this.time_str = minString + ":" + secString + ":" + countString;
 
     }
@@ -676,14 +677,15 @@ io.sockets.on("connection", function (socket) {
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
                 // update the DataBases
                 let users = Object.keys(room.users);
-                if(room.max_user == 1){
-                    update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
-                }
-                else{
-                    update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
+                if(room.boss_hp <= 0 && room.user_hp > 0){
+                    if(room.max_user == 1){
+                        update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
+                    }
+                    else{
+                        update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
+                    }
                 }
                 console.log(users);
-
                 for (const [for_userID, for_user] of Object.entries(room.users)) {
                     let userpath = path + for_userID + ".json";
                     // Check if the JSON file exists
@@ -709,12 +711,13 @@ io.sockets.on("connection", function (socket) {
                         });
                         fs.writeFile(userpath, JSON.stringify(userdata, null, 4), (err) =>{});
                     }
-
-                    if(room.max_user==1){
-                        update_usr_db('single', for_userID, room.time_str, room.topic);
-                    }
-                    else {
-                        update_usr_db('multi', for_userID, room.time_str, room.topic);
+                    if(room.boss_hp <= 0 && room.user_hp > 0){
+                        if(room.max_user==1){
+                            update_usr_db('single', for_userID, room.time_str, room.topic);
+                        }
+                        else {
+                            update_usr_db('multi', for_userID, room.time_str, room.topic);
+                        }
                     }
                 }
                 // Write Answer Log
