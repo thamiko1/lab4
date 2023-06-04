@@ -67,7 +67,7 @@
         
         let personal_best = window.localStorage.getItem("Personal Best");
         let personal_best_shown = document.getElementById("personal_best");
-        if(!(personal_best == "null"))
+        if(!(personal_best == "null") && !(person_best == "99:99:99"))
             personal_best_shown.innerText = personal_best;
         console.log(personal_best);
 
