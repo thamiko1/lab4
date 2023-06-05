@@ -37,8 +37,8 @@ class RoomProfile {
         this.users = new Object(); // users[userID] = userProfile
 
         this.questions = build_questions(topic);
-        this.boss_hp = 10;
-        this.user_hp = 10;
+        this.boss_hp = 100;
+        this.user_hp = 1000;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -634,7 +634,7 @@ io.sockets.on("connection", function (socket) {
 
     console.log(room.num_user, room.max_user);
     socket.join(roomID);
-    io.to(roomID).emit("update num_user", room.num_user, room.max_user);
+    io.to(roomID).emit("update num_user", room.num_user, room.max_user, userID);
 
     if (room.canStart) {
       io.to(roomID).emit("game start");

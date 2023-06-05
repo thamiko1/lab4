@@ -13,17 +13,17 @@
         <!-- options -->
         <div id="main_block">
             <div id="options">
-                <button id="option0" class="option">option1</button><br>
-                <button id="option1" class="option">option2</button><br>
-                <button id="option2" class="option">option3</button><br>
-                <button id="option3" class="option">option4</button><br>
+                <button id="option0" class="option wood2 button">option1</button><br>
+                <button id="option1" class="option wood button">option2</button><br>
+                <button id="option2" class="option wood2 button">option3</button><br>
+                <button id="option3" class="option wood button">option4</button><br>
             </div>
-            <div id="waiting">
-                <p><b>Waiting...</b></p>
-                <p id="block_status"> 0 / 0 </p>
-            </div>
+            <span id="waiting" class="wating">
+                <h2><b>Waiting...</b></h2>
+                <p id="block_status" > 0 / 0 </p>
+            </span>
             <div id="result">
-                <p><b>Result</b></p>
+                <h2><b>Result</b></h2>
                 <p>Ans: <span id="ans"> </span></p>
                 <p>&#10004: <span id="num_correct"> </span></p>
                 <p>&#10008: <span id="num_wrong"> </span></p>
@@ -62,6 +62,7 @@
     </div>
     <div id="pending"> <!-- The block for pending -->
         <div class="hole"></div>
+        <p id="user_mark"> username </p>
         <p class="pending_icon" id="text">Pending......</p>
         <p class="pending_icon" id="pending_status"> 0 / 0 </p>
         <img src="soul_painter/pending/pending-run-unscreen.gif" class="pending_icon">
@@ -90,10 +91,11 @@
 
             var $pending_status = $("#pending_status");
 
-            socket.on('update num_user', function(num_user, max_user) {
+            socket.on('update num_user', function(num_user, max_user, username) {
                 console.log(`${num_user} / ${max_user}`);
+                console.log(username);
                 $("#pending_status").text(`(${num_user} / ${max_user})`);
-
+                $("#user_mark").text(`${username}`);
             });
 
             socket.on('update block state', function(num_user, max_user) {
@@ -197,7 +199,7 @@
             var counter = 10;
             downloadTimer = setInterval(
                 function(){
-                    counter -= 0.01;
+                    counter -= 0.001;
                     document.getElementById("pbar").value = counter;
                     if(counter <= 0){
                         clearInterval(downloadTimer);
@@ -211,7 +213,7 @@
             var counter = 0;
             var downloadTimer2 = setInterval(
                 function(){
-                    counter += 0.015; // 0.01
+                    counter += 0.001; // 0.01, 0.015
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer2);

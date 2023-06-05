@@ -4,7 +4,7 @@
     height: 680px;
     text-align: center;
     background-color: #fff;
-
+    background: url(../hardwood-maple-basketball_38679-940.avif);
     transform: translateX(500px); /*500px*/
 }
 
@@ -15,6 +15,44 @@
     position: fixed;
     bottom: 0px;
     left: 0px;
+    background: url(../brown-wooden-flooring.jpg);
+}
+
+.button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    color: black;
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+          inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+       inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0px;
+}
+.button:active {
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+          inset 0px -2px 0px 0px rgba(0,0,0,0.3),
+       inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    top: 3px;
+    color: white;
+}
+.button div {
+    padding: 10px 20px 12px 20px;
+    color: rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+}
+.button:active div {
+    padding-bottom: 9px;
+}
+.wood {
+    background: url("../wood_pattern.png");
+}
+.wood2 {
+    background: url("../tileable_wood_texture.png");
 }
 
 #option, .option{
@@ -59,11 +97,8 @@
 }
 
 .progress::-webkit-progress-value {
-    background: rgb(47, 234, 14);
+    background: burlywood;
 }
-/* .progress-yellow::-webkit-progress-bar{
-    background: yellow;
-} */
 
 .squirrel_hp{
     accent-color: greenyellow;
@@ -137,6 +172,7 @@ For pending:
     position: fixed;
     width: 180px;
     z-index: 2;
+    top: 50px;
     margin-top: 300px;
 
     animation: mySlide;
@@ -159,7 +195,7 @@ For pending:
 .close{
     font-size: 30px;
     position: fixed;
-    top: 220px;
+    top: 240px;
     left: 1000px;
     border-radius: 100%;
     border: None;
@@ -185,8 +221,29 @@ For pending:
     to{margin-left: 80%;}
 }
 
+#user_mark{
+    font-size: 30px;
+    font-family: 'Comic Sans', sans-serif;
+    z-index: 10;
+    color: black;
+    transform: translate(460px, 200px);
+}
+
 /*
 #pending {
     display: none;
 }
 */
+
+/* For stage transition */
+
+#result, #waiting {
+    color: bisque;
+    font-family: 'Comic Sans', sans-serif;
+    transform: translate(0px, -10px);
+}
+
+#block_status{
+    font-size: 40px;
+    transform: translate(0px, 15px);
+}
