@@ -300,3 +300,13 @@ a:active { text-decoration: none; }
     from {opacity: 0} 
     to {opacity: 1}
   }
+
+#group1 {
+  transform: translateY(10px);
+}
+#group2 {
+  transform: translateY(20px);
+}
+#button_togame{
+  transform: translateY(5px);
+}
