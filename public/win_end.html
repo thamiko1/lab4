@@ -36,11 +36,11 @@
                 </a>
                 <br><br>
                 <a href="/menu">
-                    <button id="leave_button">Back</button>
+                    <button id="leave_button" onclick="clear();">Back</button>
                 </a>
                 <br><br>
                 <a href="/logout">
-                    <button id="leave_button">Exit</button>
+                    <button id="leave_button" onclick="clear();">Exit</button>
                 </a>
             </div>
         </div>
@@ -48,34 +48,37 @@
         <iframe src="wrong_answer.html" id="voc_list"></iframe>
         <!-- button to play again -->
         <a href="/game">
-            <button id="play_again">Play Again</button>
+            <button id="play_again"  onclick="clear();">Play Again</button>
         </a>
         <!-- pointhead larry -->
         <img src="soul_painter/end/pointhead.png" id="pointhead">
     </div>
     <script>
-        console.log(window.localStorage);
+        // console.log(sessionStorage);
         
-        let time_str = window.localStorage.getItem("time_str");
+        let time_str = sessionStorage.getItem("time_str");
         let count_element = document.getElementById("game_time");
         count_element.innerText = time_str;
         console.log(time_str);
 
-        let logFile = window.localStorage.getItem("log_file");
+        let logFile = sessionStorage.getItem("log_file");
         console.log(logFile);
         document.getElementById("voc_list").src = logFile;
 
-        let personal_best = window.localStorage.getItem("Personal Best");
+        let personal_best = sessionStorage.getItem("Personal Best");
         let personal_best_shown = document.getElementById("personal_best");
         personal_best_shown.innerText = personal_best;
         console.log(personal_best);
 
-        let all_best = window.localStorage.getItem("All Best");
+        let all_best = sessionStorage.getItem("All Best");
         let all_best_shown = document.getElementById("all_best");
         all_best_shown.innerText = all_best.substring(0, 8);
         console.log(all_best);
 
-        localStorage.clear();
+        function clear(){
+            console.log("exit and clear")
+            sessionStorage.clear();
+        }
     </script>
 </body>
 </html>

@@ -169,7 +169,7 @@
 
             socket.on("stage", function(span_time, boss_hp, player_hp, de_boss, de_player, ans, num_correct, num_wrong){
                 console.log("update stage")
-                window.localStorage.setItem("time_str", span_time);
+                window.sessionStorage.setItem("time_str", span_time);
                 $squirrel_hp.val(player_hp);
                 $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
@@ -183,9 +183,9 @@
             })
 
             socket.on("game over", function(logFile, game_result, personal_best, all_best){
-                window.localStorage.setItem("log_file", logFile);
-                window.localStorage.setItem("Personal Best", personal_best);
-                window.localStorage.setItem("All Best", all_best);
+                window.sessionStorage.setItem("log_file", logFile);
+                window.sessionStorage.setItem("Personal Best", personal_best);
+                window.sessionStorage.setItem("All Best", all_best);
                 if (game_result == 1)
                     window.location.href = "/lose_end";
                 else
