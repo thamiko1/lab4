@@ -23,6 +23,7 @@ class UserProfile {
         this.max_user = max_user;
         this.topic = topic;
         this.question_log = [];
+        this.qid = -1;
     }
 }
 
@@ -38,7 +39,7 @@ class RoomProfile {
 
         this.questions = build_questions(topic);
         this.boss_hp = 100;
-        this.user_hp = 1000;
+        this.user_hp = 10;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -677,7 +678,10 @@ io.sockets.on("connection", function (socket) {
             io.to(roomID).emit("update block state", room.click_set.size, room.max_user);
             console.log(room.click_set);
             console.log(userID);
-            handle_stage();
+            if (user.qid < room.question_id){
+                user.qid = room.question_id;
+                handle_stage();
+            }
         }
     });
         
@@ -691,7 +695,10 @@ io.sockets.on("connection", function (socket) {
             room.click_set.add(userID);
         user.question_log.push(room.questions[room.question_id]);
         room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
-        handle_stage();
+        if (user.qid < room.question_id){
+            user.qid = room.question_id;
+            handle_stage();
+        }
     });
     
     socket.on("disconnect", function (reason) {

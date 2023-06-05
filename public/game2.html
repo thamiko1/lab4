@@ -199,9 +199,9 @@
             var counter = 10;
             downloadTimer = setInterval(
                 function(){
-                    counter -= 0.001;
+                    counter -= 0.01;
                     document.getElementById("pbar").value = counter;
-                    if(counter <= 0){
+                    if(counter < 0){
                         clearInterval(downloadTimer);
                         socket.emit('timeout'); // penalty of timeout
                     }
@@ -213,7 +213,7 @@
             var counter = 0;
             var downloadTimer2 = setInterval(
                 function(){
-                    counter += 0.001; // 0.01, 0.015
+                    counter += 0.015; // 0.01
                     document.getElementById("pbar").value = counter;
                     if(counter >= 10){
                         clearInterval(downloadTimer2);
