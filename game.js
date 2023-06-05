@@ -325,13 +325,33 @@ app.post("/menu_profile", function (req, res) {
 /// Ranking
 ///
 
-app.get('/ranking', function (req, res) {
+app.get('/menu/ranking', function (req, res) {
     if (req.session.userID == null){
         res.redirect("/");
     }
     else{
         console.log(req.session.userID, 'goes to the ranking page.');
-        res.render(__dirname + '/public/ranking.ejs');
+        res.render(__dirname + '/public/ranking.ejs', {source: "/menu"});
+    }
+});
+
+app.get('/win/ranking', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'goes to the ranking page.');
+        res.render(__dirname + '/public/ranking.ejs', {source: "/win_end"});
+    }
+});
+
+app.get('/lose/ranking', function (req, res) {
+    if (req.session.userID == null){
+        res.redirect("/");
+    }
+    else{
+        console.log(req.session.userID, 'goes to the ranking page.');
+        res.render(__dirname + '/public/ranking.ejs', {source: "/lose_end"});
     }
 });
 
