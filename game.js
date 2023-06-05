@@ -539,7 +539,10 @@ function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
             console.log(results);
             let columns=['1st','2nd','3rd','4th','5th'];
             let i = 0;
-            let update_str=room_total_time+' '+UID1+','+UID2+','+UID3;
+            let update_str=room_total_time+' '+UID1;
+            if (mode == "multi"){
+                update_str += +', '+UID2+', '+UID3;
+            }
             let sql_update='';
             while (i < columns.length) {
                 if(update_str<results[0][columns[i]]){
