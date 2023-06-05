@@ -17,17 +17,17 @@
         </div>
 
         <div class="container">
-            <button id="button_start">START</button>
+            <button id="button_start" class="wood button">START</button>
             <form action="/menu_profile" method="post">
                 <a href="profile.html">
-                    <button id="button_profile">User Profile</button>
+                    <button id="button_profile" class="wood2 button">User Profile</button>
                 </a>
             </form>
             <a href="/menu/ranking">
-                <button id="button_rank">Ranking</button>
+                <button id="button_rank" class="wood button">Ranking</button>
             </a>
-            <button id="button_exit">Exit</button>
-            <button id="button_q" onclick="showq()">?</button>
+            <button id="button_exit" class="wood2 button">Exit</button>
+            <button id="button_q" class="wood button" onclick="showq()">?</button>
         </div>
         <div class="popup" onclick="showq()">
             <span class="popuptext" id="myPopup">
@@ -121,7 +121,7 @@
                             <label for="t8">Computer</label>
                         </div>
                     </fieldset>
-                    <button id="button_togame" type="submit" value="Express_Go"> Go</buttion>
+                    <button id="button_togame" class="wood2 button" type="submit" value="Express_Go"> Go</buttion>
                 </form>
                 <br>
                 <!--
@@ -132,7 +132,7 @@
               </div>
             </div>
         </div>
-        <hr>
+        
         <div id="modal_exit" class="modal">
             <div class="modal-content">
               <div class="modal-header">
@@ -141,13 +141,13 @@
               </div>
               <div class="modal-body">
                 <a href="/logout">
-                    <button id="button_tologin">Yes</button>
+                    <button id="button_tologin" class="wood2 button">Yes</button>
                 </a>
                 <br><br>
               </div>
             </div>
         </div>
-        <hr>
+        
         
     </div>
     <script src="index.js"></script>
