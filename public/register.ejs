@@ -43,6 +43,11 @@
           Username already exists. Please choose a different username.
         </div>
       <% } %>
+      <% if (typeof error !== 'undefined' && error === 'username_too_long') { %>
+        <div class="alert alert-danger">
+          Username should not exceed 8 characters. Please choose a different username.
+        </div>
+      <% } %>
       <form id="register-form" action="/register" method="post">
         <div class="form-group">
           <label for="username">Username:</label>

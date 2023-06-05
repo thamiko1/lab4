@@ -37,7 +37,7 @@
 
 .voc_record{
     position: relative;
-    top: -20px;
+    top: -30px;
 }
 
 .button {
@@ -107,7 +107,7 @@
     font-size: 20px;
     text-align: left;
     top: -30px;
-    left: 30px;
+    left: 10px;
 }
 
 #voc_record{ /*record for each topic*/

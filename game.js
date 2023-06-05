@@ -917,6 +917,11 @@ app.post('/register', async (req, res) => {
     return;
   }
 
+  if (username.length > 8) {
+    res.render('register', { success: false, error: 'username_too_long' }); // Render the register.ejs view with the password mismatch error
+    return;
+  }
+
   const existingUser = await getUsername(username);
   if (existingUser) {
     res.render('register', { success: false, error: 'username_exists' }); // Render the register.ejs view with the username exists error
