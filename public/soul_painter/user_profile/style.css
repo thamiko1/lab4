@@ -33,7 +33,7 @@
 #headshot{ /*headshot picture in user profile page*/
     float: left;
     margin: 15px;
-    width: 90px;
+    width: 75px;
     border: blue 3px solid;
 }
 
