@@ -4,13 +4,20 @@
     height: 680px;
     text-align: center;
     background-color: #ffffff;
-
+    background: url(hardwood-maple-basketball_38679-940.avif);
     transform: translateX(500px); /*500px*/
+}
+
+.head_bar{
+    height: 80px;
+    transform: translateY(-22px);
+    background-color: wood;
 }
 
 #header{
     position: relative;
     left: 0px;
+    top: 25px;
 }
 
 #box2{
@@ -34,13 +41,14 @@
     border: 2px solid;
     background-color: #fff; 
     transform: translate(5px, 30px);
+    background: url(../tileable_wood_texture.png);
 }
 
 #play_again{
-    transform: translate(0px, 0px);
+    transform: translate(0px, -20px);
     font-size: 25px;
     width: 200px;
-    height: 40px;
+    height: 50px;
 }
 
 #button_set{
@@ -57,4 +65,41 @@
 #pointhead{
     width: 130px;
     transform: translate(30px, 30px);
+}
+
+.button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    color: white;
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+          inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+       inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0px;
+}
+.button:active {
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+          inset 0px -2px 0px 0px rgba(0,0,0,0.3),
+       inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    top: 3px;
+    color: white;
+}
+.button div {
+    padding: 10px 20px 12px 20px;
+    color: rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+}
+.button:active div {
+    padding-bottom: 9px;
+}
+.wood {
+    background: url("../brown-wooden-flooring.jpg");
+}
+.wood2 {
+    background: url("../tileable_wood_texture.png");
 }

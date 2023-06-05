@@ -10,12 +10,11 @@
 <body>
     <div id="box">
         <!-- header and exit button -->
-        <div>
+        <div class="head_bar">
             <h1 id="header">
                 You Lose!!! hahaha~~~
             </h1>
         </div>
-        <hr>
         <!-- Result of the play -->
         <div id="box2">
             <div id="time_record">
@@ -32,15 +31,15 @@
             <!-- Others bottom -->
             <div id="button_set">
                 <a href="/lose/ranking">
-                    <button id="leave_button">Ranking</button>
+                    <button class="wood button" id="leave_button">Ranking</button>
                 </a>
                 <br><br>
                 <a href="/menu">
-                    <button id="leave_button" onclick="clear();">Back</button>
+                    <button class="wood button" id="leave_button" onclick="clear();">Back</button>
                 </a>
                 <br><br>
                 <a href="/logout">
-                    <button id="leave_button" onclick="clear();">Exit</button>
+                    <button class="wood button" id="leave_button" onclick="clear();">Exit</button>
                 </a>
             </div>
         </div>
@@ -48,7 +47,7 @@
         <iframe src="wrong_answer.html" id="voc_list"></iframe>
         <!-- button to play again -->
         <a href="/game">
-            <button id="play_again"  onclick="clear();">Play Again</button>
+            <button class="wood button" id="play_again"  onclick="clear();">Play Again</button>
         </a>
         <!-- pointhead larry -->
         <img src="soul_painter/end/pointhead.png" id="pointhead">
