@@ -37,8 +37,8 @@ class RoomProfile {
         this.users = new Object(); // users[userID] = userProfile
 
         this.questions = build_questions(topic);
-        this.boss_hp = 10;
-        this.user_hp = 10;
+        this.boss_hp = 100;
+        this.user_hp = 100;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
@@ -587,7 +587,7 @@ function update_global_db(mode,UID1,UID2,UID3,room_total_time,topic){
             let i = 0;
             let update_str=room_total_time+' '+UID1;
             if (mode == "multi"){
-                update_str += +', '+UID2+', '+UID3;
+                update_str += ', '+UID2+', '+UID3;
             }
             let sql_update='';
             while (i < columns.length) {
@@ -728,7 +728,7 @@ io.sockets.on("connection", function (socket) {
                 let users = Object.keys(room.users);
                 if(room.boss_hp <= 0 && room.user_hp > 0){
                     if(room.max_user == 1){
-                        update_global_db('single',users[0],-1,-1,room.time_str,room.topic);
+                        update_global_db('single',users[0], -1, -1,room.time_str,room.topic);
                     }
                     else{
                         update_global_db('multi',users[0],users[1],users[2],room.time_str,room.topic);
