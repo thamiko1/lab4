@@ -350,6 +350,14 @@ app.get('/single_record_global', function (req, res) {
             function(err, results, fields) { 
                 console.log(`select single update`);
                 console.log(results);
+                for(var i=0; i<results.length; i++){
+                    delete results[i]['mode'];
+                    for (const key in results[i]) {
+                        if (results[i][key].includes("99:99:99")){
+                            delete results[i][key];
+                        }
+                    }
+                }
                 res.render(__dirname + '/public/single_record_global.ejs', {data: {commonrecord: results[0], computerrecord: results[1], foodrecord: results[2], grerecord: results[3], naturerecord: results[4], schoolrecord: results[5], sportrecord: results[6], trafficrecord: results[7]}});
             }
         );
@@ -371,6 +379,14 @@ app.get('/multi_record_global', function (req, res) {
             function(err, results, fields) { 
                 console.log(`select multi update`);
                 console.log(results);
+                for(var i=0; i<results.length; i++){
+                    delete results[i]['mode'];
+                    for (const key in results[i]) {
+                        if (results[i][key].includes("99:99:99")){
+                            delete results[i][key];
+                        }
+                    }
+                }
                 res.render(__dirname + '/public/multi_record_global.ejs', {data: {commonrecord: results[0], computerrecord: results[1], foodrecord: results[2], grerecord: results[3], naturerecord: results[4], schoolrecord: results[5], sportrecord: results[6], trafficrecord: results[7]}});
             }
         );
@@ -435,7 +451,12 @@ app.get('/single_record_self', function (req, res) {
             function(err, results, fields) { 
                 console.log(`select single update`);
                 console.log(results);
-                res.render(__dirname + '/public/single_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+                if(results.length == 0){
+                    res.render(__dirname + '/public/single_record_self.ejs', {data: {commonrecord: [], computerrecord: [], foodrecord: [], grerecord: [], naturerecord: [], schoolrecord: [], sportrecord: [], trafficrecord: []}});
+                }
+                else{
+                    res.render(__dirname + '/public/single_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+                }
             }
         );
     }
@@ -457,7 +478,12 @@ app.get('/multi_record_self', function (req, res) {
             function(err, results, fields) { 
                 console.log(`select multi update`);
                 console.log(results);
-                res.render(__dirname + '/public/multi_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+                if(results.length == 0){
+                    res.render(__dirname + '/public/multi_record_self.ejs', {data: {commonrecord: [], computerrecord: [], foodrecord: [], grerecord: [], naturerecord: [], schoolrecord: [], sportrecord: [], trafficrecord: []}});
+                }
+                else{
+                    res.render(__dirname + '/public/multi_record_self.ejs', {data: {commonrecord: results[0]["Common"], computerrecord: results[0]["Computer"], foodrecord: results[0]["Food"], grerecord: results[0]["GRE"], naturerecord: results[0]["Nature"], schoolrecord: results[0]["School"], sportrecord: results[0]["Sport"], trafficrecord: results[0]["Traffic"]}});
+                }
             }
         );
     }
