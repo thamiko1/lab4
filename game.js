@@ -749,7 +749,7 @@ io.sockets.on("connection", function (socket) {
                             personal_best = results[0][room.topic];
                         else
                             personal_best = "99:99:99";
-                        if (room.time_str < personal_best && game_result == 0)
+                        if ((room.time_str < personal_best || JSON.stringify(personal_best) == "null") && game_result == 0 )
                             personal_best = room.time_str;
                         console.log("type " + typeof personal_best);
                         console.log(personal_best);
@@ -757,8 +757,11 @@ io.sockets.on("connection", function (socket) {
                         connection_global_rank.query(
                             find_all_best,
                             function (err, results, fields){
-                                all_best = results[0]['1st'];
-                                if (room.time_str < all_best && game_result == 0)
+                                if (!(Object.keys(results).length == 0))
+                                    all_best = results[0]['1st'];
+                                else
+                                    all_best = "99:99:99"
+                                if ((room.time_str < all_best || JSON.stringify(all_best) == "null") && game_result == 0)
                                     all_best = room.time_str;
                                 io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
                                 socket.disconnect();

@@ -67,14 +67,14 @@
         
         let personal_best = window.localStorage.getItem("Personal Best");
         let personal_best_shown = document.getElementById("personal_best");
-        if(!(personal_best == "null") && !(person_best == "99:99:99"))
+        if(!(personal_best == "null") && !(personal_best == "99:99:99"))
             personal_best_shown.innerText = personal_best;
         console.log(personal_best);
 
         let all_best = window.localStorage.getItem("All Best");
         let all_best_shown = document.getElementById("all_best");
-        if (!(all_best == "99:99:99"))
-            all_best_shown.innerText = all_best.substring(0, 8);
+        if (!(all_best.substring(0, 8) == "99:99:99") && !(all_best == "null"))
+            all_best_shown.innerText = all_best.substring(0, 8); // not showing userID
         
         console.log(typeof all_best);
 
