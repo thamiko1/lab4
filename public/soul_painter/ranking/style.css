@@ -4,13 +4,29 @@
     height: 680px;
     text-align: center;
     background-color: #fff;
-
+    background: url(hardwood-maple-basketball_38679-940.avif);
     transform: translateX(500px); /*500px*/
 }
 
 #header{
     position: relative;
     left: 0px;
+}
+
+.button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    color: white;
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+          inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+       inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0px;
 }
 
 .button_back{
@@ -28,4 +44,8 @@
 .button_back:hover {
     color: black;
     background-color: white;
+}
+
+.wood {
+    background: url("../brown-wooden-flooring.jpg");
 }
