@@ -8,9 +8,36 @@
     transform: translateX(500px); /*500px*/
 }
 
+.head_bar{
+    height: 80px;
+    transform: translateY(-25px);
+}
+
 #header{
     position: relative;
     left: 0px;
+    top: 25px;
+    color: white;
+}
+
+.topic_button{
+    width: 80px;
+}
+
+.src_button{
+    font-size: 15px;
+    width: 100px;
+    height: 25px;
+}
+
+.personal_record{
+    position: relative;
+    top: -35px;
+}
+
+.voc_record{
+    position: relative;
+    top: -20px;
 }
 
 .button {
@@ -71,12 +98,16 @@
     float: left;
     margin: 15px;
     width: 75px;
-    border: blue 3px solid;
+    
+    /* border: blue 3px solid; */
 }
 
 #intro{ /*id, username*/
+    position: relative;
     font-size: 20px;
     text-align: left;
+    top: -30px;
+    left: 30px;
 }
 
 #voc_record{ /*record for each topic*/

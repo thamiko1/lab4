@@ -8,9 +8,9 @@
     <title>User Profile</title>
 </head>
 <body>
-    <div class="container" id="box">
+    <div id="box">
         <!-- header and exit button -->
-        <div class="container">
+        <div class="head_bar wood">
             <h1 id="header">
                 User Profile
                 <a href="./menu">
@@ -18,51 +18,52 @@
                 </a>
             </h1>
         </div>
-        <hr>
+        <!-- <hr> -->
         <!-- ID, username, and headshot -->
         <div id="intro">
             <img src="soul_painter/user_profile/img.jpg" id="headshot">
             <br>
             <p><b>Username:</b> <%- data.username %> </p>
-            <br>
-            <br>
-        </div>    
-        <hr>
-        <!-- score(time) record -->
-        <div>
-            <h3>Personal Record</h3>
-            <button onclick="changeSrc('/single_record_self');">Single Mode</button>
-            <button onclick="changeSrc('/multi_record_self');">Multi Mode</button>
             <br><br>
-            <iframe src="/single_record_self" width="300" height="150" id="MyFrame"></iframe>
+        </div>    
+        <!-- score(time) record -->
+        <div class="personal_record">
+            <hr>
+            <h3>Personal Record</h3>
+            <button class="wood button src_button" onclick="changeSrc('/single_record_self');">Single Mode</button>
+            <button class="wood button src_button" onclick="changeSrc('/multi_record_self');">Multi Mode</button>
+            <br><br>
+            <iframe src="/single_record_self" width="300" height="180" id="MyFrame"></iframe>
         </div>
-        <hr>
         <!-- voc record -->
-        <h3>VOC Record</h3>
-        <div>
+        <div class="voc_record">
+            <hr>
+            <h3>VOC Record</h3>
             <a href="user_profile/common">
-                <button>Common</button>
+                <button class="wood button topic_button">Common</button>
             </a>
             <a href="user_profile/food">
-                <button>Food</button>
+                <button class="wood button topic_button">Food</button>
             </a>
             <a href="user_profile/school">
-                <button>School</button>
+                <button class="wood button topic_button">School</button>
             </a>
+            <br><br>
             <a href="user_profile/traffic">
-                <button>Traffic</button>
+                <button class="wood button topic_button">Traffic</button>
             </a>
             <a href="user_profile/sport">
-                <button>Sport</button>
+                <button class="wood button topic_button">Sport</button>
             </a>
             <a href="user_profile/nature">
-                <button>Nature</button>
+                <button class="wood button topic_button">Nature</button>
             </a>
+            <br><br>
             <a href="user_profile/GRE">
-                <button>GRE</button>
+                <button class="wood button topic_button">GRE</button>
             </a>
             <a href="user_profile/computer">
-                <button>Computer</button>
+                <button class="wood button topic_button">Computer</button>
             </a>
         </div>
     </div>
