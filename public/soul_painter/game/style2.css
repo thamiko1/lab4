@@ -18,6 +18,11 @@
     background: url(../brown-wooden-flooring.jpg);
 }
 
+#question{
+    font-size: 20px;
+    transform: translate(-60%, -100%);
+}
+
 .button {
     position: relative;
     border: none;
