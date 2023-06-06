@@ -187,7 +187,7 @@
                 $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
-                if(num_wrong == 0 || boss_hp == 0){
+                if(num_wrong == 0){
                     for (var i = 0; i < 3; i++) {
                         $('#pine').css("display", "block");
                         $('#pine').animate({
@@ -221,6 +221,9 @@
                     }
                 }
                 else{
+                    if(player_hp == 0){
+                        num_correct = 0;
+                    }
                     for(var i=0; i < num_correct;i++){
                         $('#pine').css("display", "block");
                         $('#pine').animate({

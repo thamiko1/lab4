@@ -154,6 +154,8 @@ a:active { text-decoration: none; }
 }
 
 /* The actual popup */
+
+
 .popup .popuptext {
   visibility: hidden;
   width: 400px;
@@ -161,6 +163,7 @@ a:active { text-decoration: none; }
   background: url(parchment2.jpg);
   /* font-family: 'Handwriting', sans-serif; */
   font-family: 'Aaron YOFF', sans-serif;
+  font-size: x-small;
   font-size: 10px;
   color: #000000;
   text-align: center;
