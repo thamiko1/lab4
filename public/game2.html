@@ -54,7 +54,7 @@
             <div class="centered" id="question">Question</div>
         </div>
         <!-- count down progress bar -->
-        <progress value="10" max="10" id="pbar" class="progress"></progress>
+        <progress value="1" max="1" id="pbar" class="progress"></progress>
         <!-- stop watch -->
         <!-- <div id="time">
 			<span class="digit" id="min">00</span>
@@ -89,10 +89,11 @@
         // document.getElementById("pine").style.display = "none";
         
         var click = 0; // click before timeout(boolean)
-        var downloadTimer;
+        // var downloadTimer;
         var socket = io.connect();
         var userID = -1, roomID = -1;
         var first_update_username = true;
+        var qid = -1;
         $(function() {
             /// for PENDING
 
@@ -116,7 +117,7 @@
                 $('#pending').css("display", "none");
                 $('#box').css("display", "block");
                 $('#speechbubble').css("display", "block");
-                start_countdown();
+                // start_countdown();
                 // timer=true;
                 // stopWatch();
             });
@@ -141,33 +142,37 @@
             }
 
             $option0.click(function(e) {
-                socket.emit("game clicked", $option0.text());
+                socket.emit("game clicked", qid, $option0.text());
                 handle_click();
             });
 
             $option1.click(function(e) {
-                socket.emit("game clicked", $option1.text());
+                socket.emit("game clicked", qid, $option1.text());
                 handle_click();
             });
 
             $option2.click(function(e) {
-                socket.emit("game clicked", $option2.text());
+                socket.emit("game clicked", qid, $option2.text());
                 handle_click();
             });
 
             $option3.click(function(e) {
-                socket.emit("game clicked", $option3.text());
+                socket.emit("game clicked", qid, $option3.text());
                 handle_click();
             });
 
-            socket.on('new question', function(def, options, qid) {
+            socket.on('new question', function(def, options, _qid, question_duration) {
                 $('#waiting').css("display", "none");
-                if (qid > 0){
-                    $('#options').css("display", "none");
-                    $('#question').css("display", "none");
-                    $('#speechbubble').css("display", "none");
-                    $('#result').css("display", "block");
-                }
+                $('#options').css("display", "block");
+                $('#question').css("display", "block");
+                $('#speechbubble').css("display", "block");
+                $('#result').css("display", "none");
+                $('#pbar').stop();
+                $('#pbar').animate({
+                    value: "0"
+                }, question_duration, "linear");
+
+                qid = _qid;
                 $option0.text(options[0]);
                 $option1.text(options[1]);
                 $option2.text(options[2]);
@@ -180,13 +185,22 @@
                 // else $point_hp.val($point_hp.val() - 10);
             });
 
-            socket.on("stage", function(span_time, boss_hp, player_hp, de_boss, de_player, ans, num_correct, num_wrong){
-                console.log("update stage")
+            socket.on("stage", function(span_time, boss_hp, player_hp, de_boss, de_player, ans, num_correct, num_wrong, stage_duration){
                 window.sessionStorage.setItem("time_str", span_time);
+                $('#waiting').css("display", "none");
+                $('#options').css("display", "none");
+                $('#question').css("display", "none");
+                $('#result').css("display", "block");
+                $('#speechbubble').css("display", "none");
+                $('#pbar').stop();
+                $('#pbar').animate({
+                    value: "1"
+                }, stage_duration, "linear");
+
                 // $squirrel_hp.val(player_hp);
                 // $point_hp.val(boss_hp);
-                clearInterval(downloadTimer);
-                bounce_back();
+                // clearInterval(downloadTimer);
+                // bounce_back();
                 if(num_wrong == 0){
                     for (var i = 0; i < 3; i++) {
                         (function(last) { // IIFE to capture the value of last
@@ -325,8 +339,6 @@
                             }
                         }
                     )
-
-                    
                 }
 
                 $("#ans").text(ans);
@@ -354,8 +366,14 @@
                 }, 2600); // fit the time of bounce back
                 
             });
+            /*
+            socket.on("disconnect", function() {
+                window.location.href = "/the_server_is_down";
+            });
+            */
         });
         // count down progress bar
+        /*
         function start_countdown(){
             var counter = 10;
             downloadTimer = setInterval(
@@ -388,6 +406,7 @@
                 1
             );
         }
+        */
         // stop watch
         let minute = 00;
         let second = 00;

@@ -52,10 +52,13 @@ class RoomProfile {
         this.correct = 0;
         this.wrong = 0;
         this.question_id = 0;
-        this.click_set = new Set();
+        // this.click_set = new Set();
+        // click_set is depreciated, please use user.qid with room.question_id to check whether the user has clicked or not
         
         this.start_time = 0; // Date.now();
         this.end_time = 0;
+        this.question_duration = 5000;
+        this.stage_duration = 3000;
 
         this.time_str = `99:99:99`;
 
@@ -531,11 +534,6 @@ app.get('/game', function (req, res) {
 });
 
 
-function send_question(socket, room, userID, roomID) {
-    let question = room.questions[room.question_id];
-    io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id);
-}
-
 function update_usr_db(mode,UID,room_total_time,topic){
     let sql_select=`SELECT ${topic.charAt(0).toUpperCase() + topic.slice(1)} FROM USR_GAME_RECORD.${mode} WHERE UID = "${UID}"`;
     console.log(`call update_usr_db UID=${UID}`);
@@ -640,7 +638,8 @@ io.sockets.on("connection", function (socket) {
     if (room.canStart) {
       io.to(roomID).emit("game start");
       let question = room.questions[0];
-      io.to(roomID).emit("new question", question["definition"], question["options"]);
+      send_question();
+      // io.to(roomID).emit("new question", question["definition"], question["options"], 0, room.question_duration);
       room.start();
     }
 
@@ -650,63 +649,38 @@ io.sockets.on("connection", function (socket) {
     // let htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
     // htmlContent += '<h1>Answer Logs</h1>\n'
     
-    socket.on("game clicked", function (data) {
-        console.log(data);
-        let res;
-        // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
-        // let room = manager.rooms[roomID], user = room.users[userID];
-
+    socket.on("game clicked", function (qid, data) { // TODO qid is added
+        console.log("game clicked", qid, userID, data);
+        
+        if (qid < room.question_id) {
+            // socket.emit("new question", question["definition"], question["options"], room.question_id, room.question_duration);
+            return; // too old, update new question
+        }
+        
         // Determine whether the answer is correct or wrong.
-
-        if (data == room.questions[room.question_id]["correct_option"]) {    
-            res = "correct";
-            // room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
-        }
-        else {
-            res = "wrong";
-            user.question_log.push(room.questions[room.question_id]);
-            // room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
-        }
-        console.log(res, room.correct, room.wrong);
-        
-        if (!room.click_set.has(userID)){
-            if(res == "wrong")
-                room.wrong += 1;
-            else
-                room.correct += 1;
-            room.click_set.add(userID);
-            io.to(roomID).emit("update block state", room.click_set.size, room.max_user);
-            console.log(room.click_set);
-            console.log(userID);
-            if (user.qid < room.question_id){
-                user.qid = room.question_id;
-                if (data == room.questions[room.question_id]["correct_option"]) {    
-                    room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
-                }
-                else {
-                    user.question_log.push(room.questions[room.question_id]);
-                    room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
-                }
-                handle_stage();
-            }
-        }
-    });
-        
-    socket.on("timeout", function () {
-        // let userID = socket.request.session.userID, roomID = socket.request.session.roomID;
-        // let room = manager.rooms[roomID], user = room.users[userID];
-        
-        room.wrong += 1;
-        console.log(room.click_set.has(userID));
-        if (!room.click_set.has(userID))
-            room.click_set.add(userID);
         if (user.qid < room.question_id){
             user.qid = room.question_id;
-            user.question_log.push(room.questions[room.question_id]);
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
+            let res = (data == room.questions[room.question_id]["correct_option"] ? "correct" : "wrong");
+            if (res == "correct") {
+                room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
+                room.correct += 1;
+            }
+            else {
+                room.wrong += 1;
+                user.question_log.push(room.questions[room.question_id]);
+                // user.question_log.push(room.questions[room.question_id]);
+                room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
+            }
+                
+            io.to(roomID).emit("update block state", room.correct + room.wrong, room.max_user);
+
+            console.log(res, room.correct, room.wrong);
             handle_stage();
         }
+        console.log(room.correct, room.wrong);
     });
+        
+    
     
     socket.on("disconnect", function (reason) {
         console.log("disconnect", reason);
@@ -715,8 +689,36 @@ io.sockets.on("connection", function (socket) {
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
 
-    async function handle_stage(){
-        if(room.click_set.size == room.max_user){
+    function send_question() {
+        console.log("room.question_id", room.question_id);
+        console.log("room.questions", room.questions[0])
+
+        let question = room.questions[room.question_id];
+        io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id, room.question_duration);
+        let current_qid = room.question_id;
+        setTimeout(() => {
+            // TODO Check when the current_qid is fetched at the right time!!!! 
+            console.log("question time up!!!");
+            if (current_qid != room.question_id) return; // Early click
+            // handle time up
+            console.log(room.users);
+            for (let [userID, user] of Object.entries(room.users)) {
+                if (user.qid < room.question_id) {
+                    room.wrong += 1;
+                    user.qid = room.question_id;
+                    user.question_log.push(room.questions[room.question_id]);
+                    room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
+                }
+            }
+            handle_stage(true);
+        }, room.question_duration); // handle timeout (stage time + question time)
+        console.log("set question duration", room.question_duration);
+    }
+
+    async function handle_stage(brute=false){
+        console.log("call handle_stage");
+        if (room.correct + room.wrong >= room.max_user || brute) {
+            console.log("do handle_stage");
             room.end();
             room.boss_hp -= room.de_boss * room.correct;
             room.user_hp -= room.de_user * room.wrong;
@@ -729,11 +731,11 @@ io.sockets.on("connection", function (socket) {
                 room.de_user * room.wrong,
                 room.questions[room.question_id]["correct_option"], 
                 room.correct,
-                room.wrong
+                room.wrong,
+                room.stage_duration
             );
             room.correct = 0;
             room.wrong = 0;
-            room.click_set = new Set();
 
             let path = "./public/history/" + room.topic + "/";
             // let path = "./";
@@ -838,7 +840,11 @@ io.sockets.on("connection", function (socket) {
             }
 
             room.question_id++;
-            send_question(socket, room, userID, roomID);
+
+            setTimeout(() => {
+                // delayed send question
+                send_question();
+            }, room.stage_duration); // delayed for showing stage results
         }
     }
 });
