@@ -71,7 +71,7 @@
 }
 
 #squirrel_fig{
-    width: 170px;
+    width: 140px;
     position: fixed;
     left: 15px;
     top: 240px;
@@ -83,10 +83,16 @@
     top: 0px;
 }
 
+#speechbubble{
+    position: relative;
+    width: 225px;
+    right: 0px;
+}
+
 #pointhead_fig{
-    width: 130px;
+    width: 160px;
     position: fixed;
-    right: 45px;
+    right: 0px;
     top: 90px;
     z-index: 0;
 }
@@ -252,6 +258,8 @@ For pending:
 /* attack item */
 #pine{
     position: fixed;
+    /* left: 20px;
+    top: 260px; */
     width: 60px;
     transform: translate(100px);
     

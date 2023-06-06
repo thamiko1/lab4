@@ -18,5 +18,20 @@
     "圖示": "icon",
     "在線的": "online",
     "筆記型電腦": "laptop",
-    "病毒": "virus"
+    "病毒": "virus",
+    "介面": "interface",
+    "使用者名稱": "username",
+    "機器人學": "robotics",
+    "數字的": "digital",
+    "機器學習": "machine learning",
+    "輸入": "input",
+    "桌上型電腦": "desktop",
+    "資訊安全": "cybersecurity",
+    "程式碼": "code",
+    "協議": "protocol",
+    "瀏覽器": "browser",
+    "記憶體": "memory",
+    "下載": "download",
+    "自然語言處理": "natural language processing",
+    "掃描": "scan"
 }

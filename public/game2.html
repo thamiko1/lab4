@@ -39,18 +39,18 @@
         <div id="squirrel">
             <p class="progress-label">squirrel</p>
             <progress value="100" max="100" class="squirrel_hp"></progress>
-            <img src="soul_painter/game/squirrel.webp" id="squirrel_fig">
-            <img src="soul_painter/game/pine.png" id="pine">
+            <img src="soul_painter/game/squirrel_game.png" id="squirrel_fig">
+            <img src="soul_painter/game/acorn1.png" id="pine">
         </div>
         <!-- pointhead -->
         <div id="pointhead">
             <p class="progress-label">pointhead</p>
             <progress value="100" max="100" class="point_hp"></progress>
-            <img src="soul_painter/end/pointhead.png" id="pointhead_fig">
+            <img src="soul_painter/game/patrick_game.png" id="pointhead_fig">
         </div>
         <!-- Questions -->
         <div class="container">
-            <img src="soul_painter/game/question.webp" width="200">
+            <img src="soul_painter/game/speechbubble.png" width="200" id = "speechbubble">
             <div class="centered" id="question">Question</div>
         </div>
         <!-- count down progress bar -->
@@ -83,6 +83,7 @@
         // window.onload=function() {
         // };
         document.getElementById("box").style.display = "none";
+        document.getElementById("speechbubble").style.display = "none";
         document.getElementById("waiting").style.display = "none";
         document.getElementById("result").style.display = "none";
         // document.getElementById("pine").style.display = "none";
@@ -114,6 +115,7 @@
             socket.on('game start', function() {
                 $('#pending').css("display", "none");
                 $('#box').css("display", "block");
+                $('#speechbubble').css("display", "block");
                 start_countdown();
                 // timer=true;
                 // stopWatch();
@@ -133,7 +135,8 @@
 
             function handle_click() {
                 $('#options').css("display", "none");
-                $('#quesion').css("display", "none");
+                $('#question').css("display", "none");
+                $('#speechbubble').css("display", "none");
                 $('#waiting').css("display", "block");
             }
 
@@ -162,6 +165,7 @@
                 if (qid > 0){
                     $('#options').css("display", "none");
                     $('#question').css("display", "none");
+                    $('#speechbubble').css("display", "none");
                     $('#result').css("display", "block");
                 }
                 $option0.text(options[0]);
@@ -183,15 +187,9 @@
                 $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
-                if(num_wrong == 0){
+                if(num_wrong == 0 || boss_hp == 0){
                     for (var i = 0; i < 3; i++) {
                         $('#pine').css("display", "block");
-                        // $('#pine').animate({
-                        //     left: '+=220px',
-                        //     bottom: '+=120px',
-                        //     duration: '10000'
-                        // }, 'fast');
-
                         $('#pine').animate({
                             left: '+=220px',
                             bottom: '+=120px'
@@ -209,10 +207,9 @@
                             { transform: "translate(1px, 2px) rotate(0deg)" },
                             { transform: "translate(1px, -2px) rotate(-1deg)" }
                             ], {
-                            duration: 5,
-                            iterations: 5,
+                            duration: 10,
+                            iterations: 10,
                             });
-                            // $('#pine').delay(0);
                         })
                         $('#pine').fadeOut(20);
                         $('#pine').animate({
@@ -222,32 +219,6 @@
                         }, 'fast');
                         $('#pine').fadeIn(20);
                     }
-
-                        
-                        
-                        
-                        // $('#pine').animate({
-                        //     left: '-=220px',
-                        //     bottom: '-=120px'
-                        // }, function() {
-                        //     document.getElementById("pointhead_fig").animate([
-                        //     { transform: "translate(1px, 1px) rotate(0deg)" },
-                        //     { transform: "translate(-1px, -2px) rotate(-1deg)" },
-                        //     { transform: "translate(-3px, 0px) rotate(1deg)" },
-                        //     { transform: "translate(3px, 2px) rotate(0deg)" },
-                        //     { transform: "translate(1px, -1px) rotate(1deg)" },
-                        //     { transform: "translate(-1px, 2px) rotate(-1deg)" },
-                        //     { transform: "translate(-3px, 1px) rotate(0deg)" },
-                        //     { transform: "translate(3px, 1px) rotate(-1deg)" },
-                        //     { transform: "translate(-1px, -1px) rotate(1deg)" },
-                        //     { transform: "translate(1px, 2px) rotate(0deg)" },
-                        //     { transform: "translate(1px, -2px) rotate(-1deg)" }
-                        //     ], {
-                        //     duration: 5,
-                        //     iterations: 5,
-                        //     });
-                        //     // $('#pine').delay(0);
-                        // }).fadeIn(20);
                 }
                 else{
                     for(var i=0; i < num_correct;i++){
@@ -270,10 +241,9 @@
                             { transform: "translate(1px, 2px) rotate(0deg)" },
                             { transform: "translate(1px, -2px) rotate(-1deg)" }
                             ], {
-                            duration: 5,
-                            iterations: 5,
+                            duration: 10,
+                            iterations: 10,
                             });
-                            // $('#pine').delay(0);
                         })
                         $('#pine').fadeOut(duration=20);
                         $('#pine').animate({
@@ -284,7 +254,7 @@
                     }
                     $('#pointhead_fig').delay(num_correct*800).animate(
                         
-                        { deg: -135 },
+                        { deg: -90 },
                         {
                             duration: 200,
                             step: function(now) {
@@ -309,8 +279,8 @@
                             { transform: "translate(1px, 2px) rotate(0deg)" },
                             { transform: "translate(1px, -2px) rotate(-1deg)" }
                             ], {
-                            duration: 5,
-                            iterations: 5,
+                            duration: 10,
+                            iterations: 10,
                             });
                             // $('#pine').delay(0);
                     })
@@ -319,50 +289,6 @@
                         right: '-=250px',
                         top: '-=200px',
                     })
-
-                    // $('#squirrel_fig').animate([
-                    //         { transform: "translate(1px, 1px) rotate(0deg)" },
-                    //         { transform: "translate(-1px, -2px) rotate(-1deg)" },
-                    //         { transform: "translate(-3px, 0px) rotate(1deg)" },
-                    //         { transform: "translate(3px, 2px) rotate(0deg)" },
-                    //         { transform: "translate(1px, -1px) rotate(1deg)" },
-                    //         { transform: "translate(-1px, 2px) rotate(-1deg)" },
-                    //         { transform: "translate(-3px, 1px) rotate(0deg)" },
-                    //         { transform: "translate(3px, 1px) rotate(-1deg)" },
-                    //         { transform: "translate(-1px, -1px) rotate(1deg)" },
-                    //         { transform: "translate(1px, 2px) rotate(0deg)" },
-                    //         { transform: "translate(1px, -2px) rotate(-1deg)" }
-                    //         ], {
-                    //         duration: 5,
-                    //         iterations: 5,
-                    // });
-
-                    // messing around with call back function 
-                    // $('#pointhead_fig').animate({
-                        //     left: '+=250px',
-                        //     bottom: '-=250px'
-                        // }, function() {
-                        //     document.getElementById("squirrel_fig").animate([
-                        //     { transform: "translate(1px, 1px) rotate(0deg)" },
-                        //     { transform: "translate(-1px, -2px) rotate(-1deg)" },
-                        //     { transform: "translate(-3px, 0px) rotate(1deg)" },
-                        //     { transform: "translate(3px, 2px) rotate(0deg)" },
-                        //     { transform: "translate(1px, -1px) rotate(1deg)" },
-                        //     { transform: "translate(-1px, 2px) rotate(-1deg)" },
-                        //     { transform: "translate(-3px, 1px) rotate(0deg)" },
-                        //     { transform: "translate(3px, 1px) rotate(-1deg)" },
-                        //     { transform: "translate(-1px, -1px) rotate(1deg)" },
-                        //     { transform: "translate(1px, 2px) rotate(0deg)" },
-                        //     { transform: "translate(1px, -2px) rotate(-1deg)" }
-                        //     ], {
-                        //     duration: 5,
-                        //     iterations: 5,
-                        //     });
-                        //     $('#pointhead_fig').animate({
-                        //         right: '-=250px',
-                        //         top: '-=200px',
-                        //     })
-                    // })
                     $('#pointhead_fig').animate(
                         { deg:  360},
                         {
@@ -390,6 +316,7 @@
                 $('#waiting').css("display", "none");
                 $('#options').css("display", "none");
                 $('#question').css("display", "none");
+                $('#speechbubble').css("display", "none");
                 $('#result').css("display", "block");
                 setInterval(function(){
                     clearInterval();
@@ -428,6 +355,7 @@
                         $('#result').css("display", "none");
                         $('#options').css("display", "block");
                         $('#question').css("display", "block");
+                        $('#speechbubble').css("display", "block");
                     }
                 },
                 1
