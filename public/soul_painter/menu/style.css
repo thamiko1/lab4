@@ -1,5 +1,9 @@
 
 @import url('https://fonts.cdnfonts.com/css/cartoon-free');
+@import url('https://fonts.cdnfonts.com/css/handwriting');
+@import url('https://fonts.cdnfonts.com/css/urban-sign');
+@import url('https://fonts.cdnfonts.com/css/nightheart');
+@import url('https://fonts.cdnfonts.com/css/aaron-yoff');
 
 
 #box{
@@ -27,7 +31,7 @@
     display: block;
     width: 350px;
     padding: 10px;
-    margin: 35px auto;
+    margin: 32px auto;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-size: 44px;
     color: #030303;
@@ -41,7 +45,7 @@
 }
 
 #button_start{
-    margin: 10px auto;
+    margin: 7px auto;
 }
 
 #button_tologin, #button_togame{
@@ -146,17 +150,22 @@ a:active { text-decoration: none; }
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  top: 45px;
 }
 
 /* The actual popup */
 .popup .popuptext {
   visibility: hidden;
   width: 400px;
-  background-color: #555;
-  color: #fff;
+  /* background-color: #555; */
+  background: url(parchment2.jpg);
+  /* font-family: 'Handwriting', sans-serif; */
+  font-family: 'Aaron YOFF', sans-serif;
+  font-size: x-small;
+  color: #000000;
   text-align: center;
   border-radius: 6px;
-  padding: 8px 0;
+  padding: 12px 3;
   position: absolute;
   z-index: 1;
   bottom: calc(100% + 70px);
@@ -166,7 +175,7 @@ a:active { text-decoration: none; }
 }
 
 /* Popup arrow */
-.popup .popuptext::after {
+/* .popup .popuptext::after {
   content: "";
   position: absolute;
   bottom: -20px;
@@ -174,7 +183,7 @@ a:active { text-decoration: none; }
   border-width: 15px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-}
+} */
 
 /* Toggle this class - hide and show the popup */
 .popup .show {
