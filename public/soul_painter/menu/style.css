@@ -165,7 +165,7 @@ a:active { text-decoration: none; }
   color: #000000;
   text-align: center;
   border-radius: 6px;
-  padding: 12px 3;
+  padding: 12px 0;
   position: absolute;
   z-index: 1;
   bottom: calc(100% + 70px);
