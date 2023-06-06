@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/comic-sans" rel="stylesheet">
     <link rel="stylesheet" href="soul_painter/game/style2.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Gaming</title>
 </head>
 <body>
@@ -77,8 +80,8 @@
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
         // run the function upon loaded
-        window.onload=function() {
-        };
+        // window.onload=function() {
+        // };
         document.getElementById("box").style.display = "none";
         document.getElementById("waiting").style.display = "none";
         document.getElementById("result").style.display = "none";
@@ -234,10 +237,16 @@
                 window.sessionStorage.setItem("log_file", logFile);
                 window.sessionStorage.setItem("Personal Best", personal_best);
                 window.sessionStorage.setItem("All Best", all_best);
-                if (game_result == 1)
-                    window.location.href = "/lose_end";
-                else
-                    window.location.href = "/win_end";
+                $('#waiting').css("display", "none");
+                $('#result').css("display", "block");
+                setInterval(function(){
+                    clearInterval();
+                    if (game_result == 1)
+                        window.location.href = "/lose_end";
+                    else
+                        window.location.href = "/win_end";
+                }, 2600); // fit the time of bounce back
+                
             });
         });
         // count down progress bar
@@ -276,27 +285,7 @@
         let minute = 00;
         let second = 00;
         let count = 00;
-
-        function create_time_string() {
-            let minString = minute;
-            let secString = second;
-            let countString = count;
-
-
-            if (minute < 10) {
-                minString = "0" + minString;
-            }
-
-            if (second < 10) {
-                secString = "0" + secString;
-            }
-
-            if (count < 10) {
-                countString = "0" + countString;
-            }
-            return minString + ":" +secString + ":" + countString;
-        }
-
+        /*
         function stopWatch() {
             console.log("stopwatch")
             timer = true;
@@ -336,6 +325,7 @@
                 setTimeout(stopWatch, 10);
             }
         }
+        */
     </script>
 </body>
 </html>

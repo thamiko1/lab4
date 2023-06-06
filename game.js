@@ -38,8 +38,8 @@ class RoomProfile {
         this.users = new Object(); // users[userID] = userProfile
 
         this.questions = build_questions(topic);
-        this.boss_hp = 100;
-        this.user_hp = 100;
+        this.boss_hp = 30;
+        this.user_hp = 30;
         if (this.max_user == 1){
             this.de_boss = 10;
             this.de_user = 20;
