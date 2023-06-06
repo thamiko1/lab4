@@ -183,77 +183,101 @@
             socket.on("stage", function(span_time, boss_hp, player_hp, de_boss, de_player, ans, num_correct, num_wrong){
                 console.log("update stage")
                 window.sessionStorage.setItem("time_str", span_time);
-                $squirrel_hp.val(player_hp);
-                $point_hp.val(boss_hp);
+                // $squirrel_hp.val(player_hp);
+                // $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
                 if(num_wrong == 0){
                     for (var i = 0; i < 3; i++) {
-                        $('#pine').css("display", "block");
-                        $('#pine').animate({
+                        (function(last) { // IIFE to capture the value of last
+                            if (i === 2) {
+                            console.log("i = 2");
+                            last = 1;
+                            }
+
+                            $('#pine').css("display", "block");
+                            $('#pine').animate({
                             left: '+=220px',
                             bottom: '+=120px'
-                        }, function() {
+                            }, function() {
                             document.getElementById("pointhead_fig").animate([
-                            { transform: "translate(1px, 1px) rotate(0deg)" },
-                            { transform: "translate(-1px, -2px) rotate(-1deg)" },
-                            { transform: "translate(-3px, 0px) rotate(1deg)" },
-                            { transform: "translate(3px, 2px) rotate(0deg)" },
-                            { transform: "translate(1px, -1px) rotate(1deg)" },
-                            { transform: "translate(-1px, 2px) rotate(-1deg)" },
-                            { transform: "translate(-3px, 1px) rotate(0deg)" },
-                            { transform: "translate(3px, 1px) rotate(-1deg)" },
-                            { transform: "translate(-1px, -1px) rotate(1deg)" },
-                            { transform: "translate(1px, 2px) rotate(0deg)" },
-                            { transform: "translate(1px, -2px) rotate(-1deg)" }
+                                { transform: "translate(1px, 1px) rotate(0deg)" },
+                                { transform: "translate(-1px, -2px) rotate(-1deg)" },
+                                { transform: "translate(-3px, 0px) rotate(1deg)" },
+                                { transform: "translate(3px, 2px) rotate(0deg)" },
+                                { transform: "translate(1px, -1px) rotate(1deg)" },
+                                { transform: "translate(-1px, 2px) rotate(-1deg)" },
+                                { transform: "translate(-3px, 1px) rotate(0deg)" },
+                                { transform: "translate(3px, 1px) rotate(-1deg)" },
+                                { transform: "translate(-1px, -1px) rotate(1deg)" },
+                                { transform: "translate(1px, 2px) rotate(0deg)" },
+                                { transform: "translate(1px, -2px) rotate(-1deg)" }
                             ], {
-                            duration: 10,
-                            iterations: 10,
+                                duration: 10,
+                                iterations: 10,
                             });
-                        })
-                        $('#pine').fadeOut(20);
-                        $('#pine').animate({
+                            if (last === 1) {
+                                console.log("got in last = 1");
+                                $point_hp.val(boss_hp);
+                            }
+                            });
+
+                            $('#pine').fadeOut(20);
+                            $('#pine').animate({
                             left: '-=220px',
                             bottom: '-=120px',
                             duration: '10000'
-                        }, 'fast');
-                        $('#pine').fadeIn(20);
-                    }
+                            }, 'fast');
+                            $('#pine').fadeIn(20);
+                        })(0); // Pass the initial value of last (0)
+                        }
+
                 }
                 else{
                     if(player_hp == 0){
                         num_correct = 0;
                     }
-                    for(var i=0; i < num_correct;i++){
-                        $('#pine').css("display", "block");
-                        $('#pine').animate({
+                    for (var i = 0; i < num_correct; i++) {
+                        (function(last) { // IIFE to capture the value of last
+                            if (i === num_correct - 1) {
+                                last = 1;
+                            }
+
+                            $('#pine').css("display", "block");
+                            $('#pine').animate({
                             left: '+=220px',
-                            bottom: '+=120px',
-                            duration: '10000'
-                        }, function() {
+                            bottom: '+=120px'
+                            }, function() {
                             document.getElementById("pointhead_fig").animate([
-                            { transform: "translate(1px, 1px) rotate(0deg)" },
-                            { transform: "translate(-1px, -2px) rotate(-1deg)" },
-                            { transform: "translate(-3px, 0px) rotate(1deg)" },
-                            { transform: "translate(3px, 2px) rotate(0deg)" },
-                            { transform: "translate(1px, -1px) rotate(1deg)" },
-                            { transform: "translate(-1px, 2px) rotate(-1deg)" },
-                            { transform: "translate(-3px, 1px) rotate(0deg)" },
-                            { transform: "translate(3px, 1px) rotate(-1deg)" },
-                            { transform: "translate(-1px, -1px) rotate(1deg)" },
-                            { transform: "translate(1px, 2px) rotate(0deg)" },
-                            { transform: "translate(1px, -2px) rotate(-1deg)" }
+                                { transform: "translate(1px, 1px) rotate(0deg)" },
+                                { transform: "translate(-1px, -2px) rotate(-1deg)" },
+                                { transform: "translate(-3px, 0px) rotate(1deg)" },
+                                { transform: "translate(3px, 2px) rotate(0deg)" },
+                                { transform: "translate(1px, -1px) rotate(1deg)" },
+                                { transform: "translate(-1px, 2px) rotate(-1deg)" },
+                                { transform: "translate(-3px, 1px) rotate(0deg)" },
+                                { transform: "translate(3px, 1px) rotate(-1deg)" },
+                                { transform: "translate(-1px, -1px) rotate(1deg)" },
+                                { transform: "translate(1px, 2px) rotate(0deg)" },
+                                { transform: "translate(1px, -2px) rotate(-1deg)" }
                             ], {
-                            duration: 10,
-                            iterations: 10,
+                                duration: 10,
+                                iterations: 10,
                             });
-                        })
-                        $('#pine').fadeOut(duration=20);
-                        $('#pine').animate({
+                            if (last === 1) {
+                                console.log("got in last = 1");
+                                $point_hp.val(boss_hp);
+                            }
+                            });
+
+                            $('#pine').fadeOut(20);
+                            $('#pine').animate({
                             left: '-=220px',
-                            bottom: '-=120px'
-                        });
-                        $('#pine').fadeIn(duration=20);
+                            bottom: '-=120px',
+                            duration: '10000'
+                            }, 'fast');
+                            $('#pine').fadeIn(20);
+                        })(0); // Pass the initial value of last (0)
                     }
                     $('#pointhead_fig').delay(num_correct*800).animate(
                         
@@ -285,7 +309,7 @@
                             duration: 10,
                             iterations: 10,
                             });
-                            // $('#pine').delay(0);
+                            $squirrel_hp.val(player_hp);
                     })
                     
                     $('#pointhead_fig').animate({

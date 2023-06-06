@@ -33,5 +33,17 @@
     "記憶體": "memory",
     "下載": "download",
     "自然語言處理": "natural language processing",
-    "掃描": "scan"
+    "掃描": "scan",
+    "離線的": "offline",
+    "路由器": "router",
+    "電腦": "computer",
+    "惡意程式": "malware",
+    "網路空間": "cyberspace",
+    "螢幕": "monitor",
+    "配件": "accessory",
+    "資料庫": "database",
+    "邏輯": "logic",
+    "硬體": "hardware",
+    "密碼": "password",
+    "網路": "networking"
 }
