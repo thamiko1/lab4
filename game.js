@@ -660,12 +660,12 @@ io.sockets.on("connection", function (socket) {
 
         if (data == room.questions[room.question_id]["correct_option"]) {    
             res = "correct";
-            room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
+            // room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
         }
         else {
             res = "wrong";
             user.question_log.push(room.questions[room.question_id]);
-            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
+            // room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
         }
         console.log(res, room.correct, room.wrong);
         
@@ -680,6 +680,13 @@ io.sockets.on("connection", function (socket) {
             console.log(userID);
             if (user.qid < room.question_id){
                 user.qid = room.question_id;
+                if (data == room.questions[room.question_id]["correct_option"]) {    
+                    room.htmlContent += `<p> <span>&#10004;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Correct&#127775 &#10145 ${userID}</p>\n`;
+                }
+                else {
+                    user.question_log.push(room.questions[room.question_id]);
+                    room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Your answer: ${data}. &#10145 ${userID}</p>\n`;
+                }
                 handle_stage();
             }
         }
@@ -693,10 +700,10 @@ io.sockets.on("connection", function (socket) {
         console.log(room.click_set.has(userID));
         if (!room.click_set.has(userID))
             room.click_set.add(userID);
-        user.question_log.push(room.questions[room.question_id]);
-        room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
         if (user.qid < room.question_id){
             user.qid = room.question_id;
+            user.question_log.push(room.questions[room.question_id]);
+            room.htmlContent += `<p> <span>&#10008;</span> ${room.question_id+1}. ${room.questions[room.question_id]["definition"]}: ${room.questions[room.question_id]["correct_option"]}. Wake up!!! &#10145 ${userID}</p>\n`;
             handle_stage();
         }
     });
