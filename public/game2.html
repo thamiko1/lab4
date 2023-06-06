@@ -37,6 +37,7 @@
             <p class="progress-label">squirrel</p>
             <progress value="100" max="100" class="squirrel_hp"></progress>
             <img src="soul_painter/game/squirrel.webp" id="squirrel_fig">
+            <img src="soul_painter/game/pine.png" id="pine">
         </div>
         <!-- pointhead -->
         <div id="pointhead">
@@ -81,6 +82,7 @@
         document.getElementById("box").style.display = "none";
         document.getElementById("waiting").style.display = "none";
         document.getElementById("result").style.display = "none";
+        document.getElementById("pine").style.display = "none";
         
         var click = 0; // click before timeout(boolean)
         var downloadTimer;
@@ -176,6 +178,50 @@
                 $point_hp.val(boss_hp);
                 clearInterval(downloadTimer);
                 bounce_back();
+                if(de_boss > 0){
+                    for(var i=0; i < 3;i++){
+                        $('#pine').css("display", "block");
+                        console.log("gogogog");
+                        $('#pine').animate({
+                            left: '+=220px',
+                            bottom: '+=120px',
+                            duration: '10000'
+                        }, 'fast');
+                        $('#pine').fadeOut(duration=20);
+                        $('#pine').animate({
+                            left: '-=220px',
+                            bottom: '-=120px'
+                        });
+                    }
+                }
+                else{
+                    $('#pointhead_fig').animate(
+                        { deg: -135 },
+                        {
+                            duration: 200,
+                            step: function(now) {
+                                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+                            }
+                        }
+                    )
+                    $('#pointhead_fig').animate({
+                        right: '+=250px',
+                        top: '+=200px',
+                    })
+                    $('#pointhead_fig').animate({
+                        right: '-=250px',
+                        top: '-=200px',
+                    })
+                    $('#pointhead_fig').animate(
+                        { deg:  360},
+                        {
+                            duration: 200,
+                            step: function(now) {
+                                $(this).css({ transform: 'rotate(' + now + 'deg)' });
+                            }
+                        }
+                    )
+                }
 
                 $("#ans").text(ans);
                 $('#num_correct').text(num_correct);

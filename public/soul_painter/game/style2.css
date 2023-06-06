@@ -88,6 +88,7 @@
     position: fixed;
     right: 45px;
     top: 90px;
+    z-index: 0;
 }
 
 /* progress bar */
@@ -246,4 +247,13 @@ For pending:
 #block_status{
     font-size: 40px;
     transform: translate(0px, 15px);
+}
+
+/* attack item */
+#pine{
+    position: fixed;
+    width: 60px;
+    transform: translate(100px);
+    
+    z-index: 1;
 }

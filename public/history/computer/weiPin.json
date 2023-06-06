@@ -4,5 +4,15 @@
     "電子郵件": "email",
     "檔案": "archive",
     "人工智慧": "artificial intelligence",
-    "備份": "backup"
+    "備份": "backup",
+    "程式設計": "programming",
+    "密碼學": "cryptography",
+    "圖形": "graphic",
+    "雲端運算": "cloud computing",
+    "鍵盤": "keyboard",
+    "網路犯罪": "cybercrime",
+    "電腦(網絡)的": "cyber",
+    "印表機": "printer",
+    "頻寬": "bandwidth",
+    "系統": "system"
 }
