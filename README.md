@@ -71,3 +71,13 @@ node game.js
 # v18.16.0
 ```
 Then you can connect to `localhost:3000` with your browser.
+
+## Artwork References and Attribution
+used picture sources:
+https://www.myfreetextures.com/old-cut-wood-tree-background-photo/
+https://www.myfreetextures.com/over-30-free-big-beautiful-and-seamless-wood-textures/
+https://www.stickpng.com/img/memes/patrick-star/patrick-star-head
+https://pixabay.com/illustrations/search/squirrel/
+https://pixabay.com/illustrations/acorn-autumn-oak-cartoon-fall-7997077/
+https://www.clipartmax.com/middle/m2i8G6N4N4Z5A0G6_patrick-star-clipart-patrick-star/
+https://pixabay.com/vectors/bubble-speech-talk-words-thinking-157905/
