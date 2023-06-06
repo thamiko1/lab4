@@ -161,7 +161,7 @@ a:active { text-decoration: none; }
   background: url(parchment2.jpg);
   /* font-family: 'Handwriting', sans-serif; */
   font-family: 'Aaron YOFF', sans-serif;
-  font-size: x-small;
+  font-size: 15px;
   color: #000000;
   text-align: center;
   border-radius: 6px;
@@ -171,7 +171,7 @@ a:active { text-decoration: none; }
   bottom: calc(100% + 70px);
   right: 0;
   left: auto;
-  transform: translateX(50%);
+  transform: translate(50%, 19.5%);
 }
 
 /* Popup arrow */
