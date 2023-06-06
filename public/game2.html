@@ -91,6 +91,7 @@
         var downloadTimer;
         var socket = io.connect();
         var userID = -1, roomID = -1;
+        var first_update_username = true;
         $(function() {
             /// for PENDING
 
@@ -100,7 +101,8 @@
                 console.log(`${num_user} / ${max_user}`);
                 console.log(username);
                 $("#pending_status").text(`(${num_user} / ${max_user})`);
-                $("#user_mark").text(`${username}`);
+                if(first_update_username) $("#user_mark").text(`${username}`);
+                first_update_username = false;
             });
 
             socket.on('update block state', function(num_user, max_user) {
