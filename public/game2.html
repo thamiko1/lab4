@@ -85,7 +85,7 @@
         document.getElementById("box").style.display = "none";
         document.getElementById("waiting").style.display = "none";
         document.getElementById("result").style.display = "none";
-        document.getElementById("pine").style.display = "none";
+        // document.getElementById("pine").style.display = "none";
         
         var click = 0; // click before timeout(boolean)
         var downloadTimer;
@@ -184,7 +184,6 @@
                 if(de_boss > 0){
                     for(var i=0; i < 3;i++){
                         $('#pine').css("display", "block");
-                        console.log("gogogog");
                         $('#pine').animate({
                             left: '+=220px',
                             bottom: '+=120px',
@@ -195,6 +194,7 @@
                             left: '-=220px',
                             bottom: '-=120px'
                         });
+                        $('#pine').fadeIn(duration=20);
                     }
                 }
                 else{
