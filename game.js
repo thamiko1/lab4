@@ -65,6 +65,8 @@ class RoomProfile {
         this.logFile = "log/log_" + this.roomID + ".html";
         this.htmlContent = '<html>\n<head>\n<title>Questions and Answers</title>\n</head>\n<body>\n';
         this.htmlContent += '<h1>Answer Logs</h1>\n';
+
+        this.update_record = false;
     }
 
     get num_user() {
@@ -688,10 +690,10 @@ io.sockets.on("connection", function (socket) {
         manager.removeUser(userID);
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
-    var timeout;
+    var timeout, new_question_timeout;
     function send_question() {
         console.log("room.question_id", room.question_id);
-        console.log("room.questions", room.questions[0])
+        // console.log("room.questions", room.questions[0])
 
         let question = room.questions[room.question_id];
         io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id, room.question_duration);
@@ -743,7 +745,8 @@ io.sockets.on("connection", function (socket) {
             if (room.user_hp <= 0 || room.boss_hp <= 0) {
                 // update the DataBases
                 let users = Object.keys(room.users);
-                if(room.boss_hp <= 0 && room.user_hp > 0){
+                if(room.boss_hp <= 0 && room.user_hp > 0 && !room.update_record){
+                    room.update_record = true;
                     if(room.max_user == 1){
                         update_global_db('single',users[0], -1, -1,room.time_str,room.topic);
                     }
@@ -831,6 +834,7 @@ io.sockets.on("connection", function (socket) {
                                     all_best = room.time_str;
                                 io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
                                 clearTimeout(timeout);
+                                clearTimeout(new_question_timeout);
                                 socket.disconnect();
                             }
                         )
@@ -843,7 +847,7 @@ io.sockets.on("connection", function (socket) {
 
             room.question_id++;
 
-            setTimeout(() => {
+            new_question_timeout = setTimeout(() => {
                 // delayed send question
                 send_question();
             }, room.stage_duration); // delayed for showing stage results
