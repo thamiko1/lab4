@@ -74,31 +74,6 @@ insert into multi (mode,1st,2nd,3rd,4th,5th) values ("GRE", "99:99:99 -1,-1,-1",
 DROP table $i;
 ```
 
-## Write json in game.js example
-```js
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-var fs = require('fs');
-
-var person = {
-  "name": "林品翰",
-  "want to say": "感謝各位大神carry我!",
-};
-
-var jsonString = JSON.stringify(person);
-
-fs.writeFile('person.json', jsonString, function(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('檔案已成功寫入！');
-  }
-});
-
-output : a new file named person.json
-{"name":"林品翰","want to say":"感謝各位大神carry我!"}
-```
-
 ## Artwork References and Attribution
 used picture sources:
 https://www.myfreetextures.com/old-cut-wood-tree-background-photo/
