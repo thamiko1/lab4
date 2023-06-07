@@ -688,7 +688,7 @@ io.sockets.on("connection", function (socket) {
         manager.removeUser(userID);
         io.to(roomID).emit("update num_user", room.num_user, room.max_user);
     });
-
+    var timeout;
     function send_question() {
         console.log("room.question_id", room.question_id);
         console.log("room.questions", room.questions[0])
@@ -696,7 +696,7 @@ io.sockets.on("connection", function (socket) {
         let question = room.questions[room.question_id];
         io.to(roomID).emit("new question", question["definition"], question["options"], room.question_id, room.question_duration);
         let current_qid = room.question_id;
-        setTimeout(() => {
+        timeout = setTimeout(() => {
             // TODO Check when the current_qid is fetched at the right time!!!! 
             console.log("question time up!!!");
             if (current_qid != room.question_id) return; // Early click
@@ -711,6 +711,7 @@ io.sockets.on("connection", function (socket) {
                 }
             }
             handle_stage(true);
+            clearTimeout(timeout);
         }, room.question_duration); // handle timeout (stage time + question time)
         console.log("set question duration", room.question_duration);
     }
@@ -829,6 +830,7 @@ io.sockets.on("connection", function (socket) {
                                 if ((room.time_str < all_best || JSON.stringify(all_best) == "null") && game_result == 0)
                                     all_best = room.time_str;
                                 io.to(roomID).emit("game over", room.logFile, game_result, personal_best, all_best);
+                                clearTimeout(timeout);
                                 socket.disconnect();
                             }
                         )
