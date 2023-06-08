@@ -1,4 +1,8 @@
 # CNL Final Project
+Please run the following command to access the final version.
+```shell
+git checkout v3.0
+```
 ## Warning
 * Before running `game.js`, please build a directory `log` in `public`
 * Since we apply sha256 to the password, the account set up before will be invalid.
@@ -75,7 +79,7 @@ DROP table $i;
 ```
 
 ## Artwork References and Attribution
-used picture sources:
+used picture sources:</br>
 https://www.myfreetextures.com/old-cut-wood-tree-background-photo/
 https://www.myfreetextures.com/over-30-free-big-beautiful-and-seamless-wood-textures/
 https://www.stickpng.com/img/memes/patrick-star/patrick-star-head
