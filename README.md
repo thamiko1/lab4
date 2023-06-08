@@ -1,4 +1,8 @@
 # CNL Final Project
+Please run the following command to access the final version.
+```sh
+git checkout v3.0
+```
 ## Warning
 * Before running `game.js`, please build a directory `log` in `public`
 * Since we apply sha256 to the password, the account set up before will be invalid.
